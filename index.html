@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="YETI — сайти, каталоги, Telegram-боти, калькулятори та SEO під ключ. Зроблено з ШІ.">
+<title>YETI</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: night hero with a wind-blown fur wordmark → snow-white "proof" bands alternating with night bands. Single dark world by choice. */
+:root{
+  --night:#0E1116;
+  --night-2:#161B23;
+  --snow:#EEF1F4;
+  --white:#FFFFFF;
+  --frost:#C5CCD6;
+  --mist:#9AA4B2;
+  --slate:#5A6472;
+  --line-dark:#3A4250;
+  --accent:#FF6A2B;
+  --f-display:'Dela Gothic One','Arial Black',Impact,sans-serif;
+  --f-body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --gx:max(16px, 5vw, env(safe-area-inset-left, 0px));
+  --gxr:max(16px, 5vw, env(safe-area-inset-right, 0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--snow);font-family:var(--f-body);font-size:16px;line-height:1.5;overflow-x:hidden}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2{text-wrap:balance}
+.wrap{padding-left:var(--gx);padding-right:var(--gxr)}
+.inner{max-width:1240px;margin:0 auto}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;mix-blend-mode:difference;color:var(--snow)}
+.logo{font-family:var(--f-display);font-size:26px;letter-spacing:.04em;text-decoration:none;filter:url(#fur)}
+.nav{display:flex;gap:28px;font-size:14px;font-weight:600}
+.nav a{text-decoration:none}
+.pill{display:inline-flex;align-items:center;justify-content:center;min-height:48px;text-decoration:none;font-weight:800;border-radius:999px;padding:0 26px;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.pill:hover{transform:scale(1.04)}
+.pill-line{border:1.5px solid currentColor}
+.pill-acc{background:var(--accent);color:var(--night)}
+.top .pill{min-height:44px;font-size:14px;padding:0 20px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;margin-top:-72px;padding-top:120px;padding-bottom:24px;display:flex;flex-direction:column;gap:28px;background:var(--night)}
+.snow{position:absolute;inset:0;pointer-events:none}
+.flake{position:absolute;top:-10px;border-radius:50%;background:var(--snow);animation:fall linear infinite}
+@keyframes fall{to{transform:translate3d(60px,110vh,0)}}
+.eyebrow{font-family:var(--f-mono);font-size:13px;letter-spacing:.1em;color:var(--mist);text-transform:uppercase}
+.hero h1{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(40px,6.4vw,108px);line-height:1;letter-spacing:-.01em}
+.ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ln>span{display:inline-block;animation:up 1.1s cubic-bezier(.16,1,.3,1) both}
+@keyframes up{from{transform:translateY(110%)}}
+.acc{color:var(--accent)}
+.lede{margin:0;max-width:34em;font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--frost)}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.fadein{animation:fi 1s ease both}
+@keyframes fi{from{opacity:0}}
+.mark{position:relative;width:100%;margin-top:8px}
+.mark canvas{display:block;width:100%;height:auto;touch-action:pan-y}
+.mark-hint{position:absolute;right:0;bottom:6px;font-family:var(--f-mono);font-size:12px;color:var(--mist)}
+
+/* bands */
+.band-snow{background:var(--snow);color:var(--night)}
+.band-night{background:var(--night);color:var(--snow)}
+.sec{padding-block:clamp(88px,12vw,140px)}
+.h2{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(38px,6vw,96px);line-height:1}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:48px}
+.note{font-family:var(--f-mono);font-size:13px;max-width:290px;line-height:1.6}
+
+/* tracks */
+.trail{display:grid;grid-template-columns:72px minmax(0,1fr) 72px;gap:24px;align-items:center;border-top:1.5px solid var(--night);padding-block:28px}
+.trail:last-child{border-bottom:1.5px solid var(--night)}
+.trail svg{width:44px;height:66px;justify-self:center}
+.trail .r{fill:var(--accent)}
+.trail .l{fill:var(--night)}
+.t-body{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 32px;min-width:0}
+.t-num{font-family:var(--f-mono);font-size:12px;color:var(--slate)}
+.t-name{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(24px,3vw,44px);line-height:1.05}
+.t-desc{font-size:16px;line-height:1.5;max-width:380px}
+
+/* AI */
+.ai{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px;align-items:end}
+.ai p{margin:0 0 18px;font-size:17px;line-height:1.65;color:var(--frost);max-width:34em}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:16px}
+.plan{border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:18px;border:1.5px solid var(--night);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.plan:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(14,17,22,.18)}
+.p-w{background:var(--white);color:var(--night)}
+.p-d{background:var(--night);color:var(--snow)}
+.p-a{background:var(--accent);color:var(--night)}
+.p-meta{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:12px}
+.p-name{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.1}
+.p-price{display:flex;align-items:baseline;gap:8px;font-variant-numeric:tabular-nums}
+.p-price b{font-family:var(--f-display);font-weight:400;font-size:58px;line-height:.9}
+.plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.plan li{display:flex;gap:10px}
+.plan .pill{margin-top:auto}
+.extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));column-gap:24px;margin-top:40px;border-top:1.5px solid var(--night)}
+.extras div{display:flex;justify-content:space-between;gap:12px;padding-block:18px;border-bottom:1.5px solid var(--night);font-variant-numeric:tabular-nums}
+
+/* call */
+.call{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:56px;padding-bottom:40px}
+.call .h2{position:relative;font-size:clamp(46px,9vw,160px);line-height:.95}
+.call-row{position:relative;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;border-top:1.5px solid var(--line-dark);padding-top:24px}
+.call-row .pill{font-size:18px;min-height:64px;padding:0 34px}
+.contacts{font-family:var(--f-mono);font-size:13px;color:var(--mist);user-select:all}
+
+@supports (animation-timeline: view()){
+  .drift{animation:dr linear both;animation-timeline:view();animation-range:entry 0% entry 85%}
+  @keyframes dr{from{clip-path:ellipse(70% 4% at 50% 100%)}to{clip-path:ellipse(160% 160% at 50% 100%)}}
+  .fp{animation:fp linear both;animation-timeline:view();animation-range:entry 10% cover 35%}
+  @keyframes fp{from{opacity:.15;transform:scale(1.5) rotate(var(--r));filter:blur(4px)}to{opacity:1;transform:rotate(var(--r))}}
+}
+.fp{transform:rotate(var(--r))}
+
+@media (max-width:760px){
+  .nav{display:none}
+  .trail{grid-template-columns:48px minmax(0,1fr)}
+  .trail .fpr{display:none}
+  .trail svg{width:32px;height:48px}
+  .mark-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<svg aria-hidden="true" width="0" height="0" style="position:absolute">
+  <filter id="fur" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header class="top wrap">
+  <a class="logo" href="#top" aria-label="YETI, на початок">YETI</a>
+  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
+  <a class="pill pill-line" href="#call">Залишити слід</a>
+</header>
+
+<main id="top">
+<section class="hero wrap">
+  <div class="snow" id="snow1" aria-hidden="true"></div>
+  <div class="inner" style="position:relative;width:100%;display:flex;flex-direction:column;gap:24px">
+    <span class="eyebrow fadein">Свідчення №001 · веб-дизайн · Telegram · SEO</span>
+    <h1>
+      <span class="ln"><span style="animation-delay:.2s">Кажуть,</span></span>
+      <span class="ln"><span style="animation-delay:.32s">мене не існує.</span></span>
+      <span class="ln"><span class="acc" style="animation-delay:1.1s">Ось доказ.</span></span>
+    </h1>
+    <p class="lede fadein" style="animation-delay:1.4s">Роблю сайти, каталоги, Telegram-ботів і калькулятори разом із ШІ. Швидко, без шаблонів — і так, що про вас починають говорити.</p>
+    <div class="row fadein" style="animation-delay:1.6s">
+      <a class="pill pill-acc" href="#price">Тарифи від $300</a>
+      <a class="pill pill-line" href="#tracks">Подивитись сліди</a>
+    </div>
+  </div>
+  <div class="mark inner" style="width:100%">
+    <canvas id="furmark" role="img" aria-label="YETI — літери з білої шерсті, що розвівається на вітрі"></canvas>
+    <span class="mark-hint">проведіть курсором — подме вітер</span>
+  </div>
+</section>
+
+<section id="tracks" class="band-snow drift sec wrap">
+  <div class="inner">
+    <div class="head">
+      <h2 class="h2">Сліди,<br>які я лишаю</h2>
+      <span class="note">Кожна послуга — під ключ: від ідеї до запуску.</span>
+    </div>
+    <div id="trails"></div>
+  </div>
+</section>
+
+<section class="band-night sec wrap">
+  <div class="inner ai">
+    <h2 class="h2">Без коду руками.<br><span class="acc">З ШІ — і з головою.</span></h2>
+    <div>
+      <p>ШІ робить рутину за години, а не за тижні. Тому ви платите за результат, а не за чужий час.</p>
+      <p>Ідея, структура, смак і тексти, що продають, — на мені. Шаблонів не буде.</p>
+    </div>
+  </div>
+</section>
+
+<section id="price" class="band-snow drift sec wrap">
+  <div class="inner">
+    <div class="head"><h2 class="h2">Експедиції<br>з відомою ціною</h2><span class="note">Ціна старту. Точну суму назву після короткого брифу.</span></div>
+    <div class="plans">
+      <article class="plan p-w"><div class="p-meta"><span>EXP-01</span><span>від 7 днів</span></div><div class="p-name">Перший слід — лендинг</div><div class="p-price"><span>від</span><b>$500</b></div><ul><li>✓ Дизайн під бренд</li><li>✓ Адаптив під телефон</li><li>✓ Заявки в Telegram</li><li>✓ Базове SEO</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
+      <article class="plan p-d"><div class="p-meta"><span>EXP-02</span><span>від 14 днів</span></div><div class="p-name">Стежка — бізнес-сайт</div><div class="p-price"><span>від</span><b>$800</b></div><ul><li>✓ До 8 сторінок</li><li>✓ Адмінка</li><li>✓ Аналітика</li><li>✓ SEO-структура</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
+      <article class="plan p-a"><div class="p-meta"><span>EXP-03</span><span>від 21 дня</span></div><div class="p-name">Експедиція — каталог</div><div class="p-price"><span>від</span><b>$1000</b></div><ul><li>✓ Фільтри й пошук</li><li>✓ Картки товарів</li><li>✓ Кошик або заявка</li><li>✓ SEO категорій</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
+      <article class="plan p-w"><div class="p-meta"><span>TG-01</span><span>від 5 днів</span></div><div class="p-name">Сигнал — Telegram-бот</div><div class="p-price"><span>від</span><b>$300</b></div><ul><li>✓ Сценарій діалогу</li><li>✓ Меню й кнопки</li><li>✓ Заявки в чат</li><li>✓ Розсилки</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
+      <article class="plan p-d"><div class="p-meta"><span>TG-02</span><span>від 14 днів</span></div><div class="p-name">Табір — Mini App</div><div class="p-price"><span>від</span><b>$700</b></div><ul><li>✓ Власний дизайн</li><li>✓ Каталог або запис</li><li>✓ Оплата</li><li>✓ Адмінка</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
+    </div>
+    <div class="extras">
+      <div><span>Калькулятор / квіз</span><b>від $150</b></div>
+      <div><span>SEO-супровід</span><b>від $250/міс</b></div>
+      <div><span>Презентація</span><b>від $150</b></div>
+      <div><span>Контент-план</span><b>від $150</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="call" class="band-night sec wrap call">
+  <div class="snow" id="snow2" aria-hidden="true"></div>
+  <h2 class="h2 inner" style="width:100%">Покажіть світу,<br><span class="acc">що ви існуєте.</span></h2>
+  <div class="call-row inner" style="width:100%">
+    <a class="pill pill-acc" href="#">Написати Yeti в Telegram →</a>
+    <span class="contacts">[ВАШ TELEGRAM] · [ВАШ EMAIL] · © YETI, 2026</span>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- snow ---------- */
+  var seed = 7;
+  function rnd(){ seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+  ['snow1','snow2'].forEach(function(id){
+    var box = document.getElementById(id); if (!box) return;
+    for (var i = 0; i < 46; i++){
+      var s = 2 + rnd() * 5, f = document.createElement('span');
+      f.className = 'flake';
+      f.style.cssText = 'left:'+(rnd()*100).toFixed(1)+'%;width:'+s.toFixed(1)+'px;height:'+s.toFixed(1)+'px;opacity:'+(0.3+rnd()*0.6).toFixed(2)+';animation-duration:'+(7+rnd()*9).toFixed(1)+'s;animation-delay:'+(-rnd()*14).toFixed(1)+'s';
+      box.appendChild(f);
+    }
+  });
+
+  /* ---------- trails ---------- */
+  var T = [
+    ['Сайти під ключ','Лендинги й сайти компаній — дизайн, тексти, запуск.'],
+    ['Каталоги','Товари з фільтрами, картками й заявками.'],
+    ['Telegram-боти й Mini Apps','Продажі, запис і оплата просто в месенджері.'],
+    ['Калькулятори','Розрахунок вартості й квізи, що збирають заявки.'],
+    ['SEO','Щоб вас знаходили, а не гортали повз.'],
+    ['Презентації та контент-план','Щоб після запуску було що показати й про що говорити.']
+  ];
+  var footL = '<ellipse cx="30" cy="58" rx="17" ry="26"/><circle cx="15" cy="20" r="6"/><circle cx="27" cy="13" r="6.5"/><circle cx="40" cy="15" r="6"/><circle cx="49" cy="25" r="5"/>';
+  var footR = '<ellipse cx="30" cy="58" rx="17" ry="26"/><circle cx="11" cy="25" r="5"/><circle cx="20" cy="15" r="6"/><circle cx="33" cy="13" r="6.5"/><circle cx="45" cy="20" r="6"/>';
+  var html = '';
+  T.forEach(function(t,i){
+    var left = i % 2 === 0;
+    html += '<div class="trail">' +
+      '<svg class="fp l" aria-hidden="true" viewBox="0 0 60 90" style="--r:-8deg;visibility:'+(left?'visible':'hidden')+'">'+footL+'</svg>' +
+      '<div class="t-body"><div><span class="t-num">ДОКАЗ №00'+(i+1)+'</span><b class="t-name">'+t[0]+'</b></div><span class="t-desc">'+t[1]+'</span></div>' +
+      '<svg class="fp r fpr" aria-hidden="true" viewBox="0 0 60 90" style="--r:8deg;visibility:'+(left?'hidden':'visible')+'">'+footR+'</svg>' +
+    '</div>';
+  });
+  document.getElementById('trails').innerHTML = html;
+
+  /* ---------- fur wordmark ---------- */
+  var cv = document.getElementById("furmark");
+  var ctx = cv.getContext('2d');
+  var W = 0, H = 0, dpr = 1, strands = null, under = null, running = false, visible = true, raf = 0;
+  var mouse = { x: -9999, y: -9999, px: -9999, py: -9999 }, gust = 0;
+
+  function build(){
+    var cssW = cv.parentNode.clientWidth;
+    if (!cssW) return;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var fontPx = 100;
+    var off = document.createElement('canvas').getContext('2d');
+    off.font = '400 ' + fontPx + 'px "Dela Gothic One", "Arial Black", Impact, sans-serif';
+    var m = off.measureText('YETI');
+    var scale = (cssW * 0.88) / m.width;
+    var fs = fontPx * scale;
+    var pad = fs * 0.22;
+    var cssH = Math.round(fs * 0.82 + pad * 2);
+    W = Math.round(cssW * dpr); H = Math.round(cssH * dpr);
+    cv.width = W; cv.height = H;
+    cv.style.height = cssH + 'px';
+
+    // render the letters into a mask
+    var mk = document.createElement('canvas'); mk.width = W; mk.height = H;
+    var mc = mk.getContext('2d');
+    mc.fillStyle = '#fff';
+    mc.font = '400 ' + (fs * dpr) + 'px "Dela Gothic One", "Arial Black", Impact, sans-serif';
+    mc.textAlign = 'center'; mc.textBaseline = 'alphabetic';
+    var asc = (m.actualBoundingBoxAscent || fontPx * .72) * scale * dpr;
+    var desc = (m.actualBoundingBoxDescent || 0) * scale * dpr;
+    var baseY = (H + asc - desc) / 2;
+    mc.fillText('YETI', W / 2, baseY);
+    under = mk;
+
+    var data = mc.getImageData(0, 0, W, H).data;
+    function a(x, y){ x |= 0; y |= 0; if (x < 0 || y < 0 || x >= W || y >= H) return 0; return data[(y * W + x) * 4 + 3]; }
+
+    var step = Math.max(3 * dpr, fs * dpr / 85);
+    var e = step * 2.4;
+    var L = fs * dpr * 0.06;
+    var list = [];
+    var s = 3;
+    function r(){ s = (s * 9301 + 49297) % 233280; return s / 233280; }
+    for (var y = 0; y < H; y += step * 0.86){
+      for (var x = 0; x < W; x += step){
+        var jx = x + (r() - .5) * step, jy = y + (r() - .5) * step;
+        if (a(jx, jy) < 128) continue;
+        var gx = a(jx - e, jy) - a(jx + e, jy);
+        var gy = a(jx, jy - e) - a(jx, jy + e);
+        var edge = Math.abs(gx) + Math.abs(gy) > 60;
+        var ang, len;
+        if (edge){ ang = Math.atan2(gy, gx) + (r() - .5) * .6; len = L * (1 + r() * .8); }
+        else { ang = Math.PI / 2 + (r() - .5) * 1.6; len = L * (.45 + r() * .4); }
+        list.push({ x: jx, y: jy, bx: Math.cos(ang), by: Math.sin(ang), len: len, edge: edge ? 1 : 0, sh: r() < .22 ? 2 : (r() < .5 ? 1 : 0), ph: r() * 6.28 });
+      }
+    }
+    // draw the shadow strands first so lighter fur sits on top
+    list.sort(function(p, q){ return q.sh - p.sh; });
+    strands = list;
+    draw(0);
+  }
+
+  var COLORS = ['#FFFFFF', '#E4EBF2', '#AFC0D0'];
+  function draw(t){
+    if (!strands) return;
+    ctx.clearRect(0, 0, W, H);
+    // under-fur: the solid letter body, slightly cool, so the word always reads
+    ctx.globalAlpha = 1;
+    ctx.filter = 'none';
+    ctx.drawImage(under, 0, 0);
+    ctx.globalCompositeOperation = 'source-in';
+    ctx.fillStyle = '#DCE5ED';
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'source-over';
+
+    var ts = t * 0.001;
+    var gustNow = 0.55 + 0.25 * Math.sin(ts * 0.7) + 0.15 * Math.sin(ts * 1.9 + 1.3) + gust;
+    var wx = Math.cos(-0.18), wy = Math.sin(-0.18);
+    var R = 160 * dpr, mx = mouse.x * dpr, my = mouse.y * dpr;
+    ctx.lineCap = 'round';
+    ctx.lineWidth = Math.max(1, 1.35 * dpr);
+    ctx.globalAlpha = .88;
+    var cur = -1;
+    for (var i = 0; i < strands.length; i++){
+      var p = strands[i];
+      if (p.sh !== cur){ if (cur !== -1) ctx.stroke(); cur = p.sh; ctx.strokeStyle = COLORS[cur]; ctx.beginPath(); }
+      var n = Math.sin(p.x * 0.006 + ts * 2.2 + p.ph * .3) * Math.cos(p.y * 0.009 - ts * 1.6);
+      var w = Math.min(.92, (p.edge ? .62 : .38) * gustNow + n * .18);
+      var fx = wx + n * .55, fy = wy + Math.sin(ts * 3 + p.ph) * .12 + n * .35;
+      var dx = p.bx * (1 - w) + fx * w, dy = p.by * (1 - w) + fy * w;
+      var dl = Math.sqrt(dx * dx + dy * dy) || 1;
+      var len = p.len * (1 + gustNow * .15 * p.edge);
+      var tx = p.x + dx / dl * len, ty = p.y + dy / dl * len;
+      var ddx = tx - mx, ddy = ty - my, d = Math.sqrt(ddx * ddx + ddy * ddy);
+      if (d < R){ var k = (R - d) / R * len * .9; tx += ddx / (d || 1) * k; ty += ddy / (d || 1) * k; }
+      var cx = p.x + p.bx * len * .45, cy = p.y + p.by * len * .45;
+      ctx.moveTo(p.x, p.y);
+      ctx.quadraticCurveTo(cx, cy, tx, ty);
+    }
+    if (cur !== -1) ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+
+  function loop(t){
+    gust *= 0.95;
+    draw(t);
+    if (running && visible) raf = requestAnimationFrame(loop); else raf = 0;
+  }
+  function start(){ if (reduce) return; running = true; if (!raf && visible) raf = requestAnimationFrame(loop); }
+
+  cv.addEventListener('pointermove', function(ev){
+    var b = cv.getBoundingClientRect();
+    var x = ev.clientX - b.left, y = ev.clientY - b.top;
+    if (mouse.px > -9000){ var sp = Math.hypot(x - mouse.px, y - mouse.py); gust = Math.min(.6, gust + sp * .004); }
+    mouse.px = x; mouse.py = y; mouse.x = x; mouse.y = y;
+    if (reduce) draw(0);
+  });
+  cv.addEventListener('pointerleave', function(){ mouse.x = mouse.y = mouse.px = mouse.py = -9999; if (reduce) draw(0); });
+
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){
+      visible = en[0].isIntersecting;
+      if (visible && running && !raf) raf = requestAnimationFrame(loop);
+    }).observe(cv);
+  }
+
+  var rt;
+  window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(build, 180); });
+
+  var ready = document.fonts && document.fonts.load ? document.fonts.load('400 100px "Dela Gothic One"', 'YETI') : Promise.resolve();
+  var done = false;
+  function go(){ if (done) return; done = true; build(); start(); }
+  ready.then(function(){ if (done) build(); else go(); }, go);
+  setTimeout(go, 2500);
+})();
+</script>
+</body>
+</html>
