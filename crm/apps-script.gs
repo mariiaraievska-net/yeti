@@ -18,7 +18,8 @@ var STATUSES = ['Нова', 'Зв’язалась', 'Бриф', 'В робот�
 
 function setup() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
+  var sh = ss.getSheetByName(SHEET_NAME);
+  if (!sh) { sh = ss.getSheets()[0]; sh.setName(SHEET_NAME); }
   sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS])
     .setFontWeight('bold').setBackground('#0E1116').setFontColor('#EEF1F4');
   sh.setFrozenRows(1);
