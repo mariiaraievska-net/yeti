@@ -114,6 +114,41 @@ h1,h2{text-wrap:balance}
 .call-row .pill{font-size:18px;min-height:64px;padding:0 34px}
 .contacts{font-family:var(--f-mono);font-size:13px;color:var(--mist);user-select:all}
 
+/* lead form + channels */
+[hidden]{display:none!important}
+.lead{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,72px);align-items:start}
+.form{display:flex;flex-direction:column;gap:16px;min-width:0}
+.form-title{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:clamp(24px,2.4vw,34px);line-height:1.1}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mist)}
+.field input,.field select,.field textarea{font:inherit;font-size:16px;color:var(--snow);background:var(--night-2);border:1.5px solid var(--line-dark);border-radius:14px;padding:14px 16px;min-height:52px;width:100%;transition:border-color .2s}
+.field textarea{min-height:110px;resize:vertical}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--mist) 50%),linear-gradient(135deg,var(--mist) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+.field input[aria-invalid="true"]{border-color:var(--accent)}
+.err{min-height:1em;font-size:13px;color:var(--accent)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .pill{border:0;cursor:pointer;font-size:17px;min-height:60px;align-self:flex-start}
+.form .pill[disabled]{opacity:.6;cursor:progress}
+.fine{margin:0;font-size:13px;color:var(--mist);max-width:36em}
+.done{border:1.5px solid var(--accent);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.done b{font-family:var(--f-display);font-weight:400;font-size:26px}
+.done p{margin:0;color:var(--frost)}
+.done a{color:var(--accent);font-weight:800}
+.channels{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ch{display:flex;align-items:center;gap:16px;text-decoration:none;border:1.5px solid var(--line-dark);border-radius:20px;padding:16px 20px;min-height:72px;transition:border-color .25s,transform .35s cubic-bezier(.16,1,.3,1)}
+.ch:hover{border-color:var(--snow);transform:translateX(4px)}
+.ch svg{flex:none;width:28px;height:28px}
+.ch span{display:flex;flex-direction:column;min-width:0}
+.ch small{font-family:var(--f-mono);font-size:12px;color:var(--mist);letter-spacing:.04em}
+.ch b{font-size:18px;overflow-wrap:anywhere}
+.ch-tg svg{fill:#2AABEE}.ch-wa svg{fill:#25D366}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:8px 4px;font-size:15px}
+.mail code{font-family:var(--f-mono);user-select:all;overflow-wrap:anywhere}
+.copy{font:inherit;font-size:13px;font-weight:800;color:var(--snow);background:transparent;border:1.5px solid var(--line-dark);border-radius:999px;padding:0 14px;min-height:36px;cursor:pointer}
+.copy:hover{border-color:var(--snow)}
+
 @supports (animation-timeline: view()){
   .drift{animation:dr linear both;animation-timeline:view();animation-range:entry 0% entry 85%}
   @keyframes dr{from{clip-path:ellipse(70% 4% at 50% 100%)}to{clip-path:ellipse(160% 160% at 50% 100%)}}
@@ -196,11 +231,11 @@ h1,h2{text-wrap:balance}
   <div class="inner">
     <div class="head"><h2 class="h2">Експедиції<br>з відомою ціною</h2><span class="note">Ціна старту. Точну суму назву після короткого брифу.</span></div>
     <div class="plans">
-      <article class="plan p-w"><div class="p-meta"><span>EXP-01</span><span>від 7 днів</span></div><div class="p-name">Перший слід — лендинг</div><div class="p-price"><span>від</span><b>$500</b></div><ul><li>✓ Дизайн під бренд</li><li>✓ Адаптив під телефон</li><li>✓ Заявки в Telegram</li><li>✓ Базове SEO</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
-      <article class="plan p-d"><div class="p-meta"><span>EXP-02</span><span>від 14 днів</span></div><div class="p-name">Стежка — бізнес-сайт</div><div class="p-price"><span>від</span><b>$800</b></div><ul><li>✓ До 8 сторінок</li><li>✓ Адмінка</li><li>✓ Аналітика</li><li>✓ SEO-структура</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
-      <article class="plan p-a"><div class="p-meta"><span>EXP-03</span><span>від 21 дня</span></div><div class="p-name">Експедиція — каталог</div><div class="p-price"><span>від</span><b>$1000</b></div><ul><li>✓ Фільтри й пошук</li><li>✓ Картки товарів</li><li>✓ Кошик або заявка</li><li>✓ SEO категорій</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
-      <article class="plan p-w"><div class="p-meta"><span>TG-01</span><span>від 5 днів</span></div><div class="p-name">Сигнал — Telegram-бот</div><div class="p-price"><span>від</span><b>$300</b></div><ul><li>✓ Сценарій діалогу</li><li>✓ Меню й кнопки</li><li>✓ Заявки в чат</li><li>✓ Розсилки</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
-      <article class="plan p-d"><div class="p-meta"><span>TG-02</span><span>від 14 днів</span></div><div class="p-name">Табір — Mini App</div><div class="p-price"><span>від</span><b>$700</b></div><ul><li>✓ Власний дизайн</li><li>✓ Каталог або запис</li><li>✓ Оплата</li><li>✓ Адмінка</li></ul><a class="pill pill-line" href="#call">Вирушити</a></article>
+      <article class="plan p-w"><div class="p-meta"><span>EXP-01</span><span>від 7 днів</span></div><div class="p-name">Перший слід — лендинг</div><div class="p-price"><span>від</span><b>$500</b></div><ul><li>✓ Дизайн під бренд</li><li>✓ Адаптив під телефон</li><li>✓ Заявки в Telegram</li><li>✓ Базове SEO</li></ul><a class="pill pill-line" href="#call" data-service="Лендинг / візитка">Вирушити</a></article>
+      <article class="plan p-d"><div class="p-meta"><span>EXP-02</span><span>від 14 днів</span></div><div class="p-name">Стежка — бізнес-сайт</div><div class="p-price"><span>від</span><b>$800</b></div><ul><li>✓ До 8 сторінок</li><li>✓ Адмінка</li><li>✓ Аналітика</li><li>✓ SEO-структура</li></ul><a class="pill pill-line" href="#call" data-service="Бізнес-сайт">Вирушити</a></article>
+      <article class="plan p-a"><div class="p-meta"><span>EXP-03</span><span>від 21 дня</span></div><div class="p-name">Експедиція — каталог</div><div class="p-price"><span>від</span><b>$1000</b></div><ul><li>✓ Фільтри й пошук</li><li>✓ Картки товарів</li><li>✓ Кошик або заявка</li><li>✓ SEO категорій</li></ul><a class="pill pill-line" href="#call" data-service="Каталог">Вирушити</a></article>
+      <article class="plan p-w"><div class="p-meta"><span>TG-01</span><span>від 5 днів</span></div><div class="p-name">Сигнал — Telegram-бот</div><div class="p-price"><span>від</span><b>$300</b></div><ul><li>✓ Сценарій діалогу</li><li>✓ Меню й кнопки</li><li>✓ Заявки в чат</li><li>✓ Розсилки</li></ul><a class="pill pill-line" href="#call" data-service="Telegram-бот">Вирушити</a></article>
+      <article class="plan p-d"><div class="p-meta"><span>TG-02</span><span>від 14 днів</span></div><div class="p-name">Табір — Mini App</div><div class="p-price"><span>від</span><b>$700</b></div><ul><li>✓ Власний дизайн</li><li>✓ Каталог або запис</li><li>✓ Оплата</li><li>✓ Адмінка</li></ul><a class="pill pill-line" href="#call" data-service="Telegram Mini App">Вирушити</a></article>
     </div>
     <div class="extras">
       <div><span>Калькулятор / квіз</span><b>від $150</b></div>
@@ -214,14 +249,146 @@ h1,h2{text-wrap:balance}
 <section id="call" class="band-night sec wrap call">
   <div class="snow" id="snow2" aria-hidden="true"></div>
   <h2 class="h2 inner" style="width:100%">Покажіть світу,<br><span class="acc">що ви існуєте.</span></h2>
+
+  <div class="lead inner" style="width:100%">
+    <form class="form" id="leadForm" novalidate>
+      <p class="form-title">Залиште заявку — відповім протягом дня</p>
+      <div class="fields">
+        <div class="field">
+          <label for="f-name">Ім’я</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="80">
+        </div>
+        <div class="field">
+          <label for="f-contact">Telegram, WhatsApp або телефон</label>
+          <input id="f-contact" name="contact" type="text" autocomplete="tel" required maxlength="80" placeholder="@нік або +995…">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-service">Що потрібно</label>
+        <select id="f-service" name="service">
+          <option>Лендинг / візитка</option>
+          <option>Бізнес-сайт</option>
+          <option>Каталог</option>
+          <option>Telegram-бот</option>
+          <option>Telegram Mini App</option>
+          <option>Калькулятор / квіз</option>
+          <option>SEO-супровід</option>
+          <option>Презентація або контент-план</option>
+          <option>Ще не знаю — порадьте</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-msg">Коротко про проєкт</label>
+        <textarea id="f-msg" name="message" maxlength="1500" placeholder="Ніша, приклади, що подобаються, терміни"></textarea>
+      </div>
+      <div class="hp" aria-hidden="true"><label for="f-web">Сайт</label><input id="f-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <span class="err" id="f-err" role="alert"></span>
+      <button class="pill pill-acc" id="f-send" type="submit">Надіслати заявку →</button>
+      <p class="fine">Натискаючи кнопку, ви погоджуєтесь, що я зв’яжуся з вами за вказаним контактом. Дані нікому не передаються.</p>
+    </form>
+
+    <div class="done" id="leadDone" hidden>
+      <b>Заявку отримано.</b>
+      <p>Я напишу вам протягом дня. Якщо терміново — продублюйте в месенджер: <a id="doneWa" href="https://wa.me/995597798214" target="_blank" rel="noopener">WhatsApp</a> або <a href="https://t.me/mariia_AIweb" target="_blank" rel="noopener">Telegram</a>.</p>
+    </div>
+
+    <div class="channels">
+      <p class="form-title">Або напишіть напряму</p>
+      <a class="ch ch-tg" href="https://t.me/mariia_AIweb" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm5.56 8.16-1.83 8.64c-.14.62-.5.77-1.02.48l-2.8-2.07-1.35 1.3c-.15.15-.28.28-.57.28l.2-2.86 5.2-4.7c.23-.2-.05-.31-.35-.11l-6.43 4.05-2.77-.87c-.6-.19-.61-.6.13-.89l10.82-4.17c.5-.18.94.12.77.92Z"/></svg>
+        <span><small>Telegram</small><b>@mariia_AIweb</b></span>
+      </a>
+      <a class="ch ch-wa" href="https://wa.me/995597798214" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm5.8 14.04c-.24.68-1.42 1.3-1.95 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.53-3.93-4.67-4.11-.13-.18-1.1-1.47-1.1-2.8s.7-1.99.95-2.26a1 1 0 0 1 .72-.34h.52c.17 0 .4-.06.62.47.24.56.8 1.94.87 2.08.07.14.12.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.36-.41.48-.14.13-.28.28-.12.56.16.27.71 1.17 1.53 1.9 1.05.93 1.93 1.22 2.2 1.36.28.14.44.11.6-.07.17-.18.7-.81.88-1.09.18-.27.37-.23.62-.14.25.09 1.6.76 1.88.9.27.13.46.2.52.32.07.11.07.66-.17 1.33Z"/></svg>
+        <span><small>WhatsApp · Грузія</small><b>+995 597 798 214</b></span>
+      </a>
+      <a class="ch ch-wa" href="https://wa.me/380955610368" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm5.8 14.04c-.24.68-1.42 1.3-1.95 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.53-3.93-4.67-4.11-.13-.18-1.1-1.47-1.1-2.8s.7-1.99.95-2.26a1 1 0 0 1 .72-.34h.52c.17 0 .4-.06.62.47.24.56.8 1.94.87 2.08.07.14.12.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.36-.41.48-.14.13-.28.28-.12.56.16.27.71 1.17 1.53 1.9 1.05.93 1.93 1.22 2.2 1.36.28.14.44.11.6-.07.17-.18.7-.81.88-1.09.18-.27.37-.23.62-.14.25.09 1.6.76 1.88.9.27.13.46.2.52.32.07.11.07.66-.17 1.33Z"/></svg>
+        <span><small>WhatsApp · Україна</small><b>+380 95 561 03 68</b></span>
+      </a>
+      <div class="mail"><span>Пошта:</span><code id="mailAddr">mariia.raievska@icloud.com</code><button class="copy" type="button" id="copyMail">Копіювати</button></div>
+    </div>
+  </div>
+
   <div class="call-row inner" style="width:100%">
-    <a class="pill pill-acc" href="#">Написати Yeti в Telegram →</a>
-    <span class="contacts">[ВАШ TELEGRAM] · [ВАШ EMAIL] · © YETI, 2026</span>
+    <span class="contacts">© YETI, 2026 · сайти з ШІ під ключ</span>
+    <a class="contacts" href="#top" style="text-decoration:none">↑ нагору</a>
   </div>
 </section>
 </main>
 
 <script>
+/* ---------- лиди: адреса Google Apps Script (CRM-таблиця) ----------
+   Встав сюди URL веб-застосунку з кроку «Deploy → Web app».
+   Поки порожньо — форма відкриває WhatsApp із готовим текстом заявки. */
+var CRM_URL = '';
+var WA_MAIN = '995597798214';
+
+(function(){
+  var form = document.getElementById('leadForm');
+  if (!form) return;
+  var done = document.getElementById('leadDone');
+  var err = document.getElementById('f-err');
+  var btn = document.getElementById('f-send');
+  var name = document.getElementById('f-name');
+  var contact = document.getElementById('f-contact');
+  var service = document.getElementById('f-service');
+  var msg = document.getElementById('f-msg');
+
+  // тариф → поле «Що потрібно»
+  document.querySelectorAll('[data-service]').forEach(function(a){
+    a.addEventListener('click', function(){ service.value = a.getAttribute('data-service'); });
+  });
+
+  function waText(d){
+    return 'Вітаю! Заявка з сайту YETI.\nІм’я: ' + d.name + '\nКонтакт: ' + d.contact + '\nПослуга: ' + d.service + (d.message ? '\nПро проєкт: ' + d.message : '');
+  }
+  function mark(el, bad){ el.setAttribute('aria-invalid', bad ? 'true' : 'false'); }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (form.website.value) return; // бот
+    var d = {
+      name: name.value.trim(),
+      contact: contact.value.trim(),
+      service: service.value,
+      message: msg.value.trim(),
+      page: location.href,
+      ua: navigator.userAgent.slice(0, 160)
+    };
+    mark(name, !d.name); mark(contact, d.contact.length < 4);
+    if (!d.name || d.contact.length < 4){
+      err.textContent = !d.name ? 'Напишіть, як до вас звертатися.' : 'Залиште Telegram, WhatsApp або телефон, щоб я могла відповісти.';
+      (!d.name ? name : contact).focus();
+      return;
+    }
+    err.textContent = '';
+    var wa = 'https://wa.me/' + WA_MAIN + '?text=' + encodeURIComponent(waText(d));
+    document.getElementById('doneWa').href = wa;
+
+    function success(){ form.hidden = true; done.hidden = false; done.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+
+    if (!CRM_URL){ window.open(wa, '_blank', 'noopener'); success(); return; }
+
+    btn.disabled = true; btn.textContent = 'Надсилаю…';
+    fetch(CRM_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) })
+      .then(success)
+      .catch(function(){
+        btn.disabled = false; btn.textContent = 'Надіслати заявку →';
+        err.innerHTML = 'Не вдалося надіслати. Перевірте інтернет або <a href="' + wa + '" target="_blank" rel="noopener" style="color:inherit">надішліть заявку в WhatsApp</a>.';
+      });
+  });
+
+  var copyBtn = document.getElementById('copyMail');
+  copyBtn.addEventListener('click', function(){
+    var t = document.getElementById('mailAddr').textContent;
+    function ok(){ copyBtn.textContent = 'Скопійовано'; setTimeout(function(){ copyBtn.textContent = 'Копіювати'; }, 1800); }
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(ok, function(){ selectMail(); });
+    else selectMail();
+    function selectMail(){ var r = document.createRange(); r.selectNodeContents(document.getElementById('mailAddr')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  });
+})();
+
 (function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
