@@ -317,6 +317,20 @@ h1,h2{text-wrap:balance}
 .g-th:hover{transform:translateY(-2px);border-color:var(--night)}
 .g-th[aria-pressed="true"]{border-color:var(--accent);color:var(--night)}
 .w-shot.shot-plain picture,.w-shot.shot-plain img{display:block;width:100%;height:100%;object-fit:cover}
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:20px}
+.review{margin:0;border:1.5px solid var(--line-dark);border-radius:24px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:18px;background:var(--night-2);position:relative}
+.review::before{content:"“";font-family:var(--f-display);font-size:96px;line-height:.6;color:var(--accent);height:40px}
+.review blockquote{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(24px,2.6vw,36px);line-height:1.15;text-wrap:balance}
+.review figcaption{display:flex;flex-direction:column;gap:2px;font-size:15px}
+.review figcaption span{color:var(--mist)}
+.r-proof{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line-dark);padding-top:16px}
+.r-proof a{font-weight:800;text-decoration:none;color:var(--snow);align-self:flex-start;border-bottom:2px solid var(--accent)}
+.r-proof summary{cursor:pointer;font-family:var(--f-mono);font-size:13px;color:var(--mist);list-style:none;display:inline-flex;gap:8px;align-items:center;min-height:32px}
+.r-proof summary::-webkit-details-marker{display:none}
+.r-proof summary::before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--mist);border-radius:50%;font-size:13px}
+.r-proof details[open] summary::before{content:"−"}
+.r-proof img{display:block;width:100%;max-width:520px;height:auto;margin-top:10px;border-radius:14px;border:1px solid var(--line-dark)}
 /* about */
 .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
 .about-head{display:flex;flex-direction:column;gap:24px;position:sticky;top:96px}
@@ -500,7 +514,7 @@ h1,h2{text-wrap:balance}
 
 <header class="top wrap">
   <a class="logo" href="#top" aria-label="YETI, на початок">YETI</a>
-  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#about">Про мене</a><a href="#cases">Кейси</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
+  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#about">Про мене</a><a href="#cases">Кейси</a><a href="#reviews">Відгуки</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
   <a class="pill pill-line" href="#call">Залишити слід</a>
 </header>
 
@@ -892,12 +906,6 @@ h1,h2{text-wrap:balance}
       </article>
     </div>
 
-    <figure class="quote">
-      <div>
-        <blockquote>Ви таку роботу провели, дуже, дуже вдячні вам за це.</blockquote>
-        <figcaption><b>Анастасія</b>, власниця V&amp;A Candle Atelier</figcaption>
-      </div>
-    </figure>
 
     <div class="concepts">
       <div class="c-head"><h3>Концепти</h3><span class="note">Ідеї, які я реалізую найближчим часом. Коли запрацюють — переїдуть угору.</span></div>
@@ -908,6 +916,28 @@ h1,h2{text-wrap:balance}
         <li><span class="tag">Концепт</span><b>Telegram-застосунок для спорту</b><small>Тренування й прогрес просто в месенджері</small></li>
         <li><span class="tag">Концепт</span><b>Telegram-застосунок для навчання</b><small>Уроки, завдання й нагадування в одному місці</small></li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="band-night sec wrap">
+  <div class="inner">
+    <div class="head">
+      <h2 class="h2">Відгуки<br>реальних <span class="acc">клієнтів</span></h2>
+      <span class="note" style="color:var(--mist)">Можна перевірити: біля кожного відгуку — посилання на проєкт і оригінал повідомлення.</span>
+    </div>
+    <div class="reviews">
+      <figure class="review">
+        <blockquote>Ви таку роботу провели, дуже, дуже вдячні вам за це.</blockquote>
+        <figcaption><b>Анастасія</b><span>власниця V&amp;A Candle Atelier</span></figcaption>
+        <div class="r-proof">
+          <a href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener">Проєкт: V&amp;A Candle Atelier ↗</a>
+          <details>
+            <summary>Оригінал повідомлення</summary>
+            <img src="cases/review-vacandle.jpg" alt="Скрін переписки: «Ви таку роботу провели, дуже, дуже вдячні вам за це», 16:21" width="900" height="386" loading="lazy">
+          </details>
+        </div>
+      </figure>
     </div>
   </div>
 </section>
