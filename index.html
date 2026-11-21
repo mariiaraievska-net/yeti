@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>YETI — сайти, Telegram-боти та SEO під ключ</title>
-<meta name="description" content="Лендинги, бізнес-сайти, каталоги, Telegram-боти й Mini Apps, калькулятори та SEO під ключ. Робота з ШІ: швидко, без шаблонів. Лендинг від $500, бот від $300.">
+<meta name="description" content="Лендинги, бізнес-сайти, каталоги, Telegram-боти й Mini Apps, калькулятори та SEO під ключ. Робота з ШІ: швидко, без шаблонів. Лендинг від $250, Telegram-бот від $150.">
 <meta name="theme-color" content="#0E1116">
 <link rel="canonical" href="https://mariiaraievska-net.github.io/yeti/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -37,20 +37,20 @@
   "telephone": "+995597798214",
   "areaServed": ["UA", "GE"],
   "availableLanguage": ["uk"],
-  "priceRange": "$150–$1000+",
+  "priceRange": "$80–$600+",
   "sameAs": ["https://t.me/mariia_AIweb"],
   "makesOffer": [
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Лендинг / візитка"},"priceSpecification":{"@type":"PriceSpecification","minPrice":500,"priceCurrency":"USD"}},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Бізнес-сайт"},"priceSpecification":{"@type":"PriceSpecification","minPrice":800,"priceCurrency":"USD"}},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Каталог"},"priceSpecification":{"@type":"PriceSpecification","minPrice":1000,"priceCurrency":"USD"}},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Telegram-бот"},"priceSpecification":{"@type":"PriceSpecification","minPrice":300,"priceCurrency":"USD"}},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Telegram Mini App"},"priceSpecification":{"@type":"PriceSpecification","minPrice":700,"priceCurrency":"USD"}}
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Лендинг / візитка"},"priceSpecification":{"@type":"PriceSpecification","minPrice":250,"priceCurrency":"USD"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Бізнес-сайт"},"priceSpecification":{"@type":"PriceSpecification","minPrice":450,"priceCurrency":"USD"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Каталог"},"priceSpecification":{"@type":"PriceSpecification","minPrice":600,"priceCurrency":"USD"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Telegram-бот"},"priceSpecification":{"@type":"PriceSpecification","minPrice":150,"priceCurrency":"USD"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Telegram Mini App"},"priceSpecification":{"@type":"PriceSpecification","minPrice":400,"priceCurrency":"USD"}}
   ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Press+Start+2P&family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 /* Layout: night hero with a wind-blown fur wordmark → snow-white "proof" bands alternating with night bands. Single dark world by choice. */
 :root{
@@ -80,7 +80,7 @@ h1,h2{text-wrap:balance}
 .inner{max-width:1240px;margin:0 auto}
 
 /* header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;mix-blend-mode:difference;color:var(--snow)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px;color:var(--snow);background:rgba(14,17,22,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(238,241,244,.08)}
 .logo{font-family:var(--f-display);font-size:26px;letter-spacing:.04em;text-decoration:none;filter:url(#fur)}
 .nav{display:flex;gap:28px;font-size:14px;font-weight:600}
 .nav a{text-decoration:none}
@@ -91,12 +91,12 @@ h1,h2{text-wrap:balance}
 .top .pill{min-height:44px;font-size:14px;padding:0 20px}
 
 /* hero */
-.hero{position:relative;overflow:hidden;margin-top:-72px;padding-top:120px;padding-bottom:24px;display:flex;flex-direction:column;gap:28px;background:var(--night)}
+.hero{position:relative;overflow:hidden;padding-top:clamp(36px,6vw,72px);padding-bottom:clamp(40px,6vw,72px);display:flex;flex-direction:column;gap:28px;background:var(--night)}
 .snow{position:absolute;inset:0;pointer-events:none}
 .flake{position:absolute;top:-10px;border-radius:50%;background:var(--snow);animation:fall linear infinite}
 @keyframes fall{to{transform:translate3d(60px,110vh,0)}}
 .eyebrow{font-family:var(--f-mono);font-size:13px;letter-spacing:.1em;color:var(--mist);text-transform:uppercase}
-.hero h1{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(40px,6.4vw,108px);line-height:1;letter-spacing:-.01em}
+.hero h1{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(38px,5.6vw,96px);line-height:1;letter-spacing:-.01em}
 .ln{display:block;overflow:hidden;padding-bottom:.06em}
 .ln>span{display:inline-block;animation:up 1.1s cubic-bezier(.16,1,.3,1) both}
 @keyframes up{from{transform:translateY(110%)}}
@@ -108,6 +108,40 @@ h1,h2{text-wrap:balance}
 .mark{position:relative;width:100%;margin-top:8px}
 .mark canvas{display:block;width:100%;height:auto;touch-action:pan-y}
 .mark-hint{position:absolute;right:0;bottom:6px;font-family:var(--f-mono);font-size:12px;color:var(--mist)}
+
+/* hero game */
+.game{position:relative;width:100%;border:1.5px solid var(--line-dark);border-radius:22px;overflow:hidden;background:var(--night)}
+.game canvas{display:block;width:100%;height:clamp(230px,30vw,400px);image-rendering:pixelated;cursor:pointer;touch-action:manipulation}
+.game canvas:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+.g-hint{position:absolute;left:16px;bottom:12px;font-family:var(--f-mono);font-size:12px;color:var(--mist);pointer-events:none}
+.g-hint kbd{font-family:var(--f-mono);border:1px solid var(--line-dark);border-radius:5px;padding:1px 6px;color:var(--frost)}
+.mark-call{position:relative;width:100%;margin-top:8px}
+.mark-call canvas{display:block;width:100%;height:auto;touch-action:pan-y}
+
+@media (min-width:1100px){
+  .hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:center;column-gap:clamp(40px,4vw,72px);min-height:calc(100vh - 70px)}
+  .hero h1{font-size:clamp(44px,4.6vw,78px)}
+  .hero .game{align-self:center}
+  .game canvas{height:clamp(360px,34vw,480px)}
+}
+
+/* about */
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
+.about-head{display:flex;flex-direction:column;gap:24px;position:sticky;top:96px}
+.signal{width:100%;max-width:520px;height:70px;overflow:visible}
+.signal path{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;animation:sig 3.2s ease-in-out infinite}
+@keyframes sig{0%{stroke-dashoffset:900}55%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-900}}
+.about-text{display:flex;flex-direction:column;gap:22px;min-width:0}
+.about-text p{margin:0;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:var(--frost);max-width:36em}
+.about-text p b{color:var(--snow)}
+.about-text .why{font-family:var(--f-display);font-weight:400;font-size:clamp(22px,2.2vw,30px);line-height:1.25;color:var(--snow)}
+.skills{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:0;border-top:1.5px solid var(--line-dark)}
+.skills li{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:baseline;padding-block:14px;border-bottom:1.5px solid var(--line-dark);font-size:15px}
+.skills li span:first-child{font-family:var(--f-mono);font-size:13px;color:var(--mist)}
+.skills li i{font-style:normal;color:var(--accent)}
+.skills li b{font-weight:800}
+.season{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;background:var(--night);color:var(--snow);border-radius:999px;padding:10px 18px;font-weight:800;font-size:14px;margin-bottom:28px}
+.season i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,106,43,.25)}
 
 /* bands */
 .band-snow{background:var(--snow);color:var(--night)}
@@ -235,8 +269,16 @@ h1,h2{text-wrap:balance}
 
 @media (max-width:760px){
   .nav{display:none}
+  .top .pill{padding:0 16px}
+  .logo{font-size:22px}
   .trail{grid-template-columns:48px minmax(0,1fr)}
   .trail .fpr{display:none}
+  .trail .l{visibility:visible!important}
+  .t-name{font-size:clamp(22px,6.4vw,30px);overflow-wrap:anywhere}
+  .about-head{position:static}
+  .skills li{grid-template-columns:minmax(0,1fr);gap:2px}
+  .skills li i{display:none}
+  .g-hint{display:none}
   .trail svg{width:32px;height:48px}
   .mark-hint{display:none}
 }
@@ -257,7 +299,7 @@ h1,h2{text-wrap:balance}
 
 <header class="top wrap">
   <a class="logo" href="#top" aria-label="YETI, на початок">YETI</a>
-  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#cases">Кейс</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
+  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#about">Про мене</a><a href="#cases">Кейс</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
   <a class="pill pill-line" href="#call">Залишити слід</a>
 </header>
 
@@ -273,13 +315,13 @@ h1,h2{text-wrap:balance}
     </h1>
     <p class="lede fadein" style="animation-delay:1.4s">Роблю сайти, каталоги, Telegram-ботів і калькулятори разом із ШІ. Швидко, без шаблонів — і так, що про вас починають говорити.</p>
     <div class="row fadein" style="animation-delay:1.6s">
-      <a class="pill pill-acc" href="#price">Тарифи від $300</a>
-      <a class="pill pill-line" href="#tracks">Подивитись сліди</a>
+      <button class="pill pill-acc" type="button" id="playBtn" style="border:0;cursor:pointer;font-size:16px">▶ Грати за Yeti</button>
+      <a class="pill pill-line" href="#price">Тарифи від $80</a>
     </div>
   </div>
-  <div class="mark inner" style="width:100%">
-    <canvas id="furmark" role="img" aria-label="YETI — літери з білої шерсті, що розвівається на вітрі"></canvas>
-    <span class="mark-hint">проведіть курсором — подме вітер</span>
+  <div class="game inner fadein" style="animation-delay:.6s">
+    <canvas id="yetiRun" tabindex="0" aria-label="Гра YETI RUN. Натисни або торкнись, щоб Yeti стрибнув. Збери 12 слідів."></canvas>
+    <span class="g-hint"><kbd>Пробіл</kbd> або клік — стрибок · збери 12 слідів</span>
   </div>
 </section>
 
@@ -293,12 +335,22 @@ h1,h2{text-wrap:balance}
   </div>
 </section>
 
-<section class="band-night sec wrap">
-  <div class="inner ai">
-    <h2 class="h2">Без коду руками.<br><span class="acc">З ШІ — і з головою.</span></h2>
-    <div>
-      <p>ШІ робить рутину за години, а не за тижні. Тому ви платите за результат, а не за чужий час.</p>
-      <p>Ідея, структура, смак і тексти, що продають, — на мені. Шаблонів не буде.</p>
+<section id="about" class="band-night sec wrap">
+  <div class="inner about">
+    <div class="about-head">
+      <span class="eyebrow">Про мене · свідчення №000</span>
+      <h2 class="h2">У 2022-му<br>я пішла <span class="acc">служити.</span></h2>
+      <svg class="signal" viewBox="0 0 600 70" aria-hidden="true"><path d="M0 35 H150 l6 -5 l6 9 l6 -12 l6 14 l6 -6 H290 l10 -30 l12 60 l10 -48 l8 18 l6 -4 H600"/></svg>
+    </div>
+    <div class="about-text">
+      <p><b>Радіоелектронна розвідка.</b> Години в навушниках, де з шипіння й чужих голосів треба вихопити одне — те, що справді важливо. Помилитися не можна. Потім я стала командиркою підрозділу: люди, техніка, графіки, звіти, і все мало працювати навіть тоді, коли довкола хаос.</p>
+      <p><b>Тепер я роблю сайти.</b> Здається, інший світ, але навички ті самі. Я слухаю, що ви розповідаєте про свою справу, і знаходжу в цьому шумі головне — те, через що клієнт натисне «купити». Тримаю терміни, бо звикла, що «потім» не існує. А ШІ — мій новий інструмент: з ним я роблю за дні те, на що студії витрачають тижні.</p>
+      <p class="why">Чому Yeti? Бо про таких, як я, кажуть: «не буває». Жінка з армії, яка будує власну справу в чужій країні й робить сайти з ШІ.</p>
+      <ul class="skills">
+        <li><span>в ефірі</span><i>→</i><b>чую, що важливо вашим клієнтам</b></li>
+        <li><span>на службі</span><i>→</i><b>дедлайн — це дедлайн</b></li>
+        <li><span>в командуванні</span><i>→</i><b>веду проєкт від брифу до запуску</b></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -349,18 +401,19 @@ h1,h2{text-wrap:balance}
 <section id="price" class="band-snow drift sec wrap">
   <div class="inner">
     <div class="head"><h2 class="h2">Експедиції<br>з відомою ціною</h2><span class="note">Ціна старту. Точну суму назву після короткого брифу.</span></div>
+    <span class="season"><i></i>Ціни першого сезону — для перших 5 клієнтів</span>
     <div class="plans">
-      <article class="plan p-w"><div class="p-meta"><span>EXP-01</span><span>від 7 днів</span></div><div class="p-name">Перший слід — лендинг</div><div class="p-price"><span>від</span><b>$500</b></div><ul><li>✓ Дизайн під бренд</li><li>✓ Адаптив під телефон</li><li>✓ Заявки в Telegram</li><li>✓ Базове SEO</li></ul><a class="pill pill-line" href="#call" data-service="Лендинг / візитка">Вирушити</a></article>
-      <article class="plan p-d"><div class="p-meta"><span>EXP-02</span><span>від 14 днів</span></div><div class="p-name">Стежка — бізнес-сайт</div><div class="p-price"><span>від</span><b>$800</b></div><ul><li>✓ До 8 сторінок</li><li>✓ Адмінка</li><li>✓ Аналітика</li><li>✓ SEO-структура</li></ul><a class="pill pill-line" href="#call" data-service="Бізнес-сайт">Вирушити</a></article>
-      <article class="plan p-a"><div class="p-meta"><span>EXP-03</span><span>від 21 дня</span></div><div class="p-name">Експедиція — каталог</div><div class="p-price"><span>від</span><b>$1000</b></div><ul><li>✓ Фільтри й пошук</li><li>✓ Картки товарів</li><li>✓ Кошик або заявка</li><li>✓ SEO категорій</li></ul><a class="pill pill-line" href="#call" data-service="Каталог">Вирушити</a></article>
-      <article class="plan p-w"><div class="p-meta"><span>TG-01</span><span>від 5 днів</span></div><div class="p-name">Сигнал — Telegram-бот</div><div class="p-price"><span>від</span><b>$300</b></div><ul><li>✓ Сценарій діалогу</li><li>✓ Меню й кнопки</li><li>✓ Заявки в чат</li><li>✓ Розсилки</li></ul><a class="pill pill-line" href="#call" data-service="Telegram-бот">Вирушити</a></article>
-      <article class="plan p-d"><div class="p-meta"><span>TG-02</span><span>від 14 днів</span></div><div class="p-name">Табір — Mini App</div><div class="p-price"><span>від</span><b>$700</b></div><ul><li>✓ Власний дизайн</li><li>✓ Каталог або запис</li><li>✓ Оплата</li><li>✓ Адмінка</li></ul><a class="pill pill-line" href="#call" data-service="Telegram Mini App">Вирушити</a></article>
+      <article class="plan p-w"><div class="p-meta"><span>EXP-01</span><span>від 7 днів</span></div><div class="p-name">Перший слід — лендинг</div><div class="p-price"><span>від</span><b>$250</b></div><ul><li>✓ Дизайн під бренд</li><li>✓ Адаптив під телефон</li><li>✓ Заявки в Telegram</li><li>✓ Базове SEO</li></ul><a class="pill pill-line" href="#call" data-service="Лендинг / візитка">Вирушити</a></article>
+      <article class="plan p-d"><div class="p-meta"><span>EXP-02</span><span>від 14 днів</span></div><div class="p-name">Стежка — бізнес-сайт</div><div class="p-price"><span>від</span><b>$450</b></div><ul><li>✓ До 8 сторінок</li><li>✓ Адмінка</li><li>✓ Аналітика</li><li>✓ SEO-структура</li></ul><a class="pill pill-line" href="#call" data-service="Бізнес-сайт">Вирушити</a></article>
+      <article class="plan p-a"><div class="p-meta"><span>EXP-03</span><span>від 21 дня</span></div><div class="p-name">Експедиція — каталог / магазин</div><div class="p-price"><span>від</span><b>$600</b></div><ul><li>✓ Фільтри й пошук</li><li>✓ Картки товарів</li><li>✓ Кошик або заявка</li><li>✓ SEO категорій</li></ul><a class="pill pill-line" href="#call" data-service="Каталог">Вирушити</a></article>
+      <article class="plan p-w"><div class="p-meta"><span>TG-01</span><span>від 5 днів</span></div><div class="p-name">Сигнал — Telegram-бот</div><div class="p-price"><span>від</span><b>$150</b></div><ul><li>✓ Сценарій діалогу</li><li>✓ Меню й кнопки</li><li>✓ Заявки в чат</li><li>✓ Розсилки</li></ul><a class="pill pill-line" href="#call" data-service="Telegram-бот">Вирушити</a></article>
+      <article class="plan p-d"><div class="p-meta"><span>TG-02</span><span>від 14 днів</span></div><div class="p-name">Табір — Mini App</div><div class="p-price"><span>від</span><b>$400</b></div><ul><li>✓ Власний дизайн</li><li>✓ Каталог або запис</li><li>✓ Оплата</li><li>✓ Адмінка</li></ul><a class="pill pill-line" href="#call" data-service="Telegram Mini App">Вирушити</a></article>
     </div>
     <div class="extras">
-      <div><span>Калькулятор / квіз</span><b>від $150</b></div>
-      <div><span>SEO-супровід</span><b>від $250/міс</b></div>
-      <div><span>Презентація</span><b>від $150</b></div>
-      <div><span>Контент-план</span><b>від $150</b></div>
+      <div><span>Калькулятор / квіз</span><b>від $80</b></div>
+      <div><span>SEO-супровід</span><b>від $150/міс</b></div>
+      <div><span>Презентація</span><b>від $80</b></div>
+      <div><span>Контент-план</span><b>від $100</b></div>
     </div>
   </div>
 </section>
@@ -429,6 +482,9 @@ h1,h2{text-wrap:balance}
     </div>
   </div>
 
+  <div class="mark-call inner">
+    <canvas id="furmark" role="img" aria-label="YETI — літери з білої шерсті, що розвівається на вітрі"></canvas>
+  </div>
   <div class="call-row inner" style="width:100%">
     <span class="contacts">© YETI, 2026 · сайти з ШІ під ключ</span>
     <a class="contacts" href="#top" style="text-decoration:none">↑ нагору</a>
@@ -680,6 +736,195 @@ var WA_MAIN = '995597798214';
   function go(){ if (done) return; done = true; build(); start(); }
   ready.then(function(){ if (done) build(); else go(); }, go);
   setTimeout(go, 2500);
+})();
+</script>
+<script>
+/* ---------- YETI RUN: hero game ---------- */
+(function(){
+  var cv = document.getElementById('yetiRun');
+  if (!cv) return;
+  var ctx = cv.getContext('2d');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var H = 120, GROUND = 100, GOAL = 12, W = 300, S = 2;
+  var C = { sky:'#0E1116', star:'#4A5466', far:'#1A2130', near:'#242E40', cap:'#C5CCD6', snow:'#EEF1F4', snow2:'#C9D3DE', text:'#EEF1F4', dim:'#9AA4B2', acc:'#FF6A2B', panel:'#0E1116' };
+  var PY = { '1':'#F7FAFC', '2':'#C9D6E2', '3':'#9FBBD0', '4':'#33597A' };
+  var PP = { '3':'#2F5A57', '4':'#17343A' };
+  var PS = { '1':'#F7FAFC', '3':'#FF6A2B', '4':'#33597A' };
+  var PF = { '3':'#FF6A2B', '4':'#B8461A' };
+  var YA = ["......4.4.4.....","....41414141....","...4111111114...","..411111111114..","..413333333314..","..413433334314..","..413333333314..","..411344443114..",".41111111111114.","4111111111111114","4141111111111414","4141112222111414","4141112222111414","4331111111111334","..4114....4114..","..444......444.."];
+  var YB = YA.slice(0, 14).concat(["...4114..4114...","...444....444..."]);
+  var PINE = [".....44.....","....4334....","...433334...","....4334....","...433334...","..43333334..","...433334...","..43333334..",".4333333334.","..43333334..",".4333333334.","433333333334","444444444444",".....44.....",".....44.....","....4444...."];
+  var SNOWMAN = ["...4444...","..411114..","..414414..","..411114..","..413314..","...4444...","..411114..",".41141114.","4111111114","4111411114","4111111114","4111411114",".41111114.","..444444.."];
+  var PRINT = ["4.4.4..",".......",".4444..","433334.","433334.","433334.",".4334..","..44..."];
+  function spr(map, pal, x, y){
+    for (var r = 0; r < map.length; r++){
+      var row = map[r];
+      for (var c = 0; c < row.length; c++){
+        var col = pal[row[c]];
+        if (col){ ctx.fillStyle = col; ctx.fillRect(x + c, y + r, 1, 1); }
+      }
+    }
+  }
+
+  var best = 0;
+  try{ best = +localStorage.getItem('yeti-run-best') || 0; }catch(e){}
+  var g = { mode: 'demo', raf: 0, last: 0, t: 0 };
+  var stars = [], flakes = [];
+
+  function size(){
+    var cssW = cv.clientWidth, cssH = cv.clientHeight;
+    if (!cssW || !cssH) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    S = Math.max(1, Math.round(cssH * dpr / H));
+    W = Math.round(H * cssW / cssH);
+    cv.width = W * S; cv.height = H * S;
+    ctx.imageSmoothingEnabled = false;
+    stars = []; flakes = [];
+    for (var i = 0; i < Math.round(W / 6); i++) stars.push({ x: Math.random() * W, y: Math.random() * 60, p: Math.random() * 6 });
+    for (var j = 0; j < Math.round(W / 9); j++) flakes.push({ x: Math.random() * W, y: Math.random() * H, v: 6 + Math.random() * 12 });
+    if (!g.raf) draw();
+  }
+  function reset(){
+    g.y = GROUND - 16; g.vy = 0; g.ground = true; g.speed = 64; g.dist = 0;
+    g.obs = []; g.prints = []; g.score = 0; g.spawn = 1.2; g.pspawn = 0.7; g.cause = '';
+  }
+  function hit(ax, ay, aw, ah, bx, by, bw, bh){ return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by; }
+  function jump(){ if (g.ground){ g.vy = -170; g.ground = false; } }
+
+  function update(dt){
+    g.t += dt;
+    flakes.forEach(function(f){ f.y += f.v * dt; f.x -= (g.mode === 'run' || g.mode === 'demo' ? g.speed * 0.2 : 4) * dt; if (f.y > H){ f.y = -2; f.x = Math.random() * W; } if (f.x < -2) f.x = W; });
+    if (g.mode !== 'run' && g.mode !== 'demo') return;
+    if (g.mode === 'run') g.speed = Math.min(160, g.speed + dt * 3);
+    g.dist += g.speed * dt;
+    g.vy += 430 * dt; g.y += g.vy * dt;
+    if (g.y >= GROUND - 16){ g.y = GROUND - 16; g.vy = 0; g.ground = true; }
+
+    g.spawn -= dt;
+    if (g.spawn <= 0){
+      var tree = Math.random() < 0.6;
+      g.obs.push({ x: W + 4, type: tree ? 'pine' : 'snowman', w: tree ? 12 : 10, h: tree ? 16 : 14 });
+      g.spawn = 0.5 + (80 + Math.random() * 120) / g.speed;
+    }
+    g.pspawn -= dt;
+    if (g.pspawn <= 0){
+      g.prints.push({ x: W + 4, y: GROUND - 28 - Math.round(Math.random() * 18) });
+      g.pspawn = 0.6 + Math.random() * 0.9;
+    }
+    var dx = g.speed * dt;
+    g.obs.forEach(function(o){ o.x -= dx; });
+    g.prints.forEach(function(p){ p.x -= dx; });
+    g.obs = g.obs.filter(function(o){ return o.x > -20; });
+    g.prints = g.prints.filter(function(p){ return p.x > -10 && !p.taken; });
+
+    var yx = 30, yy = g.y + 3, yw = 10, yh = 12;
+    if (g.mode === 'demo'){
+      for (var k = 0; k < g.obs.length; k++){ var d = g.obs[k].x - (yx + yw); if (d > 0 && d < g.speed * 0.2 + 6){ jump(); break; } }
+      return;
+    }
+    for (var j = 0; j < g.obs.length; j++){
+      var o = g.obs[j];
+      if (hit(yx, yy, yw, yh, o.x + 2, GROUND - o.h + 2, o.w - 4, o.h - 2)){
+        g.mode = 'over'; g.cause = o.type === 'pine' ? 'ОЙ! ЯЛИНКА.' : 'ОЙ! СНІГОВИК.';
+        if (g.score > best){ best = g.score; try{ localStorage.setItem('yeti-run-best', best); }catch(e){} }
+        return;
+      }
+    }
+    for (var m = 0; m < g.prints.length; m++){
+      var p = g.prints[m];
+      if (!p.taken && hit(yx - 2, g.y, 14, 16, p.x, p.y, 7, 8)){
+        p.taken = true; g.score++;
+        if (g.score >= GOAL){ g.mode = 'win'; best = Math.max(best, g.score); try{ localStorage.setItem('yeti-run-best', best); }catch(e){} }
+      }
+    }
+  }
+
+  function text(str, x, y, size, color, align){
+    ctx.font = size + 'px "Press Start 2P", "Courier New", monospace';
+    ctx.textAlign = align || 'center'; ctx.textBaseline = 'top';
+    ctx.fillStyle = color; ctx.fillText(str, x, y);
+  }
+  function panel(lines){
+    var w = Math.min(W - 20, 176), h = 12 + lines.length * 12;
+    var x0 = Math.round((W - w) / 2), y0 = Math.round((H - h) / 2) - 10;
+    ctx.fillStyle = C.panel; ctx.fillRect(x0, y0, w, h);
+    ctx.fillStyle = C.acc; ctx.fillRect(x0, y0, w, 1); ctx.fillRect(x0, y0 + h - 1, w, 1); ctx.fillRect(x0, y0, 1, h); ctx.fillRect(x0 + w - 1, y0, 1, h);
+    lines.forEach(function(l, i){ text(l[0], W / 2, y0 + 7 + i * 12, l[1] || 6, l[2] || C.text); });
+  }
+
+  function draw(){
+    ctx.setTransform(S, 0, 0, S, 0, 0);
+    ctx.fillStyle = C.sky; ctx.fillRect(0, 0, W, H);
+    stars.forEach(function(s){ ctx.fillStyle = Math.sin(g.t * 2 + s.p) > 0.6 ? C.dim : C.star; ctx.fillRect(Math.round(s.x), Math.round(s.y), 1, 1); });
+    var dist = g.dist || 0, off, x;
+    off = -(dist * 0.08 % 90);
+    for (x = off - 90; x < W + 90; x += 90){
+      ctx.fillStyle = C.far; ctx.beginPath(); ctx.moveTo(x, GROUND); ctx.lineTo(x + 45, GROUND - 52); ctx.lineTo(x + 90, GROUND); ctx.fill();
+      ctx.fillStyle = C.cap; ctx.beginPath(); ctx.moveTo(x + 45, GROUND - 52); ctx.lineTo(x + 37, GROUND - 43); ctx.lineTo(x + 53, GROUND - 43); ctx.fill();
+    }
+    off = -(dist * 0.2 % 70);
+    for (x = off - 70; x < W + 70; x += 70){
+      ctx.fillStyle = C.near; ctx.beginPath(); ctx.moveTo(x, GROUND); ctx.lineTo(x + 30, GROUND - 30); ctx.lineTo(x + 62, GROUND); ctx.fill();
+    }
+    ctx.fillStyle = C.snow; ctx.fillRect(0, GROUND, W, H - GROUND);
+    ctx.fillStyle = C.snow2;
+    var goff = -(dist % 14);
+    for (var gx = goff; gx < W; gx += 14){ ctx.fillRect(Math.round(gx), GROUND + 5, 4, 1); ctx.fillRect(Math.round(gx) + 7, GROUND + 12, 3, 1); }
+    ctx.fillStyle = C.snow;
+    flakes.forEach(function(f){ if (f.y < GROUND) ctx.fillRect(Math.round(f.x), Math.round(f.y), 1, 1); });
+
+    (g.prints || []).forEach(function(p){ spr(PRINT, PF, Math.round(p.x), Math.round(p.y)); });
+    (g.obs || []).forEach(function(o){ spr(o.type === 'pine' ? PINE : SNOWMAN, o.type === 'pine' ? PP : PS, Math.round(o.x), GROUND - o.h); });
+    var frame = !g.ground ? YA : (Math.floor(dist / 7) % 2 ? YB : YA);
+    spr(frame, PY, 28, Math.round(g.y));
+
+    if (g.mode === 'demo'){
+      if (Math.floor(g.t * 1.6) % 2 === 0 || reduce) text('НАТИСНИ, ЩОБ ГРАТИ', W / 2, 10, 6, C.text);
+      text('ЗБЕРИ 12 СЛІДІВ', W / 2, 22, 6, C.acc);
+    } else {
+      text('СЛІДИ ' + g.score + '/' + GOAL, 6, 6, 6, C.text, 'left');
+      text('РЕКОРД ' + best, W - 6, 6, 6, C.dim, 'right');
+    }
+    if (g.mode === 'over') panel([[g.cause, 7], ['СЛІДІВ: ' + g.score, 6, C.dim], ['ТАП — ЩЕ РАЗ', 6, C.acc]]);
+    if (g.mode === 'win') panel([['РІВЕНЬ ПРОЙДЕНО!', 7], ['ТВІЙ САЙТ НАСТУПНИЙ', 6, C.dim], ['ТАП — ДО ЗАЯВКИ', 6, C.acc]]);
+  }
+
+  function loop(t){
+    var dt = Math.min(0.05, (t - (g.last || t)) / 1000); g.last = t;
+    update(dt); draw();
+    g.raf = (visible && (!reduce || g.mode === 'run')) ? requestAnimationFrame(loop) : 0;
+  }
+  function kick(){ if (!g.raf){ g.last = 0; g.raf = requestAnimationFrame(loop); } }
+
+  function action(){
+    if (g.mode === 'demo' || g.mode === 'over'){ reset(); g.mode = 'run'; jump(); kick(); return; }
+    if (g.mode === 'run'){ jump(); return; }
+    if (g.mode === 'win'){
+      var call = document.getElementById('call');
+      if (call) call.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      setTimeout(function(){ var n = document.getElementById('f-name'); if (n) n.focus({ preventScroll: true }); }, 700);
+      reset(); g.mode = 'demo'; kick();
+    }
+  }
+  cv.addEventListener('pointerdown', function(e){ e.preventDefault(); cv.focus({ preventScroll: true }); action(); });
+  cv.addEventListener('keydown', function(e){
+    if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'Enter'){ e.preventDefault(); if (!e.repeat) action(); }
+  });
+  var play = document.getElementById('playBtn');
+  if (play) play.addEventListener('click', function(){
+    cv.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
+    cv.focus({ preventScroll: true });
+    if (g.mode !== 'run') action();
+  });
+
+  var visible = true;
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){ visible = en[0].isIntersecting; if (visible) kick(); }).observe(cv);
+  }
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(size, 150); });
+  reset(); size();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ draw(); });
+  kick();
 })();
 </script>
 </body>
