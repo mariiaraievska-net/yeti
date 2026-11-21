@@ -63,6 +63,16 @@
   --slate:#5A6472;
   --line-dark:#3A4250;
   --accent:#FF6A2B;
+  --shell:#A9DCEB;
+  --shell-hi:#DDF4FB;
+  --shell-lo:#6FB3CB;
+  --bezel:#283146;
+  --dpad:#1C2232;
+  --l1:#D3E6B0;
+  --l2:#9CBB6C;
+  --l3:#55793B;
+  --l4:#1D3820;
+  --f-pixel:'Press Start 2P','Courier New',monospace;
   --f-display:'Dela Gothic One','Arial Black',Impact,sans-serif;
   --f-body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
   --f-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
@@ -118,11 +128,10 @@ h1,h2{text-wrap:balance}
 .mark-call{position:relative;width:100%;margin-top:8px}
 .mark-call canvas{display:block;width:100%;height:auto;touch-action:pan-y}
 
-@media (min-width:1100px){
-  .hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:center;column-gap:clamp(40px,4vw,72px);min-height:calc(100vh - 70px)}
+@media (min-width:1000px){
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:clamp(40px,5vw,96px);min-height:calc(100vh - 70px)}
   .hero h1{font-size:clamp(44px,4.6vw,78px)}
-  .hero .game{align-self:center}
-  .game canvas{height:clamp(360px,34vw,480px)}
+  .hero .pocket{width:auto}
 }
 
 /* yeti map */
@@ -149,7 +158,7 @@ h1,h2{text-wrap:balance}
 .m-title{font-family:var(--f-display);font-size:20px;fill:var(--snow)}
 .m-sub{font-family:var(--f-body);font-size:15px;fill:var(--frost)}
 .ymap-v .m-compass{display:none}
-.ymap-v .m-title{font-size:18px}.ymap-v .m-sub{font-size:14px}.ymap-v .m-year{font-size:14px}
+.ymap-v .m-title{font-size:18px}.ymap-v .m-sub{font-size:13px}.ymap-v .m-year{font-size:14px}
 .m-steps use{fill:var(--snow);opacity:0;transition:opacity .35s ease}
 .m-steps use:nth-child(even){fill:var(--accent)}
 .ymap.go .m-steps use{opacity:.9}
@@ -158,6 +167,137 @@ h1,h2{text-wrap:balance}
 .about-text.about-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:22px clamp(32px,5vw,64px);align-items:start}
 .about-cols .why,.about-cols .skills{grid-column:1/-1}
 @media (prefers-reduced-motion:reduce){.m-stop,.m-lab,.m-steps use{transition:none}.m-pulse{animation:none}}
+
+/* ---------- YETI POCKET console ---------- */
+/* ---------- device ---------- */
+.pocket .device{position:relative;flex:none;width:min(390px,100%);padding:20px 20px 28px;border-radius:26px 26px 72px 26px;
+  background:
+    radial-gradient(circle at 20% 12%,rgba(255,255,255,.55),transparent 38%),
+    repeating-radial-gradient(circle at 70% 80%,rgba(255,255,255,.07) 0 2px,transparent 2px 5px),
+    linear-gradient(160deg,var(--shell-hi),var(--shell) 42%,var(--shell-lo));
+  box-shadow:inset 0 -6px 0 rgba(0,0,0,.12),inset 0 3px 0 rgba(255,255,255,.6),0 30px 60px rgba(0,0,0,.45);
+  user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.pocket .topline{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-pixel);font-size:8px;color:#3A5F70;margin:-6px 4px 10px;letter-spacing:.08em}
+.pocket .bezel{background:var(--bezel);border-radius:10px 10px 34px 10px;padding:14px 20px 10px;box-shadow:inset 0 2px 0 rgba(255,255,255,.08)}
+.pocket .bezel-top{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-family:var(--f-pixel);font-size:7px;color:#8D99B5;letter-spacing:.06em}
+.pocket .bezel-top hr{flex:1;border:0;height:2px;background:linear-gradient(90deg,var(--accent),#7FC8F8);opacity:.8;margin:0}
+.pocket .led{display:flex;align-items:center;gap:6px;font-family:var(--f-pixel);font-size:6px;color:#8D99B5;margin-top:8px}
+.pocket .led i{width:8px;height:8px;border-radius:50%;background:#FF3B3B;box-shadow:0 0 8px #FF3B3B}
+.pocket .screen{position:relative;aspect-ratio:10/9;background:var(--l1);border-radius:4px;overflow:hidden;container-type:inline-size;box-shadow:inset 0 0 0 2px rgba(0,0,0,.25)}
+.pocket .screen::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  repeating-linear-gradient(0deg,rgba(29,56,32,.07) 0 1px,transparent 1px 3px),
+  repeating-linear-gradient(90deg,rgba(29,56,32,.05) 0 1px,transparent 1px 3px);z-index:5}
+.pocket .p-label{text-align:left;font-family:var(--f-pixel);font-size:13px;color:#2D5266;margin:14px 6px 0;letter-spacing:.02em}
+.pocket .p-label b{color:var(--accent);font-weight:400}
+
+/* controls */
+.pocket .controls{display:flex;justify-content:space-between;align-items:center;margin:26px 6px 0}
+.pocket .dpad{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);position:relative}
+.pocket .dpad::before{content:"";position:absolute;left:44px;top:0;width:44px;height:132px;background:var(--dpad);border-radius:6px;box-shadow:0 4px 0 rgba(0,0,0,.3)}
+.pocket .dpad::after{content:"";position:absolute;left:0;top:44px;width:132px;height:44px;background:var(--dpad);border-radius:6px;box-shadow:0 4px 0 rgba(0,0,0,.3)}
+.pocket .dpad button{position:relative;z-index:1;border:0;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0}
+.pocket .dpad button svg{width:14px;height:14px;fill:#3E4762}
+.pocket .d-up{grid-area:1/2}.pocket .d-left{grid-area:2/1}.pocket .d-right{grid-area:2/3}.pocket .d-down{grid-area:3/2}
+.pocket .dpad .down svg,.pocket .dpad button:active svg{fill:var(--accent)}
+.pocket .ab{display:flex;gap:14px;transform:rotate(-24deg);padding:10px 8px;border-radius:40px;background:rgba(44,82,102,.12)}
+.pocket .ab div{display:flex;flex-direction:column;align-items:center;gap:6px}
+.pocket .ab button{width:54px;height:54px;border-radius:50%;border:0;cursor:pointer;background:radial-gradient(circle at 35% 30%,#FF9A6B,var(--accent) 55%,#C94A17);box-shadow:0 5px 0 #8E3210,inset 0 2px 0 rgba(255,255,255,.35);transition:transform .06s,box-shadow .06s}
+.pocket .ab .b-btn{margin-top:26px}
+.pocket .ab span{font-family:var(--f-pixel);font-size:9px;color:#2D5266}
+.pocket .ab button.down,.pocket .ab button:active{transform:translateY(4px);box-shadow:0 1px 0 #8E3210}
+.pocket .ss{display:flex;justify-content:center;gap:22px;margin-top:22px;transform:translateX(-14px)}
+.pocket .ss div{display:flex;flex-direction:column;align-items:center;gap:6px;transform:rotate(-24deg)}
+.pocket .ss button{width:56px;height:16px;border-radius:10px;border:0;background:#5D6C86;box-shadow:0 3px 0 #364056;cursor:pointer;position:relative}
+.pocket .ss button::before{content:"";position:absolute;inset:-14px -4px}
+.pocket .ss button.down,.pocket .ss button:active{transform:translateY(2px);box-shadow:0 1px 0 #364056}
+.pocket .ss span{font-family:var(--f-pixel);font-size:7px;color:#2D5266;letter-spacing:.08em}
+.pocket .speaker{position:absolute;right:30px;bottom:30px;display:flex;gap:7px;transform:rotate(-30deg)}
+.pocket .speaker i{width:5px;height:44px;border-radius:4px;background:rgba(30,60,75,.35);box-shadow:inset 0 2px 2px rgba(0,0,0,.3)}
+
+/* ---------- LCD content ---------- */
+.pocket .lcd{position:absolute;inset:0;color:var(--l4);font-family:var(--f-pixel);font-size:3.1cqw;line-height:1.55}
+.pocket .scr{position:absolute;inset:0;display:flex;flex-direction:column;padding:3.5cqw 4cqw;overflow-y:auto;scrollbar-width:none}
+.pocket .scr::-webkit-scrollbar{display:none}
+.pocket .bar{display:flex;justify-content:space-between;gap:8px;border-bottom:.6cqw solid var(--l4);padding-bottom:1.6cqw;margin-bottom:2.4cqw;font-size:2.8cqw;flex:none}
+.pocket .hint{margin-top:auto;padding-top:2.4cqw;font-size:2.4cqw;color:var(--l3);flex:none}
+.pocket .list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.2cqw}
+.pocket .it{display:block;width:100%;text-align:left;border:0;background:transparent;padding:1.2cqw 1.2cqw 1.2cqw 5cqw;font-family:inherit;font-size:inherit;line-height:inherit;color:var(--l4);text-decoration:none;cursor:pointer;position:relative;border-radius:.6cqw}
+.pocket .it::before{content:"";position:absolute;left:1cqw;top:1.8cqw;width:0;height:0;border-left:2.2cqw solid var(--l4);border-top:1.3cqw solid transparent;border-bottom:1.3cqw solid transparent;opacity:0}
+.pocket .it.sel{background:var(--l2)}
+.pocket .it.sel::before{opacity:1;animation:nudge .6s steps(2) infinite}
+@keyframes nudge{50%{transform:translateX(.6cqw)}}
+.pocket .it small{display:block;font-size:2.4cqw;color:var(--l3);margin-top:.8cqw;line-height:1.5}
+.pocket .it.sel small{color:var(--l4)}
+.pocket .p-row{display:flex;justify-content:space-between;gap:2cqw;align-items:baseline}
+.pocket .p-row b{font-weight:400;white-space:nowrap}
+.pocket .dots{flex:1;border-bottom:.5cqw dotted var(--l3);transform:translateY(-.6cqw);min-width:2cqw}
+.pocket .p-note{font-size:2.4cqw;color:var(--l3);margin:2cqw 0 0}
+.pocket .para{margin:0 0 2.4cqw;font-size:2.6cqw;line-height:1.7}
+.pocket .p-quote{margin:0 0 2.4cqw;padding:2cqw;border:.5cqw solid var(--l4);font-size:2.6cqw;line-height:1.7}
+.pocket .p-quote span{display:block;margin-top:1.4cqw;color:var(--l3)}
+.pocket .toast{position:absolute;left:50%;bottom:3cqw;transform:translateX(-50%);background:var(--l4);color:var(--l1);padding:1.6cqw 2.4cqw;font-size:2.6cqw;z-index:4;white-space:nowrap}
+
+/* boot */
+.pocket .boot{align-items:center;justify-content:center;text-align:center;gap:3cqw}
+.pocket .boot-logo{font-size:13cqw;line-height:1;letter-spacing:.06em;animation:drop 1.4s steps(14) both}
+@keyframes drop{from{transform:translateY(-60cqw)}}
+.pocket .boot-sub{font-size:3.2cqw;letter-spacing:.4em;color:var(--l3);animation:pfade .1s 1.4s both}
+.pocket .press::before{display:none}.pocket .press.sel{background:transparent}
+.pocket .press{font-size:3cqw;animation:pfade .1s 1.6s both,pblink 1s steps(1) 1.7s infinite}
+@keyframes pfade{from{opacity:0}}
+@keyframes pblink{50%{opacity:0}}
+
+/* menu */
+.pocket .p-hero{display:flex;align-items:center;gap:3cqw;margin-bottom:2.4cqw}
+.pocket .p-hero canvas{width:16cqw;height:16cqw;image-rendering:pixelated;flex:none}
+.pocket .p-hero p{margin:0;font-size:2.6cqw;line-height:1.7}
+
+/* game */
+.pocket #game{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;display:block;cursor:pointer}
+
+
+.pocket{flex:none;display:flex;justify-content:center;width:100%}
+.pocket .device{outline:none}
+.pocket .device:focus-visible{box-shadow:0 0 0 3px var(--accent),0 30px 60px rgba(0,0,0,.45)}
+.pocket [hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){.pocket .boot-logo,.pocket .boot-sub,.pocket .press,.pocket .it.sel::before{animation:none}}
+
+/* works */
+.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(24px,3vw,40px)}
+.work{display:flex;flex-direction:column;gap:22px;min-width:0}
+.w-shot{display:block;aspect-ratio:16/10;max-width:100%;overflow:hidden;border-radius:20px;border:1.5px solid var(--night);text-decoration:none}
+.w-shot.browser{box-shadow:10px 10px 0 var(--night)}
+.w-shot.browser:hover{box-shadow:14px 14px 0 var(--accent)}
+.w-shot img{display:block;width:100%;height:calc(100% - 42px);object-fit:cover;object-position:top}
+.w-shot .b-body{padding:clamp(20px,3vw,32px)}
+.w-shot .b-head{font-size:clamp(26px,3vw,40px)}
+.w-body{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.w-meta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-family:var(--f-mono);font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em}
+.live,.soon{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:5px 11px;font-weight:600}
+.live{background:#DDF5E3;color:#145A2E}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#1F9D55;box-shadow:0 0 0 3px rgba(31,157,85,.2)}
+.soon{background:#FFE8DC;color:#8E3210}
+.soon::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.w-body h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(26px,2.6vw,36px);line-height:1.05}
+.w-body p{margin:0;font-size:16px;line-height:1.6;max-width:36em}
+.w-link{font-weight:800;text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:2px}
+.tgmock{background:#0E1621;padding:18px;display:flex;flex-direction:column;gap:12px;justify-content:center;color:#F5F5F5;font-size:14px;line-height:1.5}
+.tgm-head{display:flex;align-items:center;gap:10px}
+.tgm-head i{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#5B7CFF,#7FC8F8)}
+.tgm-head span{display:flex;flex-direction:column}
+.tgm-head small{color:#8B9BAB;font-size:12px}
+.tgm-msg{background:#182533;border:1px solid #2B3B4C;border-radius:14px;padding:12px 14px;max-width:320px}
+.tgm-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;max-width:320px}
+.tgm-btns span{background:#2B5278;border-radius:10px;padding:8px 4px;text-align:center;font-size:12px;font-weight:600}
+.board{background:#1F3A2E;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:10px 28px;padding:24px;font-family:'Caveat','Comic Sans MS',cursive;font-size:clamp(26px,3vw,38px);color:#EAF2E4;box-shadow:inset 0 0 0 10px #6B4F35}
+.concepts{margin-top:clamp(48px,6vw,80px);border-top:1.5px solid var(--night);padding-top:clamp(28px,4vw,44px)}
+.c-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px 24px;margin-bottom:24px}
+.c-head h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3vw,40px)}
+.c-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.c-list li{display:flex;flex-direction:column;gap:8px;border:1.5px dashed #B9C2CE;border-radius:18px;padding:18px}
+.c-list b{font-size:17px}
+.c-list small{font-size:14px;line-height:1.5;color:var(--slate)}
+.tag{align-self:flex-start;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid #B9C2CE;border-radius:999px;padding:3px 9px;color:var(--slate)}
 
 /* about */
 .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
@@ -196,10 +336,10 @@ h1,h2{text-wrap:balance}
 .trail svg{width:44px;height:66px;justify-self:center}
 .trail .r{fill:var(--accent)}
 .trail .l{fill:var(--night)}
-.t-body{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 32px;min-width:0}
+.t-body{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
 .t-num{font-family:var(--f-mono);font-size:12px;color:var(--slate)}
 .t-name{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(24px,3vw,44px);line-height:1.05}
-.t-desc{font-size:16px;line-height:1.5;max-width:380px}
+.t-desc{font-size:16px;line-height:1.5}
 
 /* AI */
 .ai{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px;align-items:end}
@@ -310,15 +450,13 @@ h1,h2{text-wrap:balance}
   .nav{display:none}
   .top .pill{padding:0 16px}
   .logo{font-size:22px}
-  .trail{grid-template-columns:48px minmax(0,1fr)}
-  .trail .fpr{display:none}
-  .trail .l{visibility:visible!important}
+  .trail{grid-template-columns:32px minmax(0,1fr) 32px;gap:12px}
   .t-name{font-size:clamp(22px,6.4vw,30px);overflow-wrap:anywhere}
   .about-head{position:static}
   .skills li{grid-template-columns:minmax(0,1fr);gap:2px}
   .skills li i{display:none}
   .g-hint{display:none}
-  .trail svg{width:32px;height:48px}
+  .trail svg{width:26px;height:40px}
   .mark-hint{display:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -338,7 +476,7 @@ h1,h2{text-wrap:balance}
 
 <header class="top wrap">
   <a class="logo" href="#top" aria-label="YETI, на початок">YETI</a>
-  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#about">Про мене</a><a href="#cases">Кейс</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
+  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#about">Про мене</a><a href="#cases">Кейси</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
   <a class="pill pill-line" href="#call">Залишити слід</a>
 </header>
 
@@ -358,9 +496,116 @@ h1,h2{text-wrap:balance}
       <a class="pill pill-line" href="#price">Тарифи від $80</a>
     </div>
   </div>
-  <div class="game inner fadein" style="animation-delay:.6s">
-    <canvas id="yetiRun" tabindex="0" aria-label="Гра YETI RUN. Натисни або торкнись, щоб Yeti стрибнув. Збери 12 слідів."></canvas>
-    <span class="g-hint"><kbd>Пробіл</kbd> або клік — стрибок · збери 12 слідів</span>
+  <div class="pocket fadein" style="animation-delay:.5s">
+  <div class="device" tabindex="0" role="application" aria-label="Консоль YETI POCKET. Стрілки — меню, Enter — обрати, Escape — назад.">
+    <div class="topline" aria-hidden="true"><span>◀ OFF · ON ▶</span><span>YETI POCKET</span></div>
+    <div class="bezel">
+      <div class="bezel-top" aria-hidden="true"><hr><span>DOT MATRIX WITH SNOW</span><hr></div>
+      <div class="screen">
+        <div class="lcd" id="p-lcd" aria-live="polite">
+
+          <section class="scr boot" data-scr="boot">
+            <div class="boot-logo">YETI</div>
+            <div class="boot-sub">POCKET</div>
+            <button class="it press" id="p-pressStart" style="width:auto;padding-left:1.2cqw">НАТИСНИ START</button>
+          </section>
+
+          <section class="scr" data-scr="menu" hidden>
+            <header class="bar"><span>ГОЛОВНЕ МЕНЮ</span><span class="snd">♪ ВИМК</span></header>
+            <div class="p-hero"><canvas class="sprite" width="16" height="16" aria-hidden="true"></canvas><p>КАЖУТЬ, МЕНЕ НЕ ІСНУЄ. ОСЬ ДОКАЗ.</p></div>
+            <ul class="list">
+              <li><button class="it" data-go="game">ГРАТИ</button></li>
+              <li><button class="it" data-go="services">ПОСЛУГИ</button></li>
+              <li><button class="it" data-go="prices">ТАРИФИ</button></li>
+              <li><button class="it" data-go="case">КЕЙСИ</button></li>
+              <li><button class="it" data-go="contact">ЗВ'ЯЗАТИСЯ</button></li>
+            </ul>
+            <footer class="hint">A — ОБРАТИ · SELECT — ЗВУК</footer>
+          </section>
+
+          <section class="scr" data-scr="services" hidden>
+            <header class="bar"><span>ПОСЛУГИ</span><span>B ◀</span></header>
+            <ul class="list">
+              <li><div class="it">САЙТИ ПІД КЛЮЧ<small>Лендинги й сайти компаній: дизайн, тексти, запуск</small></div></li>
+              <li><div class="it">КАТАЛОГИ<small>Товари, фільтри, кошик, заявки</small></div></li>
+              <li><div class="it">TELEGRAM-БОТИ<small>Боти й Mini Apps для продажів і запису</small></div></li>
+              <li><div class="it">КАЛЬКУЛЯТОРИ<small>Розрахунок ціни й квізи, що збирають заявки</small></div></li>
+              <li><div class="it">SEO<small>Щоб вас знаходили, а не гортали повз</small></div></li>
+              <li><div class="it">ПРЕЗЕНТАЦІЇ<small>І контент-план, щоб запуск не був тихим</small></div></li>
+              <li><button class="it" data-go="prices">ДИВИТИСЬ ТАРИФИ</button></li>
+            </ul>
+            <p class="p-note">З ШІ АБО НА КОНСТРУКТОРІ — ЯК КРАЩЕ ДЛЯ ЗАДАЧІ.</p>
+          </section>
+
+          <section class="scr" data-scr="prices" hidden>
+            <header class="bar"><span>ТАРИФИ</span><span>B ◀</span></header>
+            <ul class="list">
+              <li><div class="it p-row">ЛЕНДИНГ<i class="dots"></i><b>$250</b></div></li>
+              <li><div class="it p-row">БІЗНЕС-САЙТ<i class="dots"></i><b>$450</b></div></li>
+              <li><div class="it p-row">КАТАЛОГ<i class="dots"></i><b>$600</b></div></li>
+              <li><div class="it p-row">TG-БОТ<i class="dots"></i><b>$150</b></div></li>
+              <li><div class="it p-row">MINI APP<i class="dots"></i><b>$400</b></div></li>
+              <li><div class="it p-row">КАЛЬКУЛЯТОР<i class="dots"></i><b>$80</b></div></li>
+              <li><div class="it p-row">SEO / МІС<i class="dots"></i><b>$150</b></div></li>
+              <li><div class="it p-row">ПРЕЗЕНТАЦІЯ<i class="dots"></i><b>$80</b></div></li>
+              <li><div class="it p-row">КОНТЕНТ-ПЛАН<i class="dots"></i><b>$100</b></div></li>
+              <li><button class="it" data-go="contact">ЗАМОВИТИ</button></li>
+            </ul>
+            <p class="p-note">ЦІНИ ПЕРШОГО СЕЗОНУ — «ВІД». ТОЧНА СУМА ПІСЛЯ БРИФУ.</p>
+          </section>
+
+          <section class="scr" data-scr="case" hidden>
+            <header class="bar"><span>КЕЙСИ · ПРАЦЮЮТЬ</span><span>B ◀</span></header>
+            <ul class="list">
+              <li><a class="it" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener">МАГАЗИН СВІЧОК<small>V&amp;A Candle Atelier · відкрити</small></a></li>
+              <li><a class="it" href="#about">САЙТ YETI<small>Ви саме на ньому</small></a></li>
+              <li><a class="it" href="#cases">БОТ РОЗКЛАДУ<small>Telegram-бот і міні-застосунок</small></a></li>
+              <li><a class="it" href="#cases">РЕПЕТИТОР ФІЗИКИ<small>Сайт-візитка · запуск незабаром</small></a></li>
+              <li><button class="it" data-go="contact">ХОЧУ ТАКИЙ</button></li>
+            </ul>
+          </section>
+
+          <section class="scr" data-scr="contact" hidden>
+            <header class="bar"><span>ЗВ'ЯЗОК</span><span>B ◀</span></header>
+            <ul class="list">
+              <li><a class="it" href="#call">ЗАЯВКА НА САЙТІ<small>Форма внизу сторінки</small></a></li>
+              <li><a class="it" href="https://t.me/mariia_AIweb" target="_blank" rel="noopener">TELEGRAM<small>@mariia_AIweb</small></a></li>
+              <li><a class="it" href="https://wa.me/995597798214" target="_blank" rel="noopener">WHATSAPP · GE<small>+995 597 798 214</small></a></li>
+              <li><a class="it" href="https://wa.me/380955610368" target="_blank" rel="noopener">WHATSAPP · UA<small>+380 95 561 03 68</small></a></li>
+              <li><button class="it" id="p-copyMail">ПОШТА — КОПІЮВАТИ<small id="p-mailAddr">mariia.raievska@icloud.com</small></button></li>
+            </ul>
+            <footer class="hint">A — ВІДКРИТИ</footer>
+          </section>
+
+          <section class="scr" data-scr="game" hidden style="padding:0">
+            <canvas id="p-game" width="320" height="288" role="img" aria-label="Гра: Yeti біжить по снігу. A або пробіл — стрибок, B — меню."></canvas>
+          </section>
+
+          <div class="toast" id="p-toast" hidden></div>
+        </div>
+      </div>
+      <div class="led" aria-hidden="true"><i></i>BATTERY</div>
+    </div>
+    <p class="p-label" aria-hidden="true">YETI <b>POCKET</b></p>
+
+    <div class="controls">
+      <div class="dpad">
+        <button class="d-up" data-key="up" aria-label="Вгору"><svg viewBox="0 0 10 10"><path d="M5 1 9 8H1z"/></svg></button>
+        <button class="d-left" data-key="left" aria-label="Вліво"><svg viewBox="0 0 10 10"><path d="M1 5 8 1v8z"/></svg></button>
+        <button class="d-right" data-key="right" aria-label="Вправо"><svg viewBox="0 0 10 10"><path d="M9 5 2 9V1z"/></svg></button>
+        <button class="d-down" data-key="down" aria-label="Вниз"><svg viewBox="0 0 10 10"><path d="M5 9 1 2h8z"/></svg></button>
+      </div>
+      <div class="ab">
+        <div><button class="b-btn" data-key="b" aria-label="Кнопка B — назад"></button><span>B</span></div>
+        <div><button class="a-btn" data-key="a" aria-label="Кнопка A — обрати або стрибнути"></button><span>A</span></div>
+      </div>
+    </div>
+    <div class="ss">
+      <div><button data-key="select" aria-label="SELECT — увімкнути або вимкнути звук"></button><span>SELECT</span></div>
+      <div><button data-key="start" aria-label="START — меню або пауза"></button><span>START</span></div>
+    </div>
+    <div class="speaker" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
   </div>
 </section>
 
@@ -439,9 +684,9 @@ h1,h2{text-wrap:balance}
 <path class="m-route" id="mh-route" d="M90 420 C195 420 195 250 300 250 C410 250 410 400 520 400 C630 400 630 210 740 210 C845 210 845 380 950 380 C950 275 1110 275 1110 170"/>
 <g class="m-steps" data-route="mh-route" data-fp="#mh-fp"></g>
 <g class="m-stop" style="--i:0"><use href="#mh-tent" x="53.0" y="383.0" width="74" height="74"/></g>
-<g class="m-lab" style="--i:0"><text class="m-year" x="90" y="482" text-anchor="middle">06·2020</text>
-<text class="m-title" x="90" y="507" text-anchor="middle">Базовий табір</text>
-<text class="m-sub" x="90" y="533" text-anchor="middle">початок служби</text></g>
+<g class="m-lab" style="--i:0"><text class="m-year" x="40" y="482" text-anchor="start">06·2020</text>
+<text class="m-title" x="40" y="507" text-anchor="start">Базовий табір</text>
+<text class="m-sub" x="40" y="533" text-anchor="start">початок служби</text></g>
 <g class="m-stop" style="--i:1"><use href="#mh-peaks" x="263.0" y="213.0" width="74" height="74"/></g>
 <g class="m-lab" style="--i:1"><text class="m-year" x="300" y="82" text-anchor="middle">02·2022</text>
 <text class="m-title" x="300" y="107" text-anchor="middle">Південь</text>
@@ -461,7 +706,7 @@ h1,h2{text-wrap:balance}
 <text class="m-sub" x="950" y="491" text-anchor="middle">сайти, боти, дизайн</text></g>
 <g class="m-stop" style="--i:5"><use href="#mh-x" x="1073.0" y="133.0" width="74" height="74"/></g>
 <g class="m-lab" style="--i:5"><text class="m-year" x="1180" y="62" text-anchor="end">ЗАРАЗ</text>
-<text class="m-title" x="1180" y="87" text-anchor="end">Ви тут</text>
+<text class="m-title" x="1180" y="87" text-anchor="end">Я тут</text>
 <text class="m-sub" x="1180" y="113" text-anchor="end">робота, материнство</text>
 <text class="m-sub" x="1180" y="134" text-anchor="end">й нова країна — разом</text></g>
 </svg>
@@ -541,11 +786,11 @@ h1,h2{text-wrap:balance}
 <text class="m-sub" x="176" y="786" text-anchor="start">сайти, боти, дизайн</text></g>
 <g class="m-stop" style="--i:5"><use href="#mv-x" x="80.0" y="908.0" width="64" height="64"/></g>
 <g class="m-lab" style="--i:5"><text class="m-year" x="176" y="916" text-anchor="start">ЗАРАЗ</text>
-<text class="m-title" x="176" y="938" text-anchor="start">Ви тут</text>
+<text class="m-title" x="176" y="938" text-anchor="start">Я тут</text>
 <text class="m-sub" x="176" y="960" text-anchor="start">робота, материнство</text>
 <text class="m-sub" x="176" y="978" text-anchor="start">й нова країна — разом</text></g>
 </svg>
-      <figcaption class="sr-only"><ol><li>06·2020: Базовий табір — початок служби</li><li>02·2022: Південь — повномасштабна війна</li><li>11·2024: Перевал — служба позаду</li><li>2025–2026: Ліс навчання — маркетинг, кібербезпека, аналітика відкритих даних</li><li>09·2026: Перші проєкти — сайти, боти, дизайн</li><li>ЗАРАЗ: Ви тут — робота, материнство й нова країна — разом</li></ol></figcaption>
+      <figcaption class="sr-only"><ol><li>06·2020: Базовий табір — початок служби</li><li>02·2022: Південь — повномасштабна війна</li><li>11·2024: Перевал — служба позаду</li><li>2025–2026: Ліс навчання — маркетинг, кібербезпека, аналітика відкритих даних</li><li>09·2026: Перші проєкти — сайти, боти, дизайн</li><li>ЗАРАЗ: Я тут — робота, материнство й нова країна — разом</li></ol></figcaption>
     </figure>
     <div class="about-text about-cols">
       <p><b>Червень 2020-го — армія.</b> Тоді я ще не уявляла, що чекає попереду. Повномасштабне вторгнення застало мене на півдні; подробиці того часу лишаю за кадром. А з собою забрала інше: звичку відповідати за людей і результат, швидко ухвалювати рішення й зберігати холодну голову, коли план розсипається.</p>
@@ -564,42 +809,81 @@ h1,h2{text-wrap:balance}
 <section id="cases" class="band-white sec wrap">
   <div class="inner">
     <div class="head">
-      <h2 class="h2">Свіжий слід:<br>реальний кейс</h2>
-      <span class="note">Сайт з нуля для сімейної майстерні свічок — від ідеї до замовлень у Telegram.</span>
+      <h2 class="h2">Кейси,<br>що вже працюють</h2>
+      <span class="note">Реальні проєкти, які приймають замовлення й заявки просто зараз.</span>
     </div>
-    <div class="case">
-      <a class="browser" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener" aria-label="Відкрити сайт V&amp;A Candle Atelier у новій вкладці">
-        <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>shop.vacandle.workers.dev</span></div>
-        <div class="b-body">
-          <span class="b-brand">V&amp;A Candle Atelier · Ірпінь</span>
-          <p class="b-head">Свічки, які хочеться дарувати</p>
-          <div class="b-candles" aria-hidden="true"><i style="width:46px;height:58px"></i><i style="width:58px;height:86px;background:#D9C3A9"></i><i style="width:40px;height:44px"></i><i style="width:52px;height:70px;background:#F1E6D7"></i></div>
-          <div class="b-chips"><span>Каталог з фільтрами</span><span>Кошик</span><span>Подарункове пакування</span><span>Опт від 10 шт</span><span>Нова пошта · Укрпошта</span></div>
+    <div class="works">
+      <article class="work">
+        <a class="w-shot browser" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener" aria-label="Відкрити сайт V&amp;A Candle Atelier">
+          <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>shop.vacandle.workers.dev</span></div>
+          <div class="b-body">
+            <span class="b-brand">V&amp;A Candle Atelier · Ірпінь</span>
+            <p class="b-head">Свічки, які хочеться дарувати</p>
+            <div class="b-candles" aria-hidden="true"><i style="width:40px;height:50px"></i><i style="width:50px;height:74px;background:#D9C3A9"></i><i style="width:34px;height:38px"></i><i style="width:44px;height:60px;background:#F1E6D7"></i></div>
+          </div>
+        </a>
+        <div class="w-body">
+          <div class="w-meta"><span class="live">Працює</span><span>Інтернет-магазин · клієнт</span></div>
+          <h3>V&amp;A Candle Atelier</h3>
+          <p>Магазин свічок ручної роботи з нуля: каталог із фільтрами, кошик, доставка, подарунки й опт. Кожне замовлення одразу приходить менеджеру в Telegram-бот із кнопкою «Оброблено».</p>
+          <a class="w-link" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener">Відкрити сайт →</a>
         </div>
-      </a>
+      </article>
 
-      <div class="case-text">
-        <span class="t-num">ДОКАЗ №007 · ІНТЕРНЕТ-МАГАЗИН</span>
-        <h3>V&amp;A Candle Atelier</h3>
-        <dl>
-          <div><dt>Задача</dt><dd>Майстерня продавала свічки через Instagram і щоразу вручну надсилала клієнтам ціни. Потрібен був магазин, де людина сама обирає й оформлює замовлення.</dd></div>
-          <div><dt>Що зроблено</dt><dd>Каталог із фільтрами за колекціями, кошик, оформлення з доставкою Новою чи Укрпоштою, блоки про подарунки й опт. Кожне замовлення одразу приходить менеджеру в Telegram-бот.</dd></div>
-          <div><dt>Результат</dt><dd>Посилання стоїть у шапці Instagram замість переліку цін, а всі замовлення видно в одному чаті.</dd></div>
-        </dl>
-        <div class="tg" aria-label="Як виглядає замовлення в Telegram-боті">
-          <span class="tg-cap">Telegram-бот менеджера · приклад</span>
-          <div class="tg-msg">🕯 <b>Нове замовлення</b><br>Ім’я, телефон, доставка, відділення<br>Товари й сума<span class="tg-ok">✅ Оброблено</span></div>
-          <div class="tg-btns"><span>📊 Сьогодні</span><span>📅 7 днів</span><span>⏳ Необроблені</span></div>
+      <article class="work">
+        <a class="w-shot browser" href="#top" aria-label="Сайт YETI — на початок сторінки">
+          <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>mariiaraievska-net.github.io/yeti</span></div>
+          <img src="og.png" alt="Перший екран сайту YETI" width="1200" height="630" loading="lazy">
+        </a>
+        <div class="w-body">
+          <div class="w-meta"><span class="live">Працює</span><span>Сайт-візитка · власний проєкт</span></div>
+          <h3>YETI</h3>
+          <p>Сайт, який ви зараз гортаєте: консоль із грою на першому екрані, карта Йеті, тарифи й форма заявок із передачею в Telegram.</p>
+          <a class="w-link" href="#top">На початок →</a>
         </div>
-        <a class="pill pill-line" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener" style="align-self:flex-start">Подивитися сайт →</a>
+      </article>
+
+      <article class="work">
+        <div class="w-shot tgmock" aria-hidden="true">
+          <div class="tgm-head"><i></i><span><b>Розклад уроків</b><small>бот</small></span></div>
+          <div class="tgm-msg">📅 <b>Сьогодні, 3 уроки</b><br>09:00 Математика<br>10:00 Українська<br>11:00 Природознавство</div>
+          <div class="tgm-btns"><span>🔗 Zoom</span><span>⭐ Мої зірки</span><span>🗓 Тиждень</span></div>
+        </div>
+        <div class="w-body">
+          <div class="w-meta"><span class="live">Працює</span><span>Telegram-бот + Mini App</span></div>
+          <h3>Розклад онлайн-школи</h3>
+          <p>Бот і міні-застосунок для учня: розклад на день і тиждень, вхід на урок в один дотик і зірочки-нагороди, щоб навчання було в радість.</p>
+        </div>
+      </article>
+
+      <article class="work">
+        <div class="w-shot board" aria-hidden="true">
+          <span>F = ma</span><span>v = s / t</span><span>E = mc²</span>
+        </div>
+        <div class="w-body">
+          <div class="w-meta"><span class="soon">Запуск незабаром</span><span>Сайт-візитка · клієнт</span></div>
+          <h3>Репетиторка фізики</h3>
+          <p>Сайт для вчительки фізики, яка переходить зі школи на онлайн-заняття: програма, формат уроків і заявки прямо в Telegram.</p>
+        </div>
+      </article>
+    </div>
+
+    <figure class="quote">
+      <div>
+        <blockquote>Ви таку роботу провели, дуже, дуже вдячні вам за це.</blockquote>
+        <figcaption><b>Анастасія</b>, власниця V&amp;A Candle Atelier</figcaption>
       </div>
+    </figure>
 
-      <figure class="quote">
-        <div>
-          <blockquote>Ви таку роботу провели, дуже, дуже вдячні вам за це.</blockquote>
-          <figcaption><b>Анастасія</b>, власниця V&amp;A Candle Atelier</figcaption>
-        </div>
-      </figure>
+    <div class="concepts">
+      <div class="c-head"><h3>Концепти</h3><span class="note">Ідеї, які я реалізую найближчим часом. Коли запрацюють — переїдуть угору.</span></div>
+      <ul class="c-list">
+        <li><span class="tag">Концепт</span><b>Дизайнер інтер’єру</b><small>Сайт-портфоліо з калькулятором вартості ремонту</small></li>
+        <li><span class="tag">Концепт</span><b>Сайт для шефа</b><small>Відкриття закладів під ключ: послуги, кейси, заявки</small></li>
+        <li><span class="tag">Концепт</span><b>Оренда спорядження</b><small>Туристичне спорядження з різних прокатів в одному каталозі</small></li>
+        <li><span class="tag">Концепт</span><b>Telegram-застосунок для спорту</b><small>Тренування й прогрес просто в месенджері</small></li>
+        <li><span class="tag">Концепт</span><b>Telegram-застосунок для навчання</b><small>Уроки, завдання й нагадування в одному місці</small></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -945,195 +1229,6 @@ var WA_MAIN = '995597798214';
 })();
 </script>
 <script>
-/* ---------- YETI RUN: hero game ---------- */
-(function(){
-  var cv = document.getElementById('yetiRun');
-  if (!cv) return;
-  var ctx = cv.getContext('2d');
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var H = 120, GROUND = 100, GOAL = 12, W = 300, S = 2;
-  var C = { sky:'#0E1116', star:'#4A5466', far:'#1A2130', near:'#242E40', cap:'#C5CCD6', snow:'#EEF1F4', snow2:'#C9D3DE', text:'#EEF1F4', dim:'#9AA4B2', acc:'#FF6A2B', panel:'#0E1116' };
-  var PY = { '1':'#F7FAFC', '2':'#C9D6E2', '3':'#9FBBD0', '4':'#33597A' };
-  var PP = { '3':'#2F5A57', '4':'#17343A' };
-  var PS = { '1':'#F7FAFC', '3':'#FF6A2B', '4':'#33597A' };
-  var PF = { '3':'#FF6A2B', '4':'#B8461A' };
-  var YA = ["......4.4.4.....","....41414141....","...4111111114...","..411111111114..","..413333333314..","..413433334314..","..413333333314..","..411344443114..",".41111111111114.","4111111111111114","4141111111111414","4141112222111414","4141112222111414","4331111111111334","..4114....4114..","..444......444.."];
-  var YB = YA.slice(0, 14).concat(["...4114..4114...","...444....444..."]);
-  var PINE = [".....44.....","....4334....","...433334...","....4334....","...433334...","..43333334..","...433334...","..43333334..",".4333333334.","..43333334..",".4333333334.","433333333334","444444444444",".....44.....",".....44.....","....4444...."];
-  var SNOWMAN = ["...4444...","..411114..","..414414..","..411114..","..413314..","...4444...","..411114..",".41141114.","4111111114","4111411114","4111111114","4111411114",".41111114.","..444444.."];
-  var PRINT = ["4.4.4..",".......",".4444..","433334.","433334.","433334.",".4334..","..44..."];
-  function spr(map, pal, x, y){
-    for (var r = 0; r < map.length; r++){
-      var row = map[r];
-      for (var c = 0; c < row.length; c++){
-        var col = pal[row[c]];
-        if (col){ ctx.fillStyle = col; ctx.fillRect(x + c, y + r, 1, 1); }
-      }
-    }
-  }
-
-  var best = 0;
-  try{ best = +localStorage.getItem('yeti-run-best') || 0; }catch(e){}
-  var g = { mode: 'demo', raf: 0, last: 0, t: 0 };
-  var stars = [], flakes = [];
-
-  function size(){
-    var cssW = cv.clientWidth, cssH = cv.clientHeight;
-    if (!cssW || !cssH) return;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    S = Math.max(1, Math.round(cssH * dpr / H));
-    W = Math.round(H * cssW / cssH);
-    cv.width = W * S; cv.height = H * S;
-    ctx.imageSmoothingEnabled = false;
-    stars = []; flakes = [];
-    for (var i = 0; i < Math.round(W / 6); i++) stars.push({ x: Math.random() * W, y: Math.random() * 60, p: Math.random() * 6 });
-    for (var j = 0; j < Math.round(W / 9); j++) flakes.push({ x: Math.random() * W, y: Math.random() * H, v: 6 + Math.random() * 12 });
-    if (!g.raf) draw();
-  }
-  function reset(){
-    g.y = GROUND - 16; g.vy = 0; g.ground = true; g.speed = 64; g.dist = 0;
-    g.obs = []; g.prints = []; g.score = 0; g.spawn = 1.2; g.pspawn = 0.7; g.cause = '';
-  }
-  function hit(ax, ay, aw, ah, bx, by, bw, bh){ return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by; }
-  function jump(){ if (g.ground){ g.vy = -170; g.ground = false; } }
-
-  function update(dt){
-    g.t += dt;
-    flakes.forEach(function(f){ f.y += f.v * dt; f.x -= (g.mode === 'run' || g.mode === 'demo' ? g.speed * 0.2 : 4) * dt; if (f.y > H){ f.y = -2; f.x = Math.random() * W; } if (f.x < -2) f.x = W; });
-    if (g.mode !== 'run' && g.mode !== 'demo') return;
-    if (g.mode === 'run') g.speed = Math.min(160, g.speed + dt * 3);
-    g.dist += g.speed * dt;
-    g.vy += 430 * dt; g.y += g.vy * dt;
-    if (g.y >= GROUND - 16){ g.y = GROUND - 16; g.vy = 0; g.ground = true; }
-
-    g.spawn -= dt;
-    if (g.spawn <= 0){
-      var tree = Math.random() < 0.6;
-      g.obs.push({ x: W + 4, type: tree ? 'pine' : 'snowman', w: tree ? 12 : 10, h: tree ? 16 : 14 });
-      g.spawn = 0.5 + (80 + Math.random() * 120) / g.speed;
-    }
-    g.pspawn -= dt;
-    if (g.pspawn <= 0){
-      g.prints.push({ x: W + 4, y: GROUND - 28 - Math.round(Math.random() * 18) });
-      g.pspawn = 0.6 + Math.random() * 0.9;
-    }
-    var dx = g.speed * dt;
-    g.obs.forEach(function(o){ o.x -= dx; });
-    g.prints.forEach(function(p){ p.x -= dx; });
-    g.obs = g.obs.filter(function(o){ return o.x > -20; });
-    g.prints = g.prints.filter(function(p){ return p.x > -10 && !p.taken; });
-
-    var yx = 30, yy = g.y + 3, yw = 10, yh = 12;
-    if (g.mode === 'demo'){
-      for (var k = 0; k < g.obs.length; k++){ var d = g.obs[k].x - (yx + yw); if (d > 0 && d < g.speed * 0.2 + 6){ jump(); break; } }
-      return;
-    }
-    for (var j = 0; j < g.obs.length; j++){
-      var o = g.obs[j];
-      if (hit(yx, yy, yw, yh, o.x + 2, GROUND - o.h + 2, o.w - 4, o.h - 2)){
-        g.mode = 'over'; g.cause = o.type === 'pine' ? 'ОЙ! ЯЛИНКА.' : 'ОЙ! СНІГОВИК.';
-        if (g.score > best){ best = g.score; try{ localStorage.setItem('yeti-run-best', best); }catch(e){} }
-        return;
-      }
-    }
-    for (var m = 0; m < g.prints.length; m++){
-      var p = g.prints[m];
-      if (!p.taken && hit(yx - 2, g.y, 14, 16, p.x, p.y, 7, 8)){
-        p.taken = true; g.score++;
-        if (g.score >= GOAL){ g.mode = 'win'; best = Math.max(best, g.score); try{ localStorage.setItem('yeti-run-best', best); }catch(e){} }
-      }
-    }
-  }
-
-  function text(str, x, y, size, color, align){
-    ctx.font = size + 'px "Press Start 2P", "Courier New", monospace';
-    ctx.textAlign = align || 'center'; ctx.textBaseline = 'top';
-    ctx.fillStyle = color; ctx.fillText(str, x, y);
-  }
-  function panel(lines){
-    var w = Math.min(W - 20, 176), h = 12 + lines.length * 12;
-    var x0 = Math.round((W - w) / 2), y0 = Math.round((H - h) / 2) - 10;
-    ctx.fillStyle = C.panel; ctx.fillRect(x0, y0, w, h);
-    ctx.fillStyle = C.acc; ctx.fillRect(x0, y0, w, 1); ctx.fillRect(x0, y0 + h - 1, w, 1); ctx.fillRect(x0, y0, 1, h); ctx.fillRect(x0 + w - 1, y0, 1, h);
-    lines.forEach(function(l, i){ text(l[0], W / 2, y0 + 7 + i * 12, l[1] || 6, l[2] || C.text); });
-  }
-
-  function draw(){
-    ctx.setTransform(S, 0, 0, S, 0, 0);
-    ctx.fillStyle = C.sky; ctx.fillRect(0, 0, W, H);
-    stars.forEach(function(s){ ctx.fillStyle = Math.sin(g.t * 2 + s.p) > 0.6 ? C.dim : C.star; ctx.fillRect(Math.round(s.x), Math.round(s.y), 1, 1); });
-    var dist = g.dist || 0, off, x;
-    off = -(dist * 0.08 % 90);
-    for (x = off - 90; x < W + 90; x += 90){
-      ctx.fillStyle = C.far; ctx.beginPath(); ctx.moveTo(x, GROUND); ctx.lineTo(x + 45, GROUND - 52); ctx.lineTo(x + 90, GROUND); ctx.fill();
-      ctx.fillStyle = C.cap; ctx.beginPath(); ctx.moveTo(x + 45, GROUND - 52); ctx.lineTo(x + 37, GROUND - 43); ctx.lineTo(x + 53, GROUND - 43); ctx.fill();
-    }
-    off = -(dist * 0.2 % 70);
-    for (x = off - 70; x < W + 70; x += 70){
-      ctx.fillStyle = C.near; ctx.beginPath(); ctx.moveTo(x, GROUND); ctx.lineTo(x + 30, GROUND - 30); ctx.lineTo(x + 62, GROUND); ctx.fill();
-    }
-    ctx.fillStyle = C.snow; ctx.fillRect(0, GROUND, W, H - GROUND);
-    ctx.fillStyle = C.snow2;
-    var goff = -(dist % 14);
-    for (var gx = goff; gx < W; gx += 14){ ctx.fillRect(Math.round(gx), GROUND + 5, 4, 1); ctx.fillRect(Math.round(gx) + 7, GROUND + 12, 3, 1); }
-    ctx.fillStyle = C.snow;
-    flakes.forEach(function(f){ if (f.y < GROUND) ctx.fillRect(Math.round(f.x), Math.round(f.y), 1, 1); });
-
-    (g.prints || []).forEach(function(p){ spr(PRINT, PF, Math.round(p.x), Math.round(p.y)); });
-    (g.obs || []).forEach(function(o){ spr(o.type === 'pine' ? PINE : SNOWMAN, o.type === 'pine' ? PP : PS, Math.round(o.x), GROUND - o.h); });
-    var frame = !g.ground ? YA : (Math.floor(dist / 7) % 2 ? YB : YA);
-    spr(frame, PY, 28, Math.round(g.y));
-
-    if (g.mode === 'demo'){
-      if (Math.floor(g.t * 1.6) % 2 === 0 || reduce) text('НАТИСНИ, ЩОБ ГРАТИ', W / 2, 10, 6, C.text);
-      text('ЗБЕРИ 12 СЛІДІВ', W / 2, 22, 6, C.acc);
-    } else {
-      text('СЛІДИ ' + g.score + '/' + GOAL, 6, 6, 6, C.text, 'left');
-      text('РЕКОРД ' + best, W - 6, 6, 6, C.dim, 'right');
-    }
-    if (g.mode === 'over') panel([[g.cause, 7], ['СЛІДІВ: ' + g.score, 6, C.dim], ['ТАП — ЩЕ РАЗ', 6, C.acc]]);
-    if (g.mode === 'win') panel([['РІВЕНЬ ПРОЙДЕНО!', 7], ['ТВІЙ САЙТ НАСТУПНИЙ', 6, C.dim], ['ТАП — ДО ЗАЯВКИ', 6, C.acc]]);
-  }
-
-  function loop(t){
-    var dt = Math.min(0.05, (t - (g.last || t)) / 1000); g.last = t;
-    update(dt); draw();
-    g.raf = (visible && (!reduce || g.mode === 'run')) ? requestAnimationFrame(loop) : 0;
-  }
-  function kick(){ if (!g.raf){ g.last = 0; g.raf = requestAnimationFrame(loop); } }
-
-  function action(){
-    if (g.mode === 'demo' || g.mode === 'over'){ reset(); g.mode = 'run'; jump(); kick(); return; }
-    if (g.mode === 'run'){ jump(); return; }
-    if (g.mode === 'win'){
-      var call = document.getElementById('call');
-      if (call) call.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
-      setTimeout(function(){ var n = document.getElementById('f-name'); if (n) n.focus({ preventScroll: true }); }, 700);
-      reset(); g.mode = 'demo'; kick();
-    }
-  }
-  cv.addEventListener('pointerdown', function(e){ e.preventDefault(); cv.focus({ preventScroll: true }); action(); });
-  cv.addEventListener('keydown', function(e){
-    if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'Enter'){ e.preventDefault(); if (!e.repeat) action(); }
-  });
-  var play = document.getElementById('playBtn');
-  if (play) play.addEventListener('click', function(){
-    cv.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
-    cv.focus({ preventScroll: true });
-    if (g.mode !== 'run') action();
-  });
-
-  var visible = true;
-  if ('IntersectionObserver' in window){
-    new IntersectionObserver(function(en){ visible = en[0].isIntersecting; if (visible) kick(); }).observe(cv);
-  }
-  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(size, 150); });
-  reset(); size();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ draw(); });
-  kick();
-})();
-</script>
-<script>
 /* ---------- yeti map: footprints walk the route ---------- */
 (function(){
   var map = document.getElementById('ymap');
@@ -1158,6 +1253,304 @@ var WA_MAIN = '995597798214';
   if (reduce || !('IntersectionObserver' in window)){ map.classList.add('go'); return; }
   var io = new IntersectionObserver(function(en){ if (en[0].isIntersecting){ map.classList.add('go'); io.disconnect(); } }, { threshold: .35 });
   io.observe(map);
+})();
+</script>
+<script>
+(function(){
+  var dev = document.querySelector('.pocket .device');
+  if (!dev) return;
+  var pocketActive = false;
+  document.addEventListener('pointerdown', function(e){ pocketActive = !!(e.target.closest && e.target.closest('.pocket')); }, true);
+  dev.addEventListener('focusin', function(){ pocketActive = true; });
+  dev.addEventListener('focusout', function(e){ if (!dev.contains(e.relatedTarget)) pocketActive = false; });
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var css = getComputedStyle(document.documentElement);
+  var PAL = ['transparent', css.getPropertyValue('--l1').trim(), css.getPropertyValue('--l2').trim(), css.getPropertyValue('--l3').trim(), css.getPropertyValue('--l4').trim()];
+
+  /* ---------- sprites ---------- */
+  var YA = ["......4.4.4.....","....41414141....","...4111111114...","..411111111114..","..413333333314..","..413433334314..","..413333333314..","..411344443114..",".41111111111114.","4111111111111114","4141111111111414","4141112222111414","4141112222111414","4331111111111334","..4114....4114..","..444......444.."];
+  var YB = YA.slice(0, 14).concat(["...4114..4114...","...444....444..."]);
+  var PINE = [".....44.....","....4334....","...433334...","....4334....","...433334...","..43333334..","...433334...","..43333334..",".4333333334.","..43333334..",".4333333334.","433333333334","444444444444",".....44.....",".....44.....","....4444...."];
+  var SNOWMAN = ["...4444...","..411114..","..414414..","..411114..","..413314..","...4444...","..411114..",".41141114.","4111111114","4111411114","4111111114","4111411114",".41111114.","..444444.."];
+  var PRINT = ["4.4.4..",".......",".4444..","433334.","433334.","433334.",".4334..","..44..."];
+  function spr(ctx, map, x, y){
+    for (var r = 0; r < map.length; r++){
+      var row = map[r];
+      for (var c = 0; c < row.length; c++){
+        var k = row.charCodeAt(c) - 48;
+        if (k > 0 && k < 5){ ctx.fillStyle = PAL[k]; ctx.fillRect(x + c, y + r, 1, 1); }
+      }
+    }
+  }
+  document.querySelectorAll('.pocket canvas.sprite').forEach(function(cv){ spr(cv.getContext('2d'), YA, 0, 0); });
+
+  /* ---------- sound (off until SELECT) ---------- */
+  var ac = null, soundOn = false;
+  function beep(f, d, slide){
+    if (!soundOn) return;
+    try{
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      var t = ac.currentTime, o = ac.createOscillator(), g = ac.createGain();
+      o.type = 'square'; o.frequency.setValueAtTime(f, t);
+      if (slide) o.frequency.linearRampToValueAtTime(f + slide, t + d);
+      g.gain.setValueAtTime(0.06, t); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+      o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + d + 0.02);
+    }catch(e){}
+  }
+  var toastEl = document.getElementById('p-toast'), toastT;
+  function toast(msg){ toastEl.textContent = msg; toastEl.hidden = false; clearTimeout(toastT); toastT = setTimeout(function(){ toastEl.hidden = true; }, 1400); }
+  function toggleSound(){
+    soundOn = !soundOn;
+    document.querySelectorAll('.pocket .snd').forEach(function(s){ s.textContent = soundOn ? '♪ УВІМК' : '♪ ВИМК'; });
+    toast(soundOn ? 'ЗВУК: УВІМК' : 'ЗВУК: ВИМК');
+    if (soundOn){ beep(523, .08); setTimeout(function(){ beep(784, .1); }, 90); }
+  }
+
+  /* ---------- screens ---------- */
+  var screens = {}, cur = 'boot', idx = 0;
+  document.querySelectorAll('.pocket [data-scr]').forEach(function(s){ screens[s.dataset.scr] = s; });
+  function items(){ return Array.prototype.slice.call(screens[cur].querySelectorAll('.it')); }
+  function paint(){
+    var list = items();
+    list.forEach(function(el, i){ el.classList.toggle('sel', i === idx); });
+    if (list[idx]) list[idx].scrollIntoView({ block: 'nearest' });
+  }
+  function show(name){
+    screens[cur].hidden = true;
+    cur = name; idx = 0;
+    screens[cur].hidden = false;
+    screens[cur].scrollTop = 0;
+    paint();
+    if (name === 'game') game.enter(); else game.leave();
+  }
+  function move(d){
+    if (cur === 'game' || cur === 'boot') return;
+    var n = items().length;
+    if (!n) return;
+    idx = (idx + d + n) % n; paint(); beep(660, .03);
+  }
+  function a(){
+    if (cur === 'boot'){ beep(988, .12); show('menu'); return; }
+    if (cur === 'game'){ game.action(); return; }
+    var el = items()[idx];
+    if (el) el.click();
+  }
+  function b(){
+    if (cur === 'game' && game.mode === 'run'){ game.pause(); return; }
+    if (cur !== 'menu' && cur !== 'boot'){ beep(330, .06); show('menu'); }
+  }
+  function start(){
+    if (cur === 'boot'){ beep(988, .12); show('menu'); }
+    else if (cur === 'game') game.pause();
+    else { beep(330, .06); show('menu'); }
+  }
+
+  document.querySelectorAll('.pocket [data-go]').forEach(function(el){
+    el.addEventListener('click', function(){ beep(880, .06); show(el.dataset.go); });
+  });
+  document.getElementById('p-pressStart').addEventListener('click', start);
+  document.querySelectorAll('.pocket .lcd a.it').forEach(function(el){ el.addEventListener('click', function(){ beep(880, .06); }); });
+  document.querySelectorAll('.pocket .scr').forEach(function(s){
+    s.addEventListener('pointerover', function(e){
+      var it = e.target.closest && e.target.closest('.it');
+      if (!it || e.pointerType !== 'mouse') return;
+      var i = items().indexOf(it);
+      if (i >= 0 && i !== idx){ idx = i; paint(); }
+    });
+  });
+
+  var copyBtn = document.getElementById('p-copyMail');
+  copyBtn.addEventListener('click', function(){
+    var t = document.getElementById('p-mailAddr').textContent;
+    beep(880, .06);
+    function sel(){ var r = document.createRange(); r.selectNodeContents(document.getElementById('p-mailAddr')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('АДРЕСУ ВИДІЛЕНО'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function(){ toast('СКОПІЙОВАНО!'); }, sel);
+    else sel();
+  });
+
+  /* ---------- device buttons ---------- */
+  var acts = { up: function(){ cur === 'game' ? game.action() : move(-1); }, down: function(){ move(1); }, left: b, right: a, a: a, b: b, start: start, select: toggleSound };
+  document.querySelectorAll('.pocket [data-key]').forEach(function(btn){
+    var viaPointer = false;
+    btn.addEventListener('pointerdown', function(e){ e.preventDefault(); viaPointer = true; acts[btn.dataset.key](); });
+    btn.addEventListener('click', function(){ if (viaPointer){ viaPointer = false; return; } acts[btn.dataset.key](); });
+  });
+  function flash(key){
+    var el = document.querySelector('.pocket [data-key="' + key + '"]');
+    if (!el) return;
+    el.classList.add('down'); setTimeout(function(){ el.classList.remove('down'); }, 110);
+  }
+  document.addEventListener('keydown', function(e){
+    if (!pocketActive) return;
+    var k = e.key, key = null;
+    if (k === 'ArrowUp') key = 'up';
+    else if (k === 'ArrowDown') key = 'down';
+    else if (k === 'ArrowLeft') key = 'left';
+    else if (k === 'ArrowRight') key = 'right';
+    else if (k === 'Enter' || k === 'z' || k === 'Z' || k === 'я' || k === 'Я') key = 'a';
+    else if (k === ' '){ key = cur === 'game' ? 'a' : null; if (!key) return; }
+    else if (k === 'Escape' || k === 'x' || k === 'X' || k === 'ч' || k === 'Ч' || k === 'Backspace') key = 'b';
+    else if (k === 'm' || k === 'M' || k === 'ь' || k === 'Ь') key = 'select';
+    else if (k === 's' || k === 'S') key = 'start';
+    if (!key) return;
+    e.preventDefault();
+    if (e.repeat && key !== 'up' && key !== 'down') return;
+    flash(key); acts[key]();
+  });
+
+  /* ---------- game ---------- */
+  var cv = document.getElementById('p-game'), ctx = cv.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+  var W = 160, H = 144, GROUND = 120, GOAL = 12;
+  var best = 0;
+  try{ best = +localStorage.getItem('yeti-pocket-best') || 0; }catch(e){}
+  var g = { mode: 'ready', raf: 0, last: 0 };
+  var flakes = [];
+  for (var fi = 0; fi < 22; fi++) flakes.push({ x: Math.random() * W, y: Math.random() * H, v: 6 + Math.random() * 10 });
+
+  function reset(){
+    g.y = GROUND - 16; g.vy = 0; g.ground = true; g.speed = 62; g.dist = 0;
+    g.obs = []; g.prints = []; g.score = 0; g.spawn = 1.4; g.pspawn = 0.8; g.cause = '';
+  }
+  function hit(ax, ay, aw, ah, bx, by, bw, bh){ return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by; }
+
+  function update(dt){
+    for (var i = 0; i < flakes.length; i++){ var f = flakes[i]; f.y += f.v * dt; f.x -= (g.mode === 'run' ? g.speed * 0.25 : 3) * dt; if (f.y > H) { f.y = -2; f.x = Math.random() * W; } if (f.x < -2) f.x = W; }
+    if (g.mode !== 'run') return;
+    g.speed = Math.min(150, g.speed + dt * 3);
+    g.dist += g.speed * dt;
+    g.vy += 430 * dt; g.y += g.vy * dt;
+    if (g.y >= GROUND - 16){ g.y = GROUND - 16; g.vy = 0; g.ground = true; } else g.ground = false;
+
+    g.spawn -= dt;
+    if (g.spawn <= 0){
+      var tree = Math.random() < 0.6;
+      g.obs.push({ x: W + 4, type: tree ? 'pine' : 'snowman', w: tree ? 12 : 10, h: tree ? 16 : 14 });
+      g.spawn = 0.5 + (70 + Math.random() * 110) / g.speed;
+    }
+    g.pspawn -= dt;
+    if (g.pspawn <= 0){
+      g.prints.push({ x: W + 4, y: GROUND - 28 - Math.round(Math.random() * 18) });
+      g.pspawn = 0.6 + Math.random() * 0.9;
+    }
+    var dx = g.speed * dt;
+    g.obs.forEach(function(o){ o.x -= dx; });
+    g.prints.forEach(function(p){ p.x -= dx; });
+    g.obs = g.obs.filter(function(o){ return o.x > -20; });
+    g.prints = g.prints.filter(function(p){ return p.x > -10 && !p.taken; });
+
+    var yx = 24, yy = g.y + 3, yw = 10, yh = 12;
+    for (var j = 0; j < g.obs.length; j++){
+      var o = g.obs[j];
+      if (hit(yx, yy, yw, yh, o.x + 2, GROUND - o.h + 2, o.w - 4, o.h - 2)){
+        g.mode = 'over'; g.cause = o.type === 'pine' ? 'ОЙ! ЯЛИНКА.' : 'ОЙ! СНІГОВИК.';
+        beep(220, .25, -150);
+        if (g.score > best){ best = g.score; try{ localStorage.setItem('yeti-pocket-best', best); }catch(e){} }
+        return;
+      }
+    }
+    for (var m = 0; m < g.prints.length; m++){
+      var p = g.prints[m];
+      if (!p.taken && hit(yx - 2, g.y, 14, 16, p.x, p.y, 7, 8)){
+        p.taken = true; g.score++; beep(1319, .05); setTimeout(function(){ beep(1760, .07); }, 50);
+        if (g.score >= GOAL){
+          g.mode = 'win'; best = Math.max(best, g.score);
+          try{ localStorage.setItem('yeti-pocket-best', best); }catch(e){}
+          [523, 659, 784, 1047].forEach(function(n, q){ setTimeout(function(){ beep(n, .12); }, q * 110); });
+        }
+      }
+    }
+  }
+
+  function text(str, x, y, size, color, align){
+    ctx.font = size + 'px "Press Start 2P", "Courier New", monospace';
+    ctx.textAlign = align || 'center'; ctx.textBaseline = 'top';
+    ctx.fillStyle = color; ctx.fillText(str, x, y);
+  }
+  function panel(lines){
+    var h = 14 + lines.length * 13;
+    var y0 = Math.round((H - h) / 2) - 6;
+    ctx.fillStyle = PAL[1]; ctx.fillRect(14, y0, W - 28, h);
+    ctx.fillStyle = PAL[4]; ctx.fillRect(14, y0, W - 28, 2); ctx.fillRect(14, y0 + h - 2, W - 28, 2); ctx.fillRect(14, y0, 2, h); ctx.fillRect(W - 16, y0, 2, h);
+    lines.forEach(function(l, i){ text(l[0], W / 2, y0 + 8 + i * 13, l[1] || 6, PAL[l[2] || 4]); });
+  }
+
+  function draw(){
+    ctx.setTransform(2, 0, 0, 2, 0, 0);
+    ctx.fillStyle = PAL[1]; ctx.fillRect(0, 0, W, H);
+    // mountains
+    ctx.fillStyle = PAL[2];
+    var off = -((g.dist || 0) * 0.12 % 64);
+    for (var mx = off - 64; mx < W + 64; mx += 64){
+      ctx.beginPath(); ctx.moveTo(mx, GROUND); ctx.lineTo(mx + 30, GROUND - 44); ctx.lineTo(mx + 64, GROUND); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(mx + 34, GROUND); ctx.lineTo(mx + 52, GROUND - 26); ctx.lineTo(mx + 74, GROUND); ctx.fill();
+    }
+    ctx.fillStyle = PAL[1];
+    for (var px = off - 64; px < W + 64; px += 64){ ctx.beginPath(); ctx.moveTo(px + 30, GROUND - 44); ctx.lineTo(px + 24, GROUND - 37); ctx.lineTo(px + 36, GROUND - 37); ctx.fill(); }
+    // ground
+    ctx.fillStyle = PAL[1]; ctx.fillRect(0, GROUND, W, H - GROUND);
+    ctx.fillStyle = PAL[4]; ctx.fillRect(0, GROUND, W, 1);
+    ctx.fillStyle = PAL[2];
+    var goff = -((g.dist || 0) % 12);
+    for (var gx = goff; gx < W; gx += 12){ ctx.fillRect(Math.round(gx), GROUND + 6, 3, 1); ctx.fillRect(Math.round(gx) + 6, GROUND + 13, 2, 1); }
+    // flakes
+    ctx.fillStyle = PAL[2];
+    flakes.forEach(function(f){ ctx.fillRect(Math.round(f.x), Math.round(f.y), 1, 1); });
+    // prints, obstacles, yeti
+    (g.prints || []).forEach(function(p){ spr(ctx, PRINT, Math.round(p.x), Math.round(p.y)); });
+    (g.obs || []).forEach(function(o){ spr(ctx, o.type === 'pine' ? PINE : SNOWMAN, Math.round(o.x), GROUND - o.h); });
+    var frame = (!g.ground || g.mode !== 'run') ? YA : (Math.floor(g.dist / 7) % 2 ? YB : YA);
+    spr(ctx, frame, 22, Math.round(g.y));
+    // HUD
+    text('СЛІДИ ' + g.score + '/' + GOAL, 4, 4, 6, PAL[4], 'left');
+    text('РЕКОРД ' + best, W - 4, 4, 6, PAL[3], 'right');
+
+    if (g.mode === 'ready') panel([['YETI RUN', 8], ['ЗБЕРИ 12 СЛІДІВ', 6, 3], ['A — СТАРТ / СТРИБОК', 6], ['B — МЕНЮ', 6, 3]]);
+    else if (g.mode === 'pause') panel([['ПАУЗА', 8], ['A — ГРАТИ ДАЛІ', 6], ['B — МЕНЮ', 6, 3]]);
+    else if (g.mode === 'over') panel([[g.cause, 7], ['СЛІДІВ: ' + g.score, 6, 3], ['A — ЩЕ РАЗ', 6], ['B — МЕНЮ', 6, 3]]);
+    else if (g.mode === 'win') panel([['РІВЕНЬ ПРОЙДЕНО!', 7], ['ТВІЙ САЙТ', 6, 3], ['НАСТУПНИЙ', 6, 3], ['A — ЗВ\'ЯЗАТИСЯ', 6]]);
+  }
+
+  function loop(t){
+    var dt = Math.min(0.05, (t - (g.last || t)) / 1000); g.last = t;
+    update(dt); draw();
+    g.raf = requestAnimationFrame(loop);
+  }
+
+  var game = {
+    get mode(){ return g.mode; },
+    enter: function(){ reset(); g.mode = 'ready'; g.last = 0; if (!g.raf) g.raf = requestAnimationFrame(loop); },
+    leave: function(){ if (g.raf){ cancelAnimationFrame(g.raf); g.raf = 0; } },
+    pause: function(){
+      if (g.mode === 'run'){ g.mode = 'pause'; beep(440, .08); }
+      else if (g.mode === 'pause'){ g.mode = 'run'; beep(660, .08); }
+      else { beep(330, .06); show('menu'); }
+    },
+    action: function(){
+      if (g.mode === 'ready' || g.mode === 'pause'){ g.mode = 'run'; if (g.ground){ g.vy = -168; beep(440, .1, 400); } return; }
+      if (g.mode === 'run'){ if (g.ground){ g.vy = -168; g.ground = false; beep(440, .1, 400); } return; }
+      if (g.mode === 'over'){ reset(); g.mode = 'run'; beep(660, .08); return; }
+      if (g.mode === 'win'){ show('contact'); }
+    }
+  };
+  // B in game while not running → menu
+  var origB = acts.b;
+  acts.b = function(){ if (cur === 'game' && g.mode !== 'run'){ beep(330, .06); show('menu'); return; } origB(); };
+  cv.addEventListener('pointerdown', function(e){ e.preventDefault(); game.action(); });
+
+  reset(); draw();
+  paint();
+  window.yetiPocket = { play: function(){ pocketActive = true; dev.focus({ preventScroll: true }); if (cur !== 'game') show('game'); } };
+})();
+</script>
+<script>
+(function(){
+  var b = document.getElementById("playBtn");
+  if (b) b.addEventListener("click", function(){
+    var d = document.querySelector(".pocket .device");
+    if (d) d.scrollIntoView({ block: "center", behavior: "smooth" });
+    if (window.yetiPocket) window.yetiPocket.play();
+  });
 })();
 </script>
 </body>
