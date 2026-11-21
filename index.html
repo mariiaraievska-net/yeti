@@ -380,16 +380,19 @@ h1,h2{text-wrap:balance}
 .quote figcaption b{color:var(--night)}
 
 /* plans */
-.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:16px}
-.plan{border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:18px;border:1.5px solid var(--night);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.plans{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 2px 14px;margin:-10px -2px 0;scrollbar-width:thin}
+@media (min-width:1180px){.plans{grid-auto-columns:minmax(0,1fr);overflow:visible}}
+.swipe{margin:6px 0 0;font-family:var(--f-mono);font-size:12px;color:var(--slate)}
+@media (min-width:1180px){.swipe{display:none}}
+.plan{scroll-snap-align:start;min-width:0;border-radius:24px;padding:26px 22px;display:flex;flex-direction:column;gap:18px;border:1.5px solid var(--night);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
 .plan:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(14,17,22,.18)}
 .p-w{background:var(--white);color:var(--night)}
 .p-d{background:var(--night);color:var(--snow)}
 .p-a{background:var(--accent);color:var(--night)}
 .p-meta{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:12px}
-.p-name{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.1}
+.p-name{font-family:var(--f-display);font-weight:400;font-size:clamp(20px,1.6vw,23px);line-height:1.15;min-height:2.3em}
 .p-price{display:flex;align-items:baseline;gap:8px;font-variant-numeric:tabular-nums}
-.p-price b{font-family:var(--f-display);font-weight:400;font-size:58px;line-height:.9}
+.p-price b{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,3.4vw,52px);line-height:.9}
 .plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:15px}
 .plan li{display:flex;gap:10px}
 .plan .pill{margin-top:auto}
@@ -899,6 +902,7 @@ h1,h2{text-wrap:balance}
       <article class="plan p-w"><div class="p-meta"><span>TG-01</span><span>від 5 днів</span></div><div class="p-name">Сигнал — Telegram-бот</div><div class="p-price"><span>від</span><b>$150</b></div><ul><li>✓ Сценарій діалогу</li><li>✓ Меню й кнопки</li><li>✓ Заявки в чат</li><li>✓ Розсилки</li></ul><a class="pill pill-line" href="#call" data-service="Telegram-бот">Вирушити</a></article>
       <article class="plan p-d"><div class="p-meta"><span>TG-02</span><span>від 14 днів</span></div><div class="p-name">Табір — Mini App</div><div class="p-price"><span>від</span><b>$400</b></div><ul><li>✓ Власний дизайн</li><li>✓ Каталог або запис</li><li>✓ Оплата</li><li>✓ Адмінка</li></ul><a class="pill pill-line" href="#call" data-service="Telegram Mini App">Вирушити</a></article>
     </div>
+    <p class="swipe" aria-hidden="true">Гортайте картки вбік →</p>
     <div class="extras">
       <div><span>Калькулятор / квіз</span><b>від $80</b></div>
       <div><span>SEO-супровід</span><b>від $150/міс</b></div>
