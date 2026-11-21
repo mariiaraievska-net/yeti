@@ -299,6 +299,16 @@ h1,h2{text-wrap:balance}
 .c-list small{font-size:14px;line-height:1.5;color:var(--slate)}
 .tag{align-self:flex-start;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid #B9C2CE;border-radius:999px;padding:3px 9px;color:var(--slate)}
 
+.skills{margin-top:0}
+.more{margin-top:28px}
+.more summary{list-style:none;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border:1.5px solid var(--snow);border-radius:999px;font-weight:800;cursor:pointer;transition:background .2s,color .2s}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"↓";transition:transform .3s}
+.more[open] summary::after{transform:rotate(180deg)}
+.more summary:hover{background:var(--snow);color:var(--night)}
+.more .more-close,.more[open] .more-open{display:none}
+.more[open] .more-close{display:inline}
+.more .about-text{margin-top:32px;animation:fi .5s ease both}
 /* about */
 .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
 .about-head{display:flex;flex-direction:column;gap:24px;position:sticky;top:96px}
@@ -798,17 +808,20 @@ h1,h2{text-wrap:balance}
 </svg>
       <figcaption class="sr-only"><ol><li>06·2020: Базовий табір — початок служби</li><li>02·2022: Південь — повномасштабна війна</li><li>11·2024: Перевал — служба позаду</li><li>2025–2026: Ліс навчання — маркетинг, кібербезпека, аналітика відкритих даних</li><li>09·2026: Перші проєкти — сайти, боти, дизайн</li><li>ЗАРАЗ: Я тут — робота, материнство й нова країна — разом</li></ol></figcaption>
     </figure>
-    <div class="about-text about-cols">
-      <p><b>Червень 2020-го — армія.</b> Тоді я ще не уявляла, що чекає попереду. Повномасштабне вторгнення застало мене на півдні; подробиці того часу лишаю за кадром. А з собою забрала інше: звичку відповідати за людей і результат, швидко ухвалювати рішення й зберігати холодну голову, коли план розсипається.</p>
-      <p><b>Листопад 2024-го — служба позаду.</b> Далі був час пошуку й навчання. Я пробувала себе в цифровому маркетингу, кібербезпеці, аналітиці відкритих даних — і не зупиняюся вчитися досі. Восени 2026-го все це склалося в одну справу: відтоді я створюю для бізнесу сайти, Telegram-ботів, калькулятори, презентації й контент-плани.</p>
-      <p><b>Як я працюю.</b> Інструмент обираю під задачу: ШІ — коли потрібно швидко й нестандартно, конструктор — коли вам важливо самостійно змінювати сайт. Уважно слухаю, виділяю головне й тримаю терміни, бо «якось потім» мені не підходить.</p>
-      <p class="why">Чому Yeti? Бо про таких, як я, кажуть: «так не буває». Армійський досвід, материнство, нова країна й нова професія — і все це одночасно, без пауз. Кажуть, мене не існує. Ось доказ.</p>
-      <ul class="skills">
+    <ul class="skills">
         <li><span>лідерство</span><i>→</i><b>веду проєкт від брифу до запуску сама</b></li>
         <li><span>рішення під тиском</span><i>→</i><b>пропоную готовий варіант, а не десять питань</b></li>
         <li><span>дисципліна</span><i>→</i><b>дедлайн — це дедлайн</b></li>
       </ul>
-    </div>
+    <details class="more">
+      <summary><span class="more-open">Дізнатись детальніше про мене</span><span class="more-close">Згорнути</span></summary>
+      <div class="about-text about-cols">
+      <p><b>Червень 2020-го — армія.</b> Тоді я ще не уявляла, що чекає попереду. Повномасштабне вторгнення застало мене на півдні; подробиці того часу лишаю за кадром. А з собою забрала інше: звичку відповідати за людей і результат, швидко ухвалювати рішення й зберігати холодну голову, коли план розсипається.</p>
+      <p><b>Листопад 2024-го — служба позаду.</b> Далі був час пошуку й навчання. Я пробувала себе в цифровому маркетингу, кібербезпеці, аналітиці відкритих даних — і не зупиняюся вчитися досі. Восени 2026-го все це склалося в одну справу: відтоді я створюю для бізнесу сайти, Telegram-ботів, калькулятори, презентації й контент-плани.</p>
+      <p><b>Як я працюю.</b> Інструмент обираю під задачу: ШІ — коли потрібно швидко й нестандартно, конструктор — коли вам важливо самостійно змінювати сайт. Уважно слухаю, виділяю головне й тримаю терміни, бо «якось потім» мені не підходить.</p>
+      <p class="why">Чому Yeti? Бо про таких, як я, кажуть: «так не буває». Армійський досвід, материнство, нова країна й нова професія — і все це одночасно, без пауз. Кажуть, мене не існує. Ось доказ.</p>
+      </div>
+    </details>
   </div>
 </section>
 
