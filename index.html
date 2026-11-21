@@ -269,6 +269,8 @@ h1,h2{text-wrap:balance}
 .w-shot.browser{box-shadow:10px 10px 0 var(--night)}
 .w-shot.browser:hover{box-shadow:14px 14px 0 var(--accent)}
 .w-shot img{display:block;width:100%;height:calc(100% - 42px);object-fit:cover;object-position:top}
+.w-shot picture{display:block;height:calc(100% - 42px)}
+.w-shot picture img{height:100%}
 .w-shot .b-body{padding:clamp(20px,3vw,32px)}
 .w-shot .b-head{font-size:clamp(26px,3vw,40px)}
 .w-body{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
@@ -835,11 +837,7 @@ h1,h2{text-wrap:balance}
       <article class="work">
         <a class="w-shot browser" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener" aria-label="Відкрити сайт V&amp;A Candle Atelier">
           <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>shop.vacandle.workers.dev</span></div>
-          <div class="b-body">
-            <span class="b-brand">V&amp;A Candle Atelier · Ірпінь</span>
-            <p class="b-head">Свічки, які хочеться дарувати</p>
-            <div class="b-candles" aria-hidden="true"><i style="width:40px;height:50px"></i><i style="width:50px;height:74px;background:#D9C3A9"></i><i style="width:34px;height:38px"></i><i style="width:44px;height:60px;background:#F1E6D7"></i></div>
-          </div>
+          <picture><source srcset="cases/vacandle.webp" type="image/webp"><img src="cases/vacandle.jpg" alt="Головна сторінка магазину V&amp;A Candle Atelier: «Свічки, які хочеться дарувати» і фото свічок-півоній" width="1400" height="724" loading="lazy"></picture>
         </a>
         <div class="w-body">
           <div class="w-meta"><span class="live">Працює</span><span>Інтернет-магазин · клієнт</span></div>
