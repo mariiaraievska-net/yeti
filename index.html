@@ -311,6 +311,11 @@ h1,h2{text-wrap:balance}
 .more .more-close,.more[open] .more-open{display:none}
 .more[open] .more-close{display:inline}
 .more .about-text{margin-top:32px;animation:fi .5s ease both}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:-6px}
+.g-th{display:flex;flex-direction:column;gap:6px;padding:6px;border:1.5px solid #C9D0DA;border-radius:12px;background:var(--white);cursor:pointer;text-align:left;font:600 12px var(--f-body);color:var(--slate);transition:border-color .2s,transform .2s}
+.g-th img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-radius:7px}
+.g-th:hover{transform:translateY(-2px);border-color:var(--night)}
+.g-th[aria-pressed="true"]{border-color:var(--accent);color:var(--night)}
 /* about */
 .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
 .about-head{display:flex;flex-direction:column;gap:24px;position:sticky;top:96px}
@@ -837,8 +842,13 @@ h1,h2{text-wrap:balance}
       <article class="work">
         <a class="w-shot browser" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener" aria-label="Відкрити сайт V&amp;A Candle Atelier">
           <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>shop.vacandle.workers.dev</span></div>
-          <picture><source srcset="cases/vacandle.webp" type="image/webp"><img src="cases/vacandle.jpg" alt="Головна сторінка магазину V&amp;A Candle Atelier: «Свічки, які хочеться дарувати» і фото свічок-півоній" width="1400" height="724" loading="lazy"></picture>
+          <picture id="vaShot"><source srcset="cases/vacandle.webp" type="image/webp"><img src="cases/vacandle.jpg" alt="Головна сторінка магазину V&amp;A Candle Atelier: «Свічки, які хочеться дарувати» і фото свічок-півоній" width="1400" height="724" loading="lazy"></picture>
         </a>
+        <div class="gallery" role="group" aria-label="Скріни сайту V&amp;A Candle Atelier">
+          <button type="button" class="g-th" aria-pressed="true" data-src="cases/vacandle" data-alt="Головна сторінка магазину V&amp;A Candle Atelier"><img src="cases/vacandle.jpg" alt="" width="140" height="72" loading="lazy"><span>Головна</span></button>
+          <button type="button" class="g-th" aria-pressed="false" data-src="cases/vacandle-hits" data-alt="Розділ «Що замовляють найчастіше» з картками свічок і цінами"><img src="cases/vacandle-hits.jpg" alt="" width="140" height="80" loading="lazy"><span>Хіти</span></button>
+          <button type="button" class="g-th" aria-pressed="false" data-src="cases/vacandle-story" data-alt="Розділ «Наша історія»: майстерня, яка переїхала разом із родиною"><img src="cases/vacandle-story.jpg" alt="" width="140" height="76" loading="lazy"><span>Історія</span></button>
+        </div>
         <div class="w-body">
           <div class="w-meta"><span class="live">Працює</span><span>Інтернет-магазин · клієнт</span></div>
           <h3>V&amp;A Candle Atelier</h3>
@@ -1568,6 +1578,18 @@ var WA_MAIN = '995597798214';
     var d = document.querySelector(".pocket .device");
     if (d) d.scrollIntoView({ block: "center", behavior: "smooth" });
     if (window.yetiPocket) window.yetiPocket.play();
+  });
+})();
+</script>
+<script>
+(function(){
+  var pic = document.getElementById('vaShot'); if (!pic) return;
+  var src = pic.querySelector('source'), img = pic.querySelector('img');
+  document.querySelectorAll('.gallery .g-th').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.gallery .g-th').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      src.srcset = b.dataset.src + '.webp'; img.src = b.dataset.src + '.jpg'; img.alt = b.dataset.alt;
+    });
   });
 })();
 </script>
