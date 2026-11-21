@@ -125,6 +125,40 @@ h1,h2{text-wrap:balance}
   .game canvas{height:clamp(360px,34vw,480px)}
 }
 
+/* yeti map */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ymap{margin:0 0 clamp(40px,6vw,72px);border:1.5px solid var(--line-dark);border-radius:24px;background:radial-gradient(120% 90% at 30% 20%,#151B26,var(--night));overflow:hidden}
+.ymap svg{display:block;width:100%;height:auto}
+.ymap-v{display:none!important}
+@media (max-width:700px){.ymap-h{display:none!important}.ymap-v{display:block!important}}
+.m-grid{stroke:#1B2230;stroke-width:1}
+.m-contour{fill:none;stroke:#26303F;stroke-width:1.2}
+.m-route{fill:none;stroke:#3A4250;stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round}
+.m-ink{fill:#2C3646;stroke:var(--mist);stroke-width:1.6;stroke-linejoin:round}
+.m-bg{fill:var(--night)}
+.m-cap{fill:var(--snow)}
+.m-line{fill:none;stroke:var(--mist);stroke-width:2;stroke-linecap:round}
+.m-acc{fill:var(--accent)}
+.m-x{fill:none;stroke:var(--accent);stroke-width:5;stroke-linecap:round}
+.m-pulse{fill:rgba(255,106,43,.14);stroke:var(--accent);stroke-width:1.5;transform-origin:0 0;animation:mpulse 2.2s ease-out infinite}
+@keyframes mpulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.m-compass circle{fill:none;stroke:#3A4250;stroke-width:1.5}
+.m-compass path{fill:#3A4250}
+.m-compass text,.m-cart{font-family:var(--f-mono);font-size:13px;fill:var(--mist);letter-spacing:.14em}
+.m-year{font-family:var(--f-mono);font-weight:600;font-size:15px;fill:var(--accent);letter-spacing:.06em}
+.m-title{font-family:var(--f-display);font-size:20px;fill:var(--snow)}
+.m-sub{font-family:var(--f-body);font-size:15px;fill:var(--frost)}
+.ymap-v .m-compass{display:none}
+.ymap-v .m-title{font-size:18px}.ymap-v .m-sub{font-size:14px}.ymap-v .m-year{font-size:14px}
+.m-steps use{fill:var(--snow);opacity:0;transition:opacity .35s ease}
+.m-steps use:nth-child(even){fill:var(--accent)}
+.ymap.go .m-steps use{opacity:.9}
+.m-stop,.m-lab{opacity:.25;transition:opacity .6s ease;transition-delay:calc(var(--i) * .55s)}
+.ymap.go .m-stop,.ymap.go .m-lab{opacity:1}
+.about-text.about-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:22px clamp(32px,5vw,64px);align-items:start}
+.about-cols .why,.about-cols .skills{grid-column:1/-1}
+@media (prefers-reduced-motion:reduce){.m-stop,.m-lab,.m-steps use{transition:none}.m-pulse{animation:none}}
+
 /* about */
 .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
 .about-head{display:flex;flex-direction:column;gap:24px;position:sticky;top:96px}
@@ -341,20 +375,179 @@ h1,h2{text-wrap:balance}
 </section>
 
 <section id="about" class="band-night sec wrap">
-  <div class="inner about">
-    <div class="about-head">
-      <span class="eyebrow">Про мене · свідчення №000</span>
-      <h2 class="h2">Понад чотири роки<br>в <span class="acc">армії.</span></h2>
-      <ol class="timeline">
-        <li><b>06·2020</b><span>Початок служби</span></li>
-        <li><b>02·2022</b><span>Повномасштабна війна, південь</span></li>
-        <li><b>11·2024</b><span>Служба позаду</span></li>
-        <li><b>2025–2026</b><span>Навчання й пошук своєї справи</span></li>
-        <li><b>09·2026</b><span>Перші проєкти YETI</span></li>
-        <li><b>Зараз</b><span>Робота, материнство й життя в новій країні — разом</span></li>
-      </ol>
+  <div class="inner">
+    <div class="head">
+      <div style="display:flex;flex-direction:column;gap:18px"><span class="eyebrow">Про мене · карта Йеті</span><h2 class="h2">Понад чотири роки<br>в <span class="acc">армії.</span></h2></div>
+      <span class="note" style="color:var(--mist)">Маршрут від служби до власної справи. Гортайте — Yeti пройде його за вас.</span>
     </div>
-    <div class="about-text">
+    <figure class="ymap" id="ymap">
+      <svg class="ymap-h" viewBox="0 0 1200 560" aria-hidden="true" focusable="false">
+<defs>
+  <symbol id="mh-tent" viewBox="-30 -30 60 60"><path class="m-ink" d="M-22 18 L0 -20 L22 18 Z"/><path class="m-bg" d="M-6 18 L0 4 L6 18 Z"/><path class="m-line" d="M0 -20 L-4 -27 M0 -20 L4 -27"/></symbol>
+  <symbol id="mh-peaks" viewBox="-30 -30 60 60"><path class="m-ink" d="M-28 18 L-10 -16 L2 4 L10 -8 L28 18 Z"/><path class="m-cap" d="M-10 -16 L-15 -6 L-5 -6 Z M10 -8 L6 -2 L14 -2 Z"/></symbol>
+  <symbol id="mh-pass" viewBox="-30 -30 60 60"><path class="m-ink" d="M-28 18 L-14 -14 L-2 8 L2 8 L14 -14 L28 18 Z"/><path class="m-cap" d="M-14 -14 L-18 -5 L-10 -5 Z M14 -14 L10 -5 L18 -5 Z"/></symbol>
+  <symbol id="mh-forest" viewBox="-30 -30 60 60"><path class="m-ink" d="M-16 18 L-16 12 L-26 12 L-16 -2 L-22 -2 L-14 -16 L-6 -2 L-12 -2 L-2 12 L-12 12 L-12 18 Z M10 18 L10 10 L-2 10 L10 -8 L3 -8 L12 -24 L21 -8 L14 -8 L26 10 L14 10 L14 18 Z"/></symbol>
+  <symbol id="mh-flag" viewBox="-30 -30 60 60"><path class="m-line" d="M-8 20 L-8 -22"/><path class="m-acc" d="M-8 -22 L18 -14 L-8 -6 Z"/><path class="m-ink" d="M-20 20 L-8 12 L4 20 Z"/></symbol>
+  <symbol id="mh-x" viewBox="-30 -30 60 60"><circle class="m-pulse" r="20"/><path class="m-x" d="M-11 -11 L11 11 M11 -11 L-11 11"/></symbol>
+  <symbol id="mh-fp" viewBox="0 0 60 90"><ellipse cx="30" cy="58" rx="17" ry="26"/><circle cx="15" cy="20" r="6"/><circle cx="27" cy="13" r="6.5"/><circle cx="40" cy="15" r="6"/><circle cx="49" cy="25" r="5"/></symbol>
+</defs>
+<line class="m-grid" x1="0" y1="0" x2="0" y2="560"/>
+<line class="m-grid" x1="60" y1="0" x2="60" y2="560"/>
+<line class="m-grid" x1="120" y1="0" x2="120" y2="560"/>
+<line class="m-grid" x1="180" y1="0" x2="180" y2="560"/>
+<line class="m-grid" x1="240" y1="0" x2="240" y2="560"/>
+<line class="m-grid" x1="300" y1="0" x2="300" y2="560"/>
+<line class="m-grid" x1="360" y1="0" x2="360" y2="560"/>
+<line class="m-grid" x1="420" y1="0" x2="420" y2="560"/>
+<line class="m-grid" x1="480" y1="0" x2="480" y2="560"/>
+<line class="m-grid" x1="540" y1="0" x2="540" y2="560"/>
+<line class="m-grid" x1="600" y1="0" x2="600" y2="560"/>
+<line class="m-grid" x1="660" y1="0" x2="660" y2="560"/>
+<line class="m-grid" x1="720" y1="0" x2="720" y2="560"/>
+<line class="m-grid" x1="780" y1="0" x2="780" y2="560"/>
+<line class="m-grid" x1="840" y1="0" x2="840" y2="560"/>
+<line class="m-grid" x1="900" y1="0" x2="900" y2="560"/>
+<line class="m-grid" x1="960" y1="0" x2="960" y2="560"/>
+<line class="m-grid" x1="1020" y1="0" x2="1020" y2="560"/>
+<line class="m-grid" x1="1080" y1="0" x2="1080" y2="560"/>
+<line class="m-grid" x1="1140" y1="0" x2="1140" y2="560"/>
+<line class="m-grid" x1="1200" y1="0" x2="1200" y2="560"/>
+<line class="m-grid" x1="0" y1="0" x2="1200" y2="0"/>
+<line class="m-grid" x1="0" y1="60" x2="1200" y2="60"/>
+<line class="m-grid" x1="0" y1="120" x2="1200" y2="120"/>
+<line class="m-grid" x1="0" y1="180" x2="1200" y2="180"/>
+<line class="m-grid" x1="0" y1="240" x2="1200" y2="240"/>
+<line class="m-grid" x1="0" y1="300" x2="1200" y2="300"/>
+<line class="m-grid" x1="0" y1="360" x2="1200" y2="360"/>
+<line class="m-grid" x1="0" y1="420" x2="1200" y2="420"/>
+<line class="m-grid" x1="0" y1="480" x2="1200" y2="480"/>
+<line class="m-grid" x1="0" y1="540" x2="1200" y2="540"/>
+<ellipse class="m-contour" cx="180" cy="140" rx="40" ry="22" transform="rotate(-20 180 140)"/>
+<ellipse class="m-contour" cx="180" cy="140" rx="66" ry="36" transform="rotate(-20 180 140)"/>
+<ellipse class="m-contour" cx="180" cy="140" rx="92" ry="51" transform="rotate(-20 180 140)"/>
+<ellipse class="m-contour" cx="768" cy="224" rx="50" ry="28" transform="rotate(3 768 224)"/>
+<ellipse class="m-contour" cx="768" cy="224" rx="76" ry="42" transform="rotate(3 768 224)"/>
+<ellipse class="m-contour" cx="768" cy="224" rx="102" ry="56" transform="rotate(3 768 224)"/>
+<ellipse class="m-contour" cx="516" cy="308" rx="60" ry="33" transform="rotate(-14 516 308)"/>
+<ellipse class="m-contour" cx="516" cy="308" rx="86" ry="47" transform="rotate(-14 516 308)"/>
+<ellipse class="m-contour" cx="516" cy="308" rx="112" ry="62" transform="rotate(-14 516 308)"/>
+<ellipse class="m-contour" cx="264" cy="392" rx="40" ry="22" transform="rotate(9 264 392)"/>
+<ellipse class="m-contour" cx="264" cy="392" rx="66" ry="36" transform="rotate(9 264 392)"/>
+<ellipse class="m-contour" cx="264" cy="392" rx="92" ry="51" transform="rotate(9 264 392)"/>
+<g class="m-compass" transform="translate(1140 490)"><circle r="26"/><path d="M0 -22 L6 0 L0 22 L-6 0 Z"/><path class="m-acc" d="M0 -22 L6 0 L-6 0 Z"/><text y="-32" text-anchor="middle">N</text></g>
+<text class="m-cart" x="24" y="40">КАРТА ЙЕТІ · МАРШРУТ 2020 → ЗАРАЗ</text>
+<path class="m-route" id="mh-route" d="M90 420 C195 420 195 250 300 250 C410 250 410 400 520 400 C630 400 630 210 740 210 C845 210 845 380 950 380 C950 275 1110 275 1110 170"/>
+<g class="m-steps" data-route="mh-route" data-fp="#mh-fp"></g>
+<g class="m-stop" style="--i:0"><use href="#mh-tent" x="53.0" y="383.0" width="74" height="74"/></g>
+<g class="m-lab" style="--i:0"><text class="m-year" x="90" y="482" text-anchor="middle">06·2020</text>
+<text class="m-title" x="90" y="507" text-anchor="middle">Базовий табір</text>
+<text class="m-sub" x="90" y="533" text-anchor="middle">початок служби</text></g>
+<g class="m-stop" style="--i:1"><use href="#mh-peaks" x="263.0" y="213.0" width="74" height="74"/></g>
+<g class="m-lab" style="--i:1"><text class="m-year" x="300" y="82" text-anchor="middle">02·2022</text>
+<text class="m-title" x="300" y="107" text-anchor="middle">Південь</text>
+<text class="m-sub" x="300" y="133" text-anchor="middle">повномасштабна війна</text></g>
+<g class="m-stop" style="--i:2"><use href="#mh-pass" x="483.0" y="363.0" width="74" height="74"/></g>
+<g class="m-lab" style="--i:2"><text class="m-year" x="520" y="460" text-anchor="middle">11·2024</text>
+<text class="m-title" x="520" y="485" text-anchor="middle">Перевал</text>
+<text class="m-sub" x="520" y="511" text-anchor="middle">служба позаду</text></g>
+<g class="m-stop" style="--i:3"><use href="#mh-forest" x="703.0" y="173.0" width="74" height="74"/></g>
+<g class="m-lab" style="--i:3"><text class="m-year" x="740" y="50" text-anchor="middle">2025–2026</text>
+<text class="m-title" x="740" y="75" text-anchor="middle">Ліс навчання</text>
+<text class="m-sub" x="740" y="101" text-anchor="middle">маркетинг, кібербезпека,</text>
+<text class="m-sub" x="740" y="122" text-anchor="middle">аналітика відкритих даних</text></g>
+<g class="m-stop" style="--i:4"><use href="#mh-flag" x="913.0" y="343.0" width="74" height="74"/></g>
+<g class="m-lab" style="--i:4"><text class="m-year" x="950" y="440" text-anchor="middle">09·2026</text>
+<text class="m-title" x="950" y="465" text-anchor="middle">Перші проєкти</text>
+<text class="m-sub" x="950" y="491" text-anchor="middle">сайти, боти, дизайн</text></g>
+<g class="m-stop" style="--i:5"><use href="#mh-x" x="1073.0" y="133.0" width="74" height="74"/></g>
+<g class="m-lab" style="--i:5"><text class="m-year" x="1180" y="62" text-anchor="end">ЗАРАЗ</text>
+<text class="m-title" x="1180" y="87" text-anchor="end">Ви тут</text>
+<text class="m-sub" x="1180" y="113" text-anchor="end">робота, материнство</text>
+<text class="m-sub" x="1180" y="134" text-anchor="end">й нова країна — разом</text></g>
+</svg>
+      <svg class="ymap-v" viewBox="0 0 360 1060" aria-hidden="true" focusable="false">
+<defs>
+  <symbol id="mv-tent" viewBox="-30 -30 60 60"><path class="m-ink" d="M-22 18 L0 -20 L22 18 Z"/><path class="m-bg" d="M-6 18 L0 4 L6 18 Z"/><path class="m-line" d="M0 -20 L-4 -27 M0 -20 L4 -27"/></symbol>
+  <symbol id="mv-peaks" viewBox="-30 -30 60 60"><path class="m-ink" d="M-28 18 L-10 -16 L2 4 L10 -8 L28 18 Z"/><path class="m-cap" d="M-10 -16 L-15 -6 L-5 -6 Z M10 -8 L6 -2 L14 -2 Z"/></symbol>
+  <symbol id="mv-pass" viewBox="-30 -30 60 60"><path class="m-ink" d="M-28 18 L-14 -14 L-2 8 L2 8 L14 -14 L28 18 Z"/><path class="m-cap" d="M-14 -14 L-18 -5 L-10 -5 Z M14 -14 L10 -5 L18 -5 Z"/></symbol>
+  <symbol id="mv-forest" viewBox="-30 -30 60 60"><path class="m-ink" d="M-16 18 L-16 12 L-26 12 L-16 -2 L-22 -2 L-14 -16 L-6 -2 L-12 -2 L-2 12 L-12 12 L-12 18 Z M10 18 L10 10 L-2 10 L10 -8 L3 -8 L12 -24 L21 -8 L14 -8 L26 10 L14 10 L14 18 Z"/></symbol>
+  <symbol id="mv-flag" viewBox="-30 -30 60 60"><path class="m-line" d="M-8 20 L-8 -22"/><path class="m-acc" d="M-8 -22 L18 -14 L-8 -6 Z"/><path class="m-ink" d="M-20 20 L-8 12 L4 20 Z"/></symbol>
+  <symbol id="mv-x" viewBox="-30 -30 60 60"><circle class="m-pulse" r="20"/><path class="m-x" d="M-11 -11 L11 11 M11 -11 L-11 11"/></symbol>
+  <symbol id="mv-fp" viewBox="0 0 60 90"><ellipse cx="30" cy="58" rx="17" ry="26"/><circle cx="15" cy="20" r="6"/><circle cx="27" cy="13" r="6.5"/><circle cx="40" cy="15" r="6"/><circle cx="49" cy="25" r="5"/></symbol>
+</defs>
+<line class="m-grid" x1="0" y1="0" x2="0" y2="1060"/>
+<line class="m-grid" x1="60" y1="0" x2="60" y2="1060"/>
+<line class="m-grid" x1="120" y1="0" x2="120" y2="1060"/>
+<line class="m-grid" x1="180" y1="0" x2="180" y2="1060"/>
+<line class="m-grid" x1="240" y1="0" x2="240" y2="1060"/>
+<line class="m-grid" x1="300" y1="0" x2="300" y2="1060"/>
+<line class="m-grid" x1="360" y1="0" x2="360" y2="1060"/>
+<line class="m-grid" x1="0" y1="0" x2="360" y2="0"/>
+<line class="m-grid" x1="0" y1="60" x2="360" y2="60"/>
+<line class="m-grid" x1="0" y1="120" x2="360" y2="120"/>
+<line class="m-grid" x1="0" y1="180" x2="360" y2="180"/>
+<line class="m-grid" x1="0" y1="240" x2="360" y2="240"/>
+<line class="m-grid" x1="0" y1="300" x2="360" y2="300"/>
+<line class="m-grid" x1="0" y1="360" x2="360" y2="360"/>
+<line class="m-grid" x1="0" y1="420" x2="360" y2="420"/>
+<line class="m-grid" x1="0" y1="480" x2="360" y2="480"/>
+<line class="m-grid" x1="0" y1="540" x2="360" y2="540"/>
+<line class="m-grid" x1="0" y1="600" x2="360" y2="600"/>
+<line class="m-grid" x1="0" y1="660" x2="360" y2="660"/>
+<line class="m-grid" x1="0" y1="720" x2="360" y2="720"/>
+<line class="m-grid" x1="0" y1="780" x2="360" y2="780"/>
+<line class="m-grid" x1="0" y1="840" x2="360" y2="840"/>
+<line class="m-grid" x1="0" y1="900" x2="360" y2="900"/>
+<line class="m-grid" x1="0" y1="960" x2="360" y2="960"/>
+<line class="m-grid" x1="0" y1="1020" x2="360" y2="1020"/>
+<ellipse class="m-contour" cx="54" cy="265" rx="40" ry="22" transform="rotate(-20 54 265)"/>
+<ellipse class="m-contour" cx="54" cy="265" rx="66" ry="36" transform="rotate(-20 54 265)"/>
+<ellipse class="m-contour" cx="54" cy="265" rx="92" ry="51" transform="rotate(-20 54 265)"/>
+<ellipse class="m-contour" cx="230" cy="424" rx="50" ry="28" transform="rotate(3 230 424)"/>
+<ellipse class="m-contour" cx="230" cy="424" rx="76" ry="42" transform="rotate(3 230 424)"/>
+<ellipse class="m-contour" cx="230" cy="424" rx="102" ry="56" transform="rotate(3 230 424)"/>
+<ellipse class="m-contour" cx="155" cy="583" rx="60" ry="33" transform="rotate(-14 155 583)"/>
+<ellipse class="m-contour" cx="155" cy="583" rx="86" ry="47" transform="rotate(-14 155 583)"/>
+<ellipse class="m-contour" cx="155" cy="583" rx="112" ry="62" transform="rotate(-14 155 583)"/>
+<ellipse class="m-contour" cx="79" cy="742" rx="40" ry="22" transform="rotate(9 79 742)"/>
+<ellipse class="m-contour" cx="79" cy="742" rx="66" ry="36" transform="rotate(9 79 742)"/>
+<ellipse class="m-contour" cx="79" cy="742" rx="92" ry="51" transform="rotate(9 79 742)"/>
+<ellipse class="m-contour" cx="256" cy="371" rx="50" ry="28" transform="rotate(-8 256 371)"/>
+<ellipse class="m-contour" cx="256" cy="371" rx="76" ry="42" transform="rotate(-8 256 371)"/>
+<ellipse class="m-contour" cx="256" cy="371" rx="102" ry="56" transform="rotate(-8 256 371)"/>
+<g class="m-compass" transform="translate(316 1012)"><circle r="26"/><path d="M0 -22 L6 0 L0 22 L-6 0 Z"/><path class="m-acc" d="M0 -22 L6 0 L-6 0 Z"/><text y="-32" text-anchor="middle">N</text></g>
+<path class="m-route" id="mv-route" d="M60 80 C60 165 122 165 122 250 C122 335 56 335 56 420 C56 505 122 505 122 590 C122 675 56 675 56 760 C56 850 112 850 112 940"/>
+<g class="m-steps" data-route="mv-route" data-fp="#mv-fp"></g>
+<g class="m-stop" style="--i:0"><use href="#mv-tent" x="28.0" y="48.0" width="64" height="64"/></g>
+<g class="m-lab" style="--i:0"><text class="m-year" x="176" y="62" text-anchor="start">06·2020</text>
+<text class="m-title" x="176" y="84" text-anchor="start">Базовий табір</text>
+<text class="m-sub" x="176" y="106" text-anchor="start">початок служби</text></g>
+<g class="m-stop" style="--i:1"><use href="#mv-peaks" x="90.0" y="218.0" width="64" height="64"/></g>
+<g class="m-lab" style="--i:1"><text class="m-year" x="176" y="232" text-anchor="start">02·2022</text>
+<text class="m-title" x="176" y="254" text-anchor="start">Південь</text>
+<text class="m-sub" x="176" y="276" text-anchor="start">повномасштабна війна</text></g>
+<g class="m-stop" style="--i:2"><use href="#mv-pass" x="24.0" y="388.0" width="64" height="64"/></g>
+<g class="m-lab" style="--i:2"><text class="m-year" x="176" y="402" text-anchor="start">11·2024</text>
+<text class="m-title" x="176" y="424" text-anchor="start">Перевал</text>
+<text class="m-sub" x="176" y="446" text-anchor="start">служба позаду</text></g>
+<g class="m-stop" style="--i:3"><use href="#mv-forest" x="90.0" y="558.0" width="64" height="64"/></g>
+<g class="m-lab" style="--i:3"><text class="m-year" x="176" y="566" text-anchor="start">2025–2026</text>
+<text class="m-title" x="176" y="588" text-anchor="start">Ліс навчання</text>
+<text class="m-sub" x="176" y="610" text-anchor="start">маркетинг, кібербезпека,</text>
+<text class="m-sub" x="176" y="628" text-anchor="start">аналітика відкритих даних</text></g>
+<g class="m-stop" style="--i:4"><use href="#mv-flag" x="24.0" y="728.0" width="64" height="64"/></g>
+<g class="m-lab" style="--i:4"><text class="m-year" x="176" y="742" text-anchor="start">09·2026</text>
+<text class="m-title" x="176" y="764" text-anchor="start">Перші проєкти</text>
+<text class="m-sub" x="176" y="786" text-anchor="start">сайти, боти, дизайн</text></g>
+<g class="m-stop" style="--i:5"><use href="#mv-x" x="80.0" y="908.0" width="64" height="64"/></g>
+<g class="m-lab" style="--i:5"><text class="m-year" x="176" y="916" text-anchor="start">ЗАРАЗ</text>
+<text class="m-title" x="176" y="938" text-anchor="start">Ви тут</text>
+<text class="m-sub" x="176" y="960" text-anchor="start">робота, материнство</text>
+<text class="m-sub" x="176" y="978" text-anchor="start">й нова країна — разом</text></g>
+</svg>
+      <figcaption class="sr-only"><ol><li>06·2020: Базовий табір — початок служби</li><li>02·2022: Південь — повномасштабна війна</li><li>11·2024: Перевал — служба позаду</li><li>2025–2026: Ліс навчання — маркетинг, кібербезпека, аналітика відкритих даних</li><li>09·2026: Перші проєкти — сайти, боти, дизайн</li><li>ЗАРАЗ: Ви тут — робота, материнство й нова країна — разом</li></ol></figcaption>
+    </figure>
+    <div class="about-text about-cols">
       <p><b>Червень 2020-го — армія.</b> Тоді я ще не уявляла, що чекає попереду. Повномасштабне вторгнення застало мене на півдні; подробиці того часу лишаю за кадром. А з собою забрала інше: звичку відповідати за людей і результат, швидко ухвалювати рішення й зберігати холодну голову, коли план розсипається.</p>
       <p><b>Листопад 2024-го — служба позаду.</b> Далі був час пошуку й навчання. Я пробувала себе в цифровому маркетингу, кібербезпеці, аналітиці відкритих даних — і не зупиняюся вчитися досі. Восени 2026-го все це склалося в одну справу: відтоді я створюю для бізнесу сайти, Telegram-ботів, калькулятори, презентації й контент-плани.</p>
       <p><b>Як я працюю.</b> Інструмент обираю під задачу: ШІ — коли потрібно швидко й нестандартно, конструктор — коли вам важливо самостійно змінювати сайт. Уважно слухаю, виділяю головне й тримаю терміни, бо «якось потім» мені не підходить.</p>
@@ -938,6 +1131,33 @@ var WA_MAIN = '995597798214';
   reset(); size();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ draw(); });
   kick();
+})();
+</script>
+<script>
+/* ---------- yeti map: footprints walk the route ---------- */
+(function(){
+  var map = document.getElementById('ymap');
+  if (!map) return;
+  map.querySelectorAll('.m-steps').forEach(function(g){
+    var route = document.getElementById(g.dataset.route);
+    var len = route.getTotalLength(), step = 30, n = Math.floor(len / step), ns = 'http://www.w3.org/2000/svg';
+    for (var i = 1; i < n; i++){
+      var a = route.getPointAtLength(i * step), b = route.getPointAtLength(Math.min(len, i * step + 1));
+      var ang = Math.atan2(b.y - a.y, b.x - a.x), side = i % 2 ? 1 : -1;
+      var x = a.x - Math.sin(ang) * 6 * side, y = a.y + Math.cos(ang) * 6 * side;
+      var u = document.createElementNS(ns, 'use');
+      u.setAttribute('href', g.dataset.fp);
+      u.setAttribute('width', 10); u.setAttribute('height', 15);
+      u.setAttribute('x', -5); u.setAttribute('y', -7.5);
+      u.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (ang * 180 / Math.PI + 90).toFixed(0) + ')');
+      u.style.transitionDelay = (i / n * 3.2).toFixed(2) + 's';
+      g.appendChild(u);
+    }
+  });
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)){ map.classList.add('go'); return; }
+  var io = new IntersectionObserver(function(en){ if (en[0].isIntersecting){ map.classList.add('go'); io.disconnect(); } }, { threshold: .35 });
+  io.observe(map);
 })();
 </script>
 </body>
