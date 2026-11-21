@@ -128,9 +128,14 @@ h1,h2{text-wrap:balance}
 /* about */
 .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
 .about-head{display:flex;flex-direction:column;gap:24px;position:sticky;top:96px}
-.signal{width:100%;max-width:520px;height:70px;overflow:visible}
-.signal path{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;animation:sig 3.2s ease-in-out infinite}
-@keyframes sig{0%{stroke-dashoffset:900}55%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-900}}
+.timeline{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:0;max-width:460px}
+.timeline li{position:relative;display:grid;grid-template-columns:84px minmax(0,1fr);gap:16px;padding:0 0 18px 22px;font-size:15px;color:var(--frost)}
+.timeline li::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;border-radius:50%;background:var(--night);border:2px solid var(--mist)}
+.timeline li::after{content:"";position:absolute;left:5px;top:19px;bottom:2px;width:1.5px;background:var(--line-dark)}
+.timeline li:last-child::after{display:none}
+.timeline li:last-child::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,106,43,.25)}
+.timeline b{font-family:var(--f-mono);font-weight:600;font-size:13px;color:var(--snow);font-variant-numeric:tabular-nums}
+.timeline li:last-child span{color:var(--snow);font-weight:800}
 .about-text{display:flex;flex-direction:column;gap:22px;min-width:0}
 .about-text p{margin:0;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:var(--frost);max-width:36em}
 .about-text p b{color:var(--snow)}
@@ -339,17 +344,22 @@ h1,h2{text-wrap:balance}
   <div class="inner about">
     <div class="about-head">
       <span class="eyebrow">Про мене · свідчення №000</span>
-      <h2 class="h2">У 2022-му<br>я пішла <span class="acc">служити.</span></h2>
-      <svg class="signal" viewBox="0 0 600 70" aria-hidden="true"><path d="M0 35 H150 l6 -5 l6 9 l6 -12 l6 14 l6 -6 H290 l10 -30 l12 60 l10 -48 l8 18 l6 -4 H600"/></svg>
+      <h2 class="h2">Чотири роки<br>в <span class="acc">армії.</span></h2>
+      <ol class="timeline">
+        <li><b>06·2020</b><span>Пішла служити</span></li>
+        <li><b>02·2022</b><span>Повномасштабну війну зустріла на півдні</span></li>
+        <li><b>11·2024</b><span>Зняла форму</span></li>
+        <li><b>Зараз</b><span>YETI — сайти з ШІ</span></li>
+      </ol>
     </div>
     <div class="about-text">
-      <p><b>Радіоелектронна розвідка.</b> Години в навушниках, де з шипіння й чужих голосів треба вихопити одне — те, що справді важливо. Помилитися не можна. Потім я стала командиркою підрозділу: люди, техніка, графіки, звіти, і все мало працювати навіть тоді, коли довкола хаос.</p>
-      <p><b>Тепер я роблю сайти.</b> Здається, інший світ, але навички ті самі. Я слухаю, що ви розповідаєте про свою справу, і знаходжу в цьому шумі головне — те, через що клієнт натисне «купити». Тримаю терміни, бо звикла, що «потім» не існує. А ШІ — мій новий інструмент: з ним я роблю за дні те, на що студії витрачають тижні.</p>
-      <p class="why">Чому Yeti? Бо про таких, як я, кажуть: «не буває». Жінка з армії, яка будує власну справу в чужій країні й робить сайти з ШІ.</p>
+      <p><b>У червні 2020-го я пішла в армію.</b> Тоді ще ніхто не знав, що буде далі. Повномасштабну війну я зустріла на півдні, і про ту частину життя говорю небагато. Скажу інше: за ці роки я навчилася відповідати за людей і за результат, швидко ухвалювати рішення й тримати спокій, коли все йде не за планом.</p>
+      <p><b>У листопаді 2024-го я зняла форму й почала робити сайти.</b> Здається, інший світ, але звички ті самі. Я уважно слухаю, що ви розповідаєте про свою справу, і виділяю головне — те, через що клієнт натисне «купити». Тримаю терміни, бо звикла, що «потім» не існує. А ШІ — мій новий інструмент: з ним я роблю за дні те, на що студії витрачають тижні.</p>
+      <p class="why">Чому Yeti? Бо про таких, як я, кажуть: «не буває». Жінка після армії, яка будує власну справу в чужій країні й робить сайти з ШІ.</p>
       <ul class="skills">
-        <li><span>в ефірі</span><i>→</i><b>чую, що важливо вашим клієнтам</b></li>
-        <li><span>на службі</span><i>→</i><b>дедлайн — це дедлайн</b></li>
-        <li><span>в командуванні</span><i>→</i><b>веду проєкт від брифу до запуску</b></li>
+        <li><span>лідерство</span><i>→</i><b>веду проєкт від брифу до запуску сама</b></li>
+        <li><span>рішення під тиском</span><i>→</i><b>пропоную готовий варіант, а не десять питань</b></li>
+        <li><span>дисципліна</span><i>→</i><b>дедлайн — це дедлайн</b></li>
       </ul>
     </div>
   </div>
