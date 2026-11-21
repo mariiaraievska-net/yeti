@@ -316,6 +316,7 @@ h1,h2{text-wrap:balance}
 .g-th img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-radius:7px}
 .g-th:hover{transform:translateY(-2px);border-color:var(--night)}
 .g-th[aria-pressed="true"]{border-color:var(--accent);color:var(--night)}
+.w-shot.shot-plain picture,.w-shot.shot-plain img{display:block;width:100%;height:100%;object-fit:cover}
 /* about */
 .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
 .about-head{display:flex;flex-direction:column;gap:24px;position:sticky;top:96px}
@@ -871,15 +872,11 @@ h1,h2{text-wrap:balance}
       </article>
 
       <article class="work">
-        <div class="w-shot tgmock" aria-hidden="true">
-          <div class="tgm-head"><i></i><span><b>Розклад уроків</b><small>бот</small></span></div>
-          <div class="tgm-msg">📅 <b>Сьогодні, 3 уроки</b><br>09:00 Математика<br>10:00 Українська<br>11:00 Природознавство</div>
-          <div class="tgm-btns"><span>🔗 Zoom</span><span>⭐ Мої зірки</span><span>🗓 Тиждень</span></div>
-        </div>
+        <div class="w-shot shot-plain"><picture><source srcset="cases/schedule.webp" type="image/webp"><img src="cases/schedule.jpg" alt="Міні-застосунок «Мій розклад · 6 клас» і чат із ботом: уроки на день, кнопки Zoom до кожного уроку та зірочки" width="1400" height="875" loading="lazy"></picture></div>
         <div class="w-body">
           <div class="w-meta"><span class="live">Працює</span><span>Telegram-бот + Mini App</span></div>
-          <h3>Розклад онлайн-школи</h3>
-          <p>Бот і міні-застосунок для учня: розклад на день і тиждень, вхід на урок в один дотик і зірочки-нагороди, щоб навчання було в радість.</p>
+          <h3>Мій розклад · 6 клас</h3>
+          <p>Telegram-бот і міні-застосунок для онлайн-школи: розклад на сьогодні й завтра, кнопка Zoom до кожного уроку, нагадування, вибір другої мови й зірочки за серію днів без пропусків.</p>
         </div>
       </article>
 
