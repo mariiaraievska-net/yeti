@@ -132,6 +132,40 @@ h1,h2{text-wrap:balance}
 .ai{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px;align-items:end}
 .ai p{margin:0 0 18px;font-size:17px;line-height:1.65;color:var(--frost);max-width:34em}
 
+/* case */
+.band-white{background:var(--white);color:var(--night)}
+.case{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,64px);align-items:start}
+.browser{border:1.5px solid var(--night);border-radius:22px;overflow:hidden;background:#FBF7F1;color:#3B2E25;box-shadow:12px 12px 0 var(--night);text-decoration:none;display:block;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s}
+.browser:hover{transform:translate(-4px,-4px);box-shadow:16px 16px 0 var(--accent)}
+.b-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1.5px solid var(--night);background:var(--snow);color:var(--night)}
+.b-bar i{width:10px;height:10px;border-radius:50%;background:var(--night);opacity:.25}
+.b-bar span{margin-left:8px;font-family:var(--f-mono);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.b-body{padding:clamp(24px,4vw,44px);display:flex;flex-direction:column;gap:18px}
+.b-brand{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#8A6E58}
+.b-head{margin:0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(30px,3.6vw,48px);line-height:1.05;color:#3B2E25;text-wrap:balance}
+.b-chips{display:flex;flex-wrap:wrap;gap:8px}
+.b-chips span{font-size:13px;font-weight:600;border:1px solid #D7C6B4;border-radius:999px;padding:6px 12px;background:#FFFFFF}
+.b-candles{display:flex;align-items:flex-end;gap:14px;height:90px}
+.b-candles i{display:block;border-radius:10px 10px 6px 6px;background:#EADBC8;position:relative}
+.b-candles i::before{content:"";position:absolute;left:50%;top:-16px;width:8px;height:14px;margin-left:-4px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#FFB547;box-shadow:0 0 14px #FFB547;animation:flick 1.6s ease-in-out infinite alternate}
+@keyframes flick{to{transform:scaleY(.82) translateX(1px);opacity:.85}}
+.case-text{display:flex;flex-direction:column;gap:20px;min-width:0}
+.case-text h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(28px,3.2vw,46px);line-height:1.05}
+.case-text dl{margin:0;display:grid;gap:14px}
+.case-text dt{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.case-text dd{margin:4px 0 0;font-size:16px;line-height:1.6;max-width:36em}
+.tg{background:#17212B;color:#F5F5F5;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px;max-width:420px;font-size:14px;line-height:1.5}
+.tg-cap{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:#8B9BAB;text-transform:uppercase}
+.tg-msg{background:#182533;border:1px solid #2B3B4C;border-radius:14px;padding:12px 14px}
+.tg-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.tg-btns span,.tg-ok{background:#2B5278;border-radius:10px;padding:8px 6px;text-align:center;font-size:12px;font-weight:600}
+.tg-ok{display:block;margin-top:10px;background:#2E7D4F}
+.quote{grid-column:1/-1;margin:clamp(16px,4vw,40px) 0 0;border-top:1.5px solid var(--night);padding-top:clamp(28px,4vw,44px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,3vw,40px);align-items:start}
+.quote::before{content:"“";font-family:var(--f-display);font-size:clamp(96px,12vw,180px);line-height:.7;color:var(--accent)}
+.quote blockquote{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3.4vw,52px);line-height:1.12;text-wrap:balance}
+.quote figcaption{margin-top:18px;font-size:15px;color:var(--slate)}
+.quote figcaption b{color:var(--night)}
+
 /* plans */
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:16px}
 .plan{border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:18px;border:1.5px solid var(--night);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
@@ -223,7 +257,7 @@ h1,h2{text-wrap:balance}
 
 <header class="top wrap">
   <a class="logo" href="#top" aria-label="YETI, на початок">YETI</a>
-  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
+  <nav class="nav" aria-label="Розділи"><a href="#tracks">Сліди</a><a href="#cases">Кейс</a><a href="#price">Тарифи</a><a href="#call">Контакт</a></nav>
   <a class="pill pill-line" href="#call">Залишити слід</a>
 </header>
 
@@ -265,6 +299,49 @@ h1,h2{text-wrap:balance}
     <div>
       <p>ШІ робить рутину за години, а не за тижні. Тому ви платите за результат, а не за чужий час.</p>
       <p>Ідея, структура, смак і тексти, що продають, — на мені. Шаблонів не буде.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cases" class="band-white sec wrap">
+  <div class="inner">
+    <div class="head">
+      <h2 class="h2">Свіжий слід:<br>реальний кейс</h2>
+      <span class="note">Сайт з нуля для сімейної майстерні свічок — від ідеї до замовлень у Telegram.</span>
+    </div>
+    <div class="case">
+      <a class="browser" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener" aria-label="Відкрити сайт V&amp;A Candle Atelier у новій вкладці">
+        <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>shop.vacandle.workers.dev</span></div>
+        <div class="b-body">
+          <span class="b-brand">V&amp;A Candle Atelier · Ірпінь</span>
+          <p class="b-head">Свічки, які хочеться дарувати</p>
+          <div class="b-candles" aria-hidden="true"><i style="width:46px;height:58px"></i><i style="width:58px;height:86px;background:#D9C3A9"></i><i style="width:40px;height:44px"></i><i style="width:52px;height:70px;background:#F1E6D7"></i></div>
+          <div class="b-chips"><span>Каталог з фільтрами</span><span>Кошик</span><span>Подарункове пакування</span><span>Опт від 10 шт</span><span>Нова пошта · Укрпошта</span></div>
+        </div>
+      </a>
+
+      <div class="case-text">
+        <span class="t-num">ДОКАЗ №007 · ІНТЕРНЕТ-МАГАЗИН</span>
+        <h3>V&amp;A Candle Atelier</h3>
+        <dl>
+          <div><dt>Задача</dt><dd>Майстерня продавала свічки через Instagram і щоразу вручну надсилала клієнтам ціни. Потрібен був магазин, де людина сама обирає й оформлює замовлення.</dd></div>
+          <div><dt>Що зроблено</dt><dd>Каталог із фільтрами за колекціями, кошик, оформлення з доставкою Новою чи Укрпоштою, блоки про подарунки й опт. Кожне замовлення одразу приходить менеджеру в Telegram-бот.</dd></div>
+          <div><dt>Результат</dt><dd>Посилання стоїть у шапці Instagram замість переліку цін, а всі замовлення видно в одному чаті.</dd></div>
+        </dl>
+        <div class="tg" aria-label="Як виглядає замовлення в Telegram-боті">
+          <span class="tg-cap">Telegram-бот менеджера · приклад</span>
+          <div class="tg-msg">🕯 <b>Нове замовлення</b><br>Ім’я, телефон, доставка, відділення<br>Товари й сума<span class="tg-ok">✅ Оброблено</span></div>
+          <div class="tg-btns"><span>📊 Сьогодні</span><span>📅 7 днів</span><span>⏳ Необроблені</span></div>
+        </div>
+        <a class="pill pill-line" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener" style="align-self:flex-start">Подивитися сайт →</a>
+      </div>
+
+      <figure class="quote">
+        <div>
+          <blockquote>Ви таку роботу провели, дуже, дуже вдячні вам за це.</blockquote>
+          <figcaption><b>Анастасія</b>, власниця V&amp;A Candle Atelier</figcaption>
+        </div>
+      </figure>
     </div>
   </div>
 </section>
