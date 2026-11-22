@@ -312,6 +312,8 @@ h1,h2{text-wrap:balance}
 .more[open] .more-close{display:inline}
 .more .about-text{margin-top:32px;animation:fi .5s ease both}
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:-6px}
+.gallery.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:480px){.gallery.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .g-th{display:flex;flex-direction:column;gap:6px;padding:6px;border:1.5px solid #C9D0DA;border-radius:12px;background:var(--white);cursor:pointer;text-align:left;font:600 12px var(--f-body);color:var(--slate);transition:border-color .2s,transform .2s}
 .g-th img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-radius:7px}
 .g-th:hover{transform:translateY(-2px);border-color:var(--night)}
@@ -859,7 +861,7 @@ h1,h2{text-wrap:balance}
           <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>shop.vacandle.workers.dev</span></div>
           <picture id="vaShot"><source srcset="cases/vacandle.webp" type="image/webp"><img src="cases/vacandle.jpg" alt="Головна сторінка магазину V&amp;A Candle Atelier: «Свічки, які хочеться дарувати» і фото свічок-півоній" width="1400" height="724" loading="lazy"></picture>
         </a>
-        <div class="gallery" role="group" aria-label="Скріни сайту V&amp;A Candle Atelier">
+        <div class="gallery" data-target="vaShot" role="group" aria-label="Скріни сайту V&amp;A Candle Atelier">
           <button type="button" class="g-th" aria-pressed="true" data-src="cases/vacandle" data-alt="Головна сторінка магазину V&amp;A Candle Atelier"><img src="cases/vacandle.jpg" alt="" width="140" height="72" loading="lazy"><span>Головна</span></button>
           <button type="button" class="g-th" aria-pressed="false" data-src="cases/vacandle-hits" data-alt="Розділ «Що замовляють найчастіше» з картками свічок і цінами"><img src="cases/vacandle-hits.jpg" alt="" width="140" height="80" loading="lazy"><span>Хіти</span></button>
           <button type="button" class="g-th" aria-pressed="false" data-src="cases/vacandle-story" data-alt="Розділ «Наша історія»: майстерня, яка переїхала разом із родиною"><img src="cases/vacandle-story.jpg" alt="" width="140" height="76" loading="lazy"><span>Історія</span></button>
@@ -895,9 +897,16 @@ h1,h2{text-wrap:balance}
       </article>
 
       <article class="work">
-        <a class="w-shot board" href="https://learnphysics.brrayma.workers.dev/" target="_blank" rel="noopener" aria-label="Відкрити сайт репетиторки фізики Ірини Брюхно">
-          <span>F = ma</span><span>v = s / t</span><span>E = mc²</span>
+        <a class="w-shot browser" href="https://learnphysics.brrayma.workers.dev/" target="_blank" rel="noopener" aria-label="Відкрити сайт репетиторки фізики Ірини Брюхно">
+          <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>learnphysics.brrayma.workers.dev</span></div>
+          <picture id="phShot"><source srcset="cases/physics.webp" type="image/webp"><img src="cases/physics.jpg" alt="Головна сторінка сайту Ірини Брюхно: «Фізика — це не формули. Це те, як працює світ.»" width="1400" height="763" loading="lazy"></picture>
         </a>
+        <div class="gallery g4" data-target="phShot" role="group" aria-label="Скріни сайту репетиторки фізики">
+          <button type="button" class="g-th" aria-pressed="true" data-src="cases/physics" data-alt="Головна сторінка сайту Ірини Брюхно"><img src="cases/physics.jpg" alt="" width="140" height="76" loading="lazy"><span>Головна</span></button>
+          <button type="button" class="g-th" aria-pressed="false" data-src="cases/physics-newton" data-alt="Анімація з Ньютоном і яблуком: «Усе почалося з одного «чому?»»"><img src="cases/physics-newton.jpg" alt="" width="140" height="71" loading="lazy"><span>Ньютон</span></button>
+          <button type="button" class="g-th" aria-pressed="false" data-src="cases/physics-why" data-alt="Маятник Ньютона і блок «Чому зі мною результат приходить швидше»"><img src="cases/physics-why.jpg" alt="" width="140" height="70" loading="lazy"><span>Переваги</span></button>
+          <button type="button" class="g-th" aria-pressed="false" data-src="cases/physics-form" data-alt="Форма запису на пробне заняття з вибором дня й часу"><img src="cases/physics-form.jpg" alt="" width="140" height="78" loading="lazy"><span>Запис</span></button>
+        </div>
         <div class="w-body">
           <div class="w-meta"><span class="live">Працює</span><span>Лендинг · клієнт</span></div>
           <h3>Ірина Брюхно · фізика</h3>
@@ -1611,12 +1620,15 @@ var WA_MAIN = '995597798214';
 </script>
 <script>
 (function(){
-  var pic = document.getElementById('vaShot'); if (!pic) return;
-  var src = pic.querySelector('source'), img = pic.querySelector('img');
-  document.querySelectorAll('.gallery .g-th').forEach(function(b){
-    b.addEventListener('click', function(){
-      document.querySelectorAll('.gallery .g-th').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      src.srcset = b.dataset.src + '.webp'; img.src = b.dataset.src + '.jpg'; img.alt = b.dataset.alt;
+  document.querySelectorAll('.gallery[data-target]').forEach(function(gal){
+    var pic = document.getElementById(gal.dataset.target); if (!pic) return;
+    var src = pic.querySelector('source'), img = pic.querySelector('img');
+    var btns = gal.querySelectorAll('.g-th');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        src.srcset = b.dataset.src + '.webp'; img.src = b.dataset.src + '.jpg'; img.alt = b.dataset.alt;
+      });
     });
   });
 })();
