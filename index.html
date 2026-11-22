@@ -127,10 +127,13 @@ h1,h2{text-wrap:balance}
 .g-hint kbd{font-family:var(--f-mono);border:1px solid var(--line-dark);border-radius:5px;padding:1px 6px;color:var(--frost)}
 .mark-call{position:relative;width:100%;margin-top:8px}
 .mark-call canvas{display:block;width:100%;height:auto;touch-action:pan-y}
-.fur-hint{margin:0 0 -6px;text-align:center;font-family:var(--f-mono);font-size:clamp(14px,1.5vw,19px);letter-spacing:.06em;color:rgba(232,238,246,.8)}
-.fur-hint span{display:inline-block;font-size:1.4em;line-height:1;vertical-align:-.1em;color:var(--accent);animation:furNudge 2.4s ease-in-out infinite}
-@keyframes furNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(10px)}}
+.fur-hint{margin:0 0 4px;text-align:center;font-family:var(--f-pixel,"Press Start 2P",monospace);font-size:clamp(12px,1.5vw,20px);line-height:1.6;letter-spacing:.02em;color:#F4F7FA;text-shadow:0 0 18px rgba(255,107,44,.35)}
+.fur-hint em{font-style:normal;color:var(--accent);white-space:nowrap}
+.fur-hint span{display:inline-block;margin-left:.4em;font-size:1.5em;line-height:1;vertical-align:-.15em;color:var(--accent);animation:furNudge 1.8s ease-in-out infinite}
+@keyframes furNudge{0%,100%{transform:translate(0,0) rotate(-12deg)}50%{transform:translate(16px,4px) rotate(8deg)}}
 @media (prefers-reduced-motion:reduce){.fur-hint span{animation:none}}
+.mark-call canvas{cursor:grab}
+.mark-call canvas:active{cursor:grabbing}
 
 @media (min-width:1000px){
   .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:clamp(40px,5vw,96px);min-height:calc(100vh - 70px)}
@@ -1042,7 +1045,7 @@ h1,h2{text-wrap:balance}
   </div>
 
   <div class="mark-call inner">
-    <p class="fur-hint">проведи по мені — буде м’яко) <span aria-hidden="true">〰</span></p>
+    <p class="fur-hint">проведи по мені — <em>буде м’яко)<span aria-hidden="true">👆</span></em></p>
     <canvas id="furmark" role="img" aria-label="YETI — літери з білої шерсті, що розвівається на вітрі"></canvas>
   </div>
   <div class="call-row inner" style="width:100%">
@@ -1178,7 +1181,7 @@ var WA_MAIN = '995597798214';
   var cv = document.getElementById("furmark");
   var ctx = cv.getContext('2d');
   var W = 0, H = 0, dpr = 1, strands = null, under = null, running = false, visible = true, raf = 0;
-  var mouse = { x: -9999, y: -9999, px: -9999, py: -9999 }, gust = 0;
+  var mouse = { x: -9999, y: -9999, px: -9999, py: -9999 }, gust = 0, press = 0, pressing = false;
 
   function build(){
     var cssW = cv.parentNode.clientWidth;
@@ -1206,18 +1209,34 @@ var WA_MAIN = '995597798214';
     var desc = (m.actualBoundingBoxDescent || 0) * scale * dpr;
     var baseY = (H + asc - desc) / 2;
     mc.fillText('YETI', W / 2, baseY);
-    under = mk;
+
+    // plush body: soft blurred silhouette with top light and bottom shade, prerendered once
+    var bodyC = document.createElement('canvas'); bodyC.width = W; bodyC.height = H;
+    var bc = bodyC.getContext('2d');
+    var top = baseY - asc, bot = baseY + desc;
+    function shade(){
+      var g = bc.createLinearGradient(0, top, 0, bot);
+      g.addColorStop(0, '#FFFFFF'); g.addColorStop(.45, '#EEF3F8'); g.addColorStop(1, '#B4C3D2');
+      bc.globalCompositeOperation = 'source-in'; bc.fillStyle = g; bc.fillRect(0, 0, W, H);
+      bc.globalCompositeOperation = 'source-over';
+    }
+    bc.filter = 'blur(' + (fs * dpr * .018).toFixed(1) + 'px)';
+    bc.drawImage(mk, 0, 0); bc.drawImage(mk, 0, 0);
+    bc.filter = 'none';
+    shade();
+    under = bodyC;
 
     var data = mc.getImageData(0, 0, W, H).data;
     function a(x, y){ x |= 0; y |= 0; if (x < 0 || y < 0 || x >= W || y >= H) return 0; return data[(y * W + x) * 4 + 3]; }
 
-    var step = Math.max(3 * dpr, fs * dpr / 85);
-    var e = step * 2.4;
-    var L = fs * dpr * 0.06;
+    var step = Math.max(2.6 * dpr, fs * dpr / 100);
+    var e = step * 2.6;
+    var L = fs * dpr * 0.058;
     var list = [];
     var s = 3;
     function r(){ s = (s * 9301 + 49297) % 233280; return s / 233280; }
-    for (var y = 0; y < H; y += step * 0.86){
+    var span = Math.max(1, bot - top);
+    for (var y = 0; y < H; y += step * 0.84){
       for (var x = 0; x < W; x += step){
         var jx = x + (r() - .5) * step, jy = y + (r() - .5) * step;
         if (a(jx, jy) < 128) continue;
@@ -1225,51 +1244,62 @@ var WA_MAIN = '995597798214';
         var gy = a(jx, jy - e) - a(jx, jy + e);
         var edge = Math.abs(gx) + Math.abs(gy) > 60;
         var ang, len;
-        if (edge){ ang = Math.atan2(gy, gx) + (r() - .5) * .6; len = L * (1 + r() * .8); }
-        else { ang = Math.PI / 2 + (r() - .5) * 1.6; len = L * (.45 + r() * .4); }
-        list.push({ x: jx, y: jy, bx: Math.cos(ang), by: Math.sin(ang), len: len, edge: edge ? 1 : 0, sh: r() < .22 ? 2 : (r() < .5 ? 1 : 0), ph: r() * 6.28 });
+        if (edge){ ang = Math.atan2(gy, gx) + (r() - .5) * 1.0; len = L * (.95 + r() * .7); }
+        else { ang = r() * 6.283; len = L * (.4 + r() * .35); }
+        // plush shading: lighter on top of each letter, deeper toward the bottom, plus random tufts
+        var hgt = Math.min(1, Math.max(0, (jy - top) / span));
+        var sh = Math.max(0, Math.min(3, Math.floor(hgt * 2.3 + r() * 1.6 - .3)));
+        list.push({ x: jx, y: jy, bx: Math.cos(ang), by: Math.sin(ang), len: len, edge: edge ? 1 : 0, sh: sh, ph: r() * 6.28, curl: (r() - .5) * .9 });
       }
     }
-    // draw the shadow strands first so lighter fur sits on top
+    // darker fur first so lighter fluff sits on top
     list.sort(function(p, q){ return q.sh - p.sh; });
     strands = list;
     draw(0);
   }
 
-  var COLORS = ['#FFFFFF', '#E4EBF2', '#AFC0D0'];
+  var COLORS = ['#FFFFFF', '#F0F4F8', '#D6E0EA', '#A9BACB'];
+  var WIDTHS = [1.25, 1.5, 1.9, 2.4];
+  var ALPHAS = [.95, .85, .7, .55];
   function draw(t){
     if (!strands) return;
     ctx.clearRect(0, 0, W, H);
-    // under-fur: the solid letter body, slightly cool, so the word always reads
     ctx.globalAlpha = 1;
-    ctx.filter = 'none';
     ctx.drawImage(under, 0, 0);
-    ctx.globalCompositeOperation = 'source-in';
-    ctx.fillStyle = '#DCE5ED';
-    ctx.fillRect(0, 0, W, H);
-    ctx.globalCompositeOperation = 'source-over';
 
     var ts = t * 0.001;
-    var gustNow = 0.55 + 0.25 * Math.sin(ts * 0.7) + 0.15 * Math.sin(ts * 1.9 + 1.3) + gust;
+    var gustNow = 0.45 + 0.2 * Math.sin(ts * 0.7) + 0.12 * Math.sin(ts * 1.9 + 1.3) + gust;
     var wx = Math.cos(-0.18), wy = Math.sin(-0.18);
-    var R = 160 * dpr, mx = mouse.x * dpr, my = mouse.y * dpr;
+    var R = (150 + 70 * press) * dpr, mx = mouse.x * dpr, my = mouse.y * dpr;
     ctx.lineCap = 'round';
-    ctx.lineWidth = Math.max(1, 1.35 * dpr);
-    ctx.globalAlpha = .88;
     var cur = -1;
     for (var i = 0; i < strands.length; i++){
       var p = strands[i];
-      if (p.sh !== cur){ if (cur !== -1) ctx.stroke(); cur = p.sh; ctx.strokeStyle = COLORS[cur]; ctx.beginPath(); }
+      if (p.sh !== cur){
+        if (cur !== -1) ctx.stroke();
+        cur = p.sh; ctx.strokeStyle = COLORS[cur]; ctx.globalAlpha = ALPHAS[cur];
+        ctx.lineWidth = Math.max(1, WIDTHS[cur] * dpr); ctx.beginPath();
+      }
       var n = Math.sin(p.x * 0.006 + ts * 2.2 + p.ph * .3) * Math.cos(p.y * 0.009 - ts * 1.6);
-      var w = Math.min(.92, (p.edge ? .62 : .38) * gustNow + n * .18);
-      var fx = wx + n * .55, fy = wy + Math.sin(ts * 3 + p.ph) * .12 + n * .35;
+      var w = Math.min(.9, (p.edge ? .55 : .25) * gustNow + n * .15);
+      var fx = wx + n * .5, fy = wy + Math.sin(ts * 3 + p.ph) * .12 + n * .3;
       var dx = p.bx * (1 - w) + fx * w, dy = p.by * (1 - w) + fy * w;
       var dl = Math.sqrt(dx * dx + dy * dy) || 1;
-      var len = p.len * (1 + gustNow * .15 * p.edge);
-      var tx = p.x + dx / dl * len, ty = p.y + dy / dl * len;
-      var ddx = tx - mx, ddy = ty - my, d = Math.sqrt(ddx * ddx + ddy * ddy);
-      if (d < R){ var k = (R - d) / R * len * .9; tx += ddx / (d || 1) * k; ty += ddy / (d || 1) * k; }
-      var cx = p.x + p.bx * len * .45, cy = p.y + p.by * len * .45;
+      var len = p.len * (1 + gustNow * .12 * p.edge);
+      var tx, ty;
+      var ddx = p.x - mx, ddy = p.y - my, d = Math.sqrt(ddx * ddx + ddy * ddy);
+      if (d < R){
+        // stroke / squeeze: fur parts away from the finger and lies down softly
+        var k = (R - d) / R;
+        var pdx = ddx / (d || 1), pdy = ddy / (d || 1);
+        dx = dx * (1 - k) + pdx * k; dy = dy * (1 - k) + pdy * k;
+        dl = Math.sqrt(dx * dx + dy * dy) || 1;
+        len *= 1 - k * (.15 + .3 * press);
+      }
+      tx = p.x + dx / dl * len; ty = p.y + dy / dl * len;
+      // slight curl makes the pile look soft rather than spiky
+      var cx = p.x + (dx / dl) * len * .5 - (dy / dl) * len * p.curl * .5;
+      var cy = p.y + (dy / dl) * len * .5 + (dx / dl) * len * p.curl * .5;
       ctx.moveTo(p.x, p.y);
       ctx.quadraticCurveTo(cx, cy, tx, ty);
     }
@@ -1279,6 +1309,7 @@ var WA_MAIN = '995597798214';
 
   function loop(t){
     gust *= 0.95;
+    press += ((pressing ? 1 : 0) - press) * 0.18;
     draw(t);
     if (running && visible) raf = requestAnimationFrame(loop); else raf = 0;
   }
@@ -1291,7 +1322,14 @@ var WA_MAIN = '995597798214';
     mouse.px = x; mouse.py = y; mouse.x = x; mouse.y = y;
     if (reduce) draw(0);
   });
-  cv.addEventListener('pointerleave', function(){ mouse.x = mouse.y = mouse.px = mouse.py = -9999; if (reduce) draw(0); });
+  cv.addEventListener('pointerleave', function(){ pressing = false; mouse.x = mouse.y = mouse.px = mouse.py = -9999; if (reduce) draw(0); });
+  cv.addEventListener('pointerdown', function(ev){
+    var b = cv.getBoundingClientRect();
+    mouse.x = mouse.px = ev.clientX - b.left; mouse.y = mouse.py = ev.clientY - b.top;
+    pressing = true; if (reduce){ press = 1; draw(0); }
+  });
+  window.addEventListener('pointerup', function(){ pressing = false; if (reduce){ press = 0; draw(0); } });
+  window.addEventListener('pointercancel', function(){ pressing = false; });
 
   if ('IntersectionObserver' in window){
     new IntersectionObserver(function(en){
