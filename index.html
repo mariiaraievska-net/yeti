@@ -327,10 +327,10 @@ h1,h2{text-wrap:balance}
 .g-th[aria-pressed="true"]{border-color:var(--accent);color:var(--night)}
 .w-shot.shot-plain picture,.w-shot.shot-plain img{display:block;width:100%;height:100%;object-fit:cover}
 /* reviews */
-.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:20px;align-items:start}
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px;align-items:start}
 .review{margin:0;border:1.5px solid var(--line-dark);border-radius:24px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:18px;background:var(--night-2);position:relative}
 .review::before{content:"“";font-family:var(--f-display);font-size:96px;line-height:.6;color:var(--accent);height:40px}
-.review blockquote{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(24px,2.6vw,36px);line-height:1.15;text-wrap:balance}
+.review blockquote{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(22px,1.9vw,28px);line-height:1.2;text-wrap:pretty;overflow-wrap:break-word;hyphens:auto}
 .review figcaption{display:flex;flex-direction:column;gap:2px;font-size:15px}
 .review figcaption span{color:var(--mist)}
 .r-proof{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line-dark);padding-top:16px}
@@ -891,7 +891,7 @@ h1,h2{text-wrap:balance}
         </div>
       </article>
 
-      <article class="work">
+      <article class="work" id="case-physics">
         <a class="w-shot browser" href="https://learnphysics.brrayma.workers.dev/" target="_blank" rel="noopener" aria-label="Відкрити сайт для викладача фізики">
           <div class="b-bar" aria-hidden="true"><i></i><i></i><i></i><span>learnphysics.brrayma.workers.dev</span></div>
           <picture id="phShot"><source srcset="cases/physics.webp" type="image/webp"><img src="cases/physics.jpg" alt="Головна сторінка сайту для викладача фізики: «Фізика — це не формули. Це те, як працює світ.»" width="1400" height="763" loading="lazy"></picture>
@@ -951,6 +951,17 @@ h1,h2{text-wrap:balance}
           <details>
             <summary>Оригінал повідомлення</summary>
             <img src="cases/review-schedule.jpg" alt="Скрін повідомлення: «Дякую! Дитина з вашим додатком встигає на всі заняття в школі. Це дуже зручно все мати в одному місці. Буду вас рекомендувати однозначно!», 1:23" width="592" height="117" loading="lazy">
+          </details>
+        </div>
+      </figure>
+      <figure class="review">
+        <blockquote>Сайт подобається — дизайн як і уявляла, функціональний та цікава анімація з Ньютоном додає трохи настрою.</blockquote>
+        <figcaption><b>Викладачка фізики</b><span>сайт для онлайн-занять</span></figcaption>
+        <div class="r-proof">
+          <a href="#case-physics">Проєкт: Сайт для викладача фізики ↑</a>
+          <details>
+            <summary>Оригінал повідомлення</summary>
+            <img src="cases/review-physics.jpg" alt="Скрін повідомлення: «Дякую, сайт подобається - дизайн як і уявляла, функціональний та цікава анімація з Ньютоном додає трохи настрою», 14:51" width="900" height="300" loading="lazy">
           </details>
         </div>
       </figure>
