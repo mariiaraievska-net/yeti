@@ -1,0 +1,10 @@
+# Netlify: сайт без збірки, файли віддаються як є
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# службові файли не потрібні відвідувачам
+[[redirects]]
+  from = "/crm/*"
+  to = "/404"
+  status = 404

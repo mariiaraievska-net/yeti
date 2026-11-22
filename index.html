@@ -978,7 +978,8 @@ h1,h2{text-wrap:balance}
   <h2 class="h2 inner call-h" style="width:100%"><span class="nw">Покажіть світу,</span><br><span class="acc nw">що ви існуєте.</span></h2>
 
   <div class="lead inner" style="width:100%">
-    <form class="form" id="leadForm" novalidate>
+    <form class="form" id="leadForm" name="lead" method="POST" data-netlify="true" netlify-honeypot="website" novalidate>
+      <input type="hidden" name="form-name" value="lead">
       <p class="form-title">Залиште заявку — відповім протягом дня</p>
       <div class="fields">
         <div class="field">
@@ -1098,15 +1099,27 @@ var WA_MAIN = '995597798214';
 
     function success(){ form.hidden = true; done.hidden = false; done.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
 
+    function fail(){
+      btn.disabled = false; btn.textContent = 'Надіслати заявку →';
+      err.innerHTML = 'Не вдалося надіслати. Перевірте інтернет або <a href="' + wa + '" target="_blank" rel="noopener" style="color:inherit">надішліть заявку в WhatsApp</a>.';
+    }
+
+    // Netlify: форма приймається самим хостингом (Netlify Forms) і пересилається в Telegram
+    var onNetlify = /^https?:$/.test(location.protocol) && !/github\.io$/.test(location.hostname);
+    if (onNetlify){
+      btn.disabled = true; btn.textContent = 'Надсилаю…';
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() })
+        .then(function(r){ if (!r.ok) throw new Error(r.status); success(); })
+        .catch(fail);
+      return;
+    }
+
     if (!CRM_URL){ window.open(wa, '_blank', 'noopener'); success(); return; }
 
     btn.disabled = true; btn.textContent = 'Надсилаю…';
     fetch(CRM_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) })
       .then(success)
-      .catch(function(){
-        btn.disabled = false; btn.textContent = 'Надіслати заявку →';
-        err.innerHTML = 'Не вдалося надіслати. Перевірте інтернет або <a href="' + wa + '" target="_blank" rel="noopener" style="color:inherit">надішліть заявку в WhatsApp</a>.';
-      });
+      .catch(fail);
   });
 
   var copyBtn = document.getElementById('copyMail');
