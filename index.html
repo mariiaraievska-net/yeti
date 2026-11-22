@@ -131,7 +131,7 @@ h1,h2{text-wrap:balance}
 @media (min-width:1000px){
   .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:clamp(40px,5vw,96px);min-height:calc(100vh - 70px)}
   .hero h1{font-size:clamp(44px,4.6vw,78px)}
-  .hero .pocket{width:auto}
+  .hero .pocket{width:min(580px,44vw)}
 }
 
 /* yeti map */
@@ -333,6 +333,13 @@ h1,h2{text-wrap:balance}
 .r-proof summary::before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--mist);border-radius:50%;font-size:13px}
 .r-proof details[open] summary::before{content:"−"}
 .r-proof img{display:block;width:100%;max-width:520px;height:auto;margin-top:10px;border-radius:14px;border:1px solid var(--line-dark)}
+.pocket .device{width:min(560px,100%);padding:0;background:none;box-shadow:none;border-radius:0}
+.pocket .bezel{border-radius:14px 14px 44px 14px;padding:16px 22px 12px;box-shadow:0 30px 60px rgba(0,0,0,.45),inset 0 2px 0 rgba(255,255,255,.08)}
+.pocket .boot{cursor:pointer}
+.pocket .p-mini{font:inherit;font-size:2.6cqw;color:var(--l4);background:transparent;border:.4cqw solid var(--l4);border-radius:1cqw;padding:.6cqw 1.6cqw;cursor:pointer;line-height:1.4;min-height:6cqw}
+.pocket .p-mini:hover,.pocket .p-mini:focus-visible{background:var(--l4);color:var(--l1);outline:none}
+.pocket .bar{align-items:center}
+.pocket .p-exit{position:absolute;left:3cqw;bottom:3cqw;z-index:3;background:var(--l1)}
 /* about */
 .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,6vw,80px);align-items:start}
 .about-head{display:flex;flex-direction:column;gap:24px;position:sticky;top:96px}
@@ -538,7 +545,6 @@ h1,h2{text-wrap:balance}
   </div>
   <div class="pocket fadein" style="animation-delay:.5s">
   <div class="device" tabindex="0" role="application" aria-label="Консоль YETI POCKET. Стрілки — меню, Enter — обрати, Escape — назад.">
-    <div class="topline" aria-hidden="true"><span>◀ OFF · ON ▶</span><span>YETI POCKET</span></div>
     <div class="bezel">
       <div class="bezel-top" aria-hidden="true"><hr><span>DOT MATRIX WITH SNOW</span><hr></div>
       <div class="screen">
@@ -547,11 +553,11 @@ h1,h2{text-wrap:balance}
           <section class="scr boot" data-scr="boot">
             <div class="boot-logo">YETI</div>
             <div class="boot-sub">POCKET</div>
-            <button class="it press" id="p-pressStart" style="width:auto;padding-left:1.2cqw">НАТИСНИ START</button>
+            <button class="it press" id="p-pressStart" style="width:auto;padding-left:1.2cqw">НАТИСНИ, ЩОБ ПОЧАТИ</button>
           </section>
 
           <section class="scr" data-scr="menu" hidden>
-            <header class="bar"><span>ГОЛОВНЕ МЕНЮ</span><span class="snd">♪ ВИМК</span></header>
+            <header class="bar"><span>ГОЛОВНЕ МЕНЮ</span><button type="button" class="snd p-mini" aria-label="Звук">♪ ВИМК</button></header>
             <div class="p-hero"><canvas class="sprite" width="16" height="16" aria-hidden="true"></canvas><p>КАЖУТЬ, МЕНЕ НЕ ІСНУЄ. ОСЬ ДОКАЗ.</p></div>
             <ul class="list">
               <li><button class="it" data-go="game">ГРАТИ</button></li>
@@ -560,11 +566,11 @@ h1,h2{text-wrap:balance}
               <li><button class="it" data-go="case">КЕЙСИ</button></li>
               <li><button class="it" data-go="contact">ЗВ'ЯЗАТИСЯ</button></li>
             </ul>
-            <footer class="hint">A — ОБРАТИ · SELECT — ЗВУК</footer>
+            <footer class="hint">ТИСНИ ПУНКТ · ↑↓ ENTER НА КЛАВІАТУРІ</footer>
           </section>
 
           <section class="scr" data-scr="services" hidden>
-            <header class="bar"><span>ПОСЛУГИ</span><span>B ◀</span></header>
+            <header class="bar"><span>ПОСЛУГИ</span><button type="button" class="p-mini" data-back>◀ НАЗАД</button></header>
             <ul class="list">
               <li><div class="it">САЙТИ ПІД КЛЮЧ<small>Лендинги й сайти компаній: дизайн, тексти, запуск</small></div></li>
               <li><div class="it">КАТАЛОГИ<small>Товари, фільтри, кошик, заявки</small></div></li>
@@ -578,7 +584,7 @@ h1,h2{text-wrap:balance}
           </section>
 
           <section class="scr" data-scr="prices" hidden>
-            <header class="bar"><span>ТАРИФИ</span><span>B ◀</span></header>
+            <header class="bar"><span>ТАРИФИ</span><button type="button" class="p-mini" data-back>◀ НАЗАД</button></header>
             <ul class="list">
               <li><div class="it p-row">ЛЕНДИНГ<i class="dots"></i><b>$250</b></div></li>
               <li><div class="it p-row">БІЗНЕС-САЙТ<i class="dots"></i><b>$450</b></div></li>
@@ -595,7 +601,7 @@ h1,h2{text-wrap:balance}
           </section>
 
           <section class="scr" data-scr="case" hidden>
-            <header class="bar"><span>КЕЙСИ · ПРАЦЮЮТЬ</span><span>B ◀</span></header>
+            <header class="bar"><span>КЕЙСИ · ПРАЦЮЮТЬ</span><button type="button" class="p-mini" data-back>◀ НАЗАД</button></header>
             <ul class="list">
               <li><a class="it" href="https://shop.vacandle.workers.dev" target="_blank" rel="noopener">МАГАЗИН СВІЧОК<small>V&amp;A Candle Atelier · відкрити</small></a></li>
               <li><a class="it" href="#about">САЙТ YETI<small>Ви саме на ньому</small></a></li>
@@ -606,7 +612,7 @@ h1,h2{text-wrap:balance}
           </section>
 
           <section class="scr" data-scr="contact" hidden>
-            <header class="bar"><span>ЗВ'ЯЗОК</span><span>B ◀</span></header>
+            <header class="bar"><span>ЗВ'ЯЗОК</span><button type="button" class="p-mini" data-back>◀ НАЗАД</button></header>
             <ul class="list">
               <li><a class="it" href="#call">ЗАЯВКА НА САЙТІ<small>Форма внизу сторінки</small></a></li>
               <li><a class="it" href="https://t.me/mariia_AIweb" target="_blank" rel="noopener">TELEGRAM<small>@mariia_AIweb</small></a></li>
@@ -614,11 +620,12 @@ h1,h2{text-wrap:balance}
               <li><a class="it" href="https://wa.me/380955610368" target="_blank" rel="noopener">WHATSAPP · UA<small>+380 95 561 03 68</small></a></li>
               <li><button class="it" id="p-copyMail">ПОШТА — КОПІЮВАТИ<small id="p-mailAddr">mariia.raievska@icloud.com</small></button></li>
             </ul>
-            <footer class="hint">A — ВІДКРИТИ</footer>
+            <footer class="hint">ТИСНИ, ЩОБ ВІДКРИТИ</footer>
           </section>
 
           <section class="scr" data-scr="game" hidden style="padding:0">
-            <canvas id="p-game" width="320" height="288" role="img" aria-label="Гра: Yeti біжить по снігу. A або пробіл — стрибок, B — меню."></canvas>
+            <canvas id="p-game" width="320" height="288" role="img" aria-label="Гра: Yeti біжить по снігу. Тап або пробіл — стрибок."></canvas>
+            <button type="button" class="p-mini p-exit" data-back>◀ МЕНЮ</button>
           </section>
 
           <div class="toast" id="p-toast" hidden></div>
@@ -626,25 +633,6 @@ h1,h2{text-wrap:balance}
       </div>
       <div class="led" aria-hidden="true"><i></i>BATTERY</div>
     </div>
-    <p class="p-label" aria-hidden="true">YETI <b>POCKET</b></p>
-
-    <div class="controls">
-      <div class="dpad">
-        <button class="d-up" data-key="up" aria-label="Вгору"><svg viewBox="0 0 10 10"><path d="M5 1 9 8H1z"/></svg></button>
-        <button class="d-left" data-key="left" aria-label="Вліво"><svg viewBox="0 0 10 10"><path d="M1 5 8 1v8z"/></svg></button>
-        <button class="d-right" data-key="right" aria-label="Вправо"><svg viewBox="0 0 10 10"><path d="M9 5 2 9V1z"/></svg></button>
-        <button class="d-down" data-key="down" aria-label="Вниз"><svg viewBox="0 0 10 10"><path d="M5 9 1 2h8z"/></svg></button>
-      </div>
-      <div class="ab">
-        <div><button class="b-btn" data-key="b" aria-label="Кнопка B — назад"></button><span>B</span></div>
-        <div><button class="a-btn" data-key="a" aria-label="Кнопка A — обрати або стрибнути"></button><span>A</span></div>
-      </div>
-    </div>
-    <div class="ss">
-      <div><button data-key="select" aria-label="SELECT — увімкнути або вимкнути звук"></button><span>SELECT</span></div>
-      <div><button data-key="start" aria-label="START — меню або пауза"></button><span>START</span></div>
-    </div>
-    <div class="speaker" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </div>
   </div>
 </section>
@@ -1594,10 +1582,10 @@ var WA_MAIN = '995597798214';
     text('СЛІДИ ' + g.score + '/' + GOAL, 4, 4, 6, PAL[4], 'left');
     text('РЕКОРД ' + best, W - 4, 4, 6, PAL[3], 'right');
 
-    if (g.mode === 'ready') panel([['YETI RUN', 8], ['ЗБЕРИ 12 СЛІДІВ', 6, 3], ['A — СТАРТ / СТРИБОК', 6], ['B — МЕНЮ', 6, 3]]);
-    else if (g.mode === 'pause') panel([['ПАУЗА', 8], ['A — ГРАТИ ДАЛІ', 6], ['B — МЕНЮ', 6, 3]]);
-    else if (g.mode === 'over') panel([[g.cause, 7], ['СЛІДІВ: ' + g.score, 6, 3], ['A — ЩЕ РАЗ', 6], ['B — МЕНЮ', 6, 3]]);
-    else if (g.mode === 'win') panel([['РІВЕНЬ ПРОЙДЕНО!', 7], ['ТВІЙ САЙТ', 6, 3], ['НАСТУПНИЙ', 6, 3], ['A — ЗВ\'ЯЗАТИСЯ', 6]]);
+    if (g.mode === 'ready') panel([['YETI RUN', 8], ['ЗБЕРИ 12 СЛІДІВ', 6, 3], ['ТАП — СТАРТ / СТРИБОК', 6], ['◀ МЕНЮ — ВИХІД', 6, 3]]);
+    else if (g.mode === 'pause') panel([['ПАУЗА', 8], ['ТАП — ГРАТИ ДАЛІ', 6], ['◀ МЕНЮ — ВИХІД', 6, 3]]);
+    else if (g.mode === 'over') panel([[g.cause, 7], ['СЛІДІВ: ' + g.score, 6, 3], ['ТАП — ЩЕ РАЗ', 6], ['◀ МЕНЮ — ВИХІД', 6, 3]]);
+    else if (g.mode === 'win') panel([['РІВЕНЬ ПРОЙДЕНО!', 7], ['ТВІЙ САЙТ', 6, 3], ['НАСТУПНИЙ', 6, 3], ['ТАП — ЗВ\'ЯЗАТИСЯ', 6]]);
   }
 
   function loop(t){
@@ -1629,6 +1617,10 @@ var WA_MAIN = '995597798214';
 
   reset(); draw();
   paint();
+  document.querySelectorAll('.pocket [data-back]').forEach(function(x){ x.addEventListener('click', function(e){ e.stopPropagation(); beep(330, .06); show('menu'); }); });
+  document.querySelectorAll('.pocket .snd').forEach(function(x){ x.addEventListener('click', toggleSound); });
+  var bootScr = document.querySelector('.pocket [data-scr="boot"]');
+  if (bootScr) bootScr.addEventListener('click', function(e){ if (e.target.id !== 'p-pressStart' && cur === 'boot'){ beep(988, .12); show('menu'); } });
   window.yetiPocket = { play: function(){ pocketActive = true; dev.focus({ preventScroll: true }); if (cur !== 'game') show('game'); } };
 })();
 </script>
